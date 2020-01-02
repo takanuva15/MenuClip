@@ -1,5 +1,8 @@
-##Changelog
-2020-01-01 Refactored menu actions to its own class. Also put in limits to how much of long clips is shown in the menu
+# Changelog
+
+## v1.0.0
+
+2020-01-01 Refactored menu actions to its own class. Also put in limits to how much of long clips is shown in the menu. Renamed tray tooltip.
 2019-12-29 
 - Maximum storage size implemented. Currently set to 8 clips.
 - Selected menu item now shifts to the top of the menu
