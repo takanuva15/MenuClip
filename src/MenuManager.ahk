@@ -16,7 +16,6 @@ class MenuManager {
 			menuItemLabel := SubStr(menuItem, 1, this.MAX_MENUITEM_LABEL_LENGTH) . "..."
 		}
 		Menu, % this.menuName, Insert, 1&, %menuItemLabel%, % callOnItemClickWithValueFn
-		Menu, % this.menuName, Default, 1&
 		this.menuItemValues.insertAt(1, menuItem)
 	}
 	
