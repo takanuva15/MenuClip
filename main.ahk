@@ -19,7 +19,7 @@ Menu, Tray, Tip, MenuClip %VERSION%
 CONFIG_FILE_NAME := "config.ini"
 configManager := new MenuClip.ConfigManager(CONFIG_FILE_NAME)
 
-clipManager := new MenuClip.ClipManager(MAX_CLIPS_TO_STORE, MAX_MENUITEM_LABEL_LENGTH, ALT_PASTE_APPS)
+clipManager := new MenuClip.ClipManager(configManager,  MAX_MENUITEM_LABEL_LENGTH, ALT_PASTE_APPS)
 clipManager.monitorClipboardChanges()
 
 showMenu := ObjBindMethod(clipManager, "showContextMenu")
