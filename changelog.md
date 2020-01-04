@@ -1,5 +1,6 @@
 # Changelog
 
+## v1.2.0
 2020-01-04 Added config option to specify which exe processes use Shift+Insert for pasting, and the menu will execute that for those processes
 ## v1.1.0
 2020-01-03 Added easily configurable variables to `main.ahk` to modify menu settings
