@@ -15,6 +15,9 @@ Copy "one", then "two". Paste "two" from the menu. Now paste "one" from the menu
 1. Selected clip shifts to top of menu
 If the menu has 2 clips, "one" and "two" (with "one" being at the top of the list), in that order, then clicking "two" should shift it to the top of the menu. The resulting menu order is "two", "one".
 
+1. Pasting is correct in editors that use Shift+Insert for paste
+Open up git bash. Copy something, and then open up the clip menu and try to paste it into git bash.
+
 ##### Visual Tests
 1. Menu items only show first 50 characters of clip-to-be-pasted
 Copy this: 
