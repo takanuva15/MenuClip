@@ -6,7 +6,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance, Force
 
-VERSION := "v1.1.0"
+VERSION := "v1.2.0"
 MAX_CLIPS_TO_STORE := 15
 MAX_MENUITEM_LABEL_LENGTH := 50
 ALT_PASTE_APPS := ""
