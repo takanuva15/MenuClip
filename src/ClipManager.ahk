@@ -1,8 +1,9 @@
 ﻿;Primary clipboard manager class. Should only be one instance for the duration of the script
 class ClipManager {
 	static CLIP_TYPE_TEXT := 1
-	static MAX_CLIPS := 8
-	__New() {
+	static MAX_CLIPS
+	__New(maxClipsToStore) {
+		this.MAX_CLIPS := maxClipsToStore
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
 		this.menuManager := new MenuClip.MenuManager(ObjBindMethod(this, "pasteClip"))
 	}
