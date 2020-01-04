@@ -3,11 +3,11 @@ class ClipManager {
 	static CLIP_TYPE_TEXT := 1
 	static MAX_CLIPS_TO_STORE
 	static ALT_PASTE_APPS
-	__New(configManager, maxMenuItemLabelLength) {
+	__New(configManager) {
 		this.MAX_CLIPS_TO_STORE := configManager.getMaxClipsToStore()
 		this.ALT_PASTE_APPS := configManager.getAltPasteApps()
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
-		this.menuManager := new MenuClip.MenuManager(ObjBindMethod(this, "pasteClip"),maxMenuItemLabelLength)
+		this.menuManager := new MenuClip.MenuManager(ObjBindMethod(this, "pasteClip"), configManager)
 	}
 	
 	monitorClipboardChanges() {

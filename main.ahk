@@ -7,7 +7,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance, Force
 
 VERSION := "v1.2.0"
-MAX_MENUITEM_LABEL_LENGTH := 50
 
 #Include src\MenuClip.ahk
 
@@ -17,7 +16,7 @@ Menu, Tray, Tip, MenuClip %VERSION%
 CONFIG_FILE_NAME := "config.ini"
 configManager := new MenuClip.ConfigManager(CONFIG_FILE_NAME)
 
-clipManager := new MenuClip.ClipManager(configManager,  MAX_MENUITEM_LABEL_LENGTH)
+clipManager := new MenuClip.ClipManager(configManager)
 clipManager.monitorClipboardChanges()
 
 showMenu := ObjBindMethod(clipManager, "showContextMenu")
