@@ -9,13 +9,14 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 VERSION := "v1.1.0"
 MAX_CLIPS_TO_STORE := 15
 MAX_MENUITEM_LABEL_LENGTH := 50
+ALT_PASTE_APPS := "mintty.exe"
 
 #Include src\MenuClip.ahk
 
 ;Modifies the tooltip in the System tray
 Menu, Tray, Tip, MenuClip %VERSION%
 
-clipManager := new MenuClip.ClipManager(MAX_CLIPS_TO_STORE, MAX_MENUITEM_LABEL_LENGTH)
+clipManager := new MenuClip.ClipManager(MAX_CLIPS_TO_STORE, MAX_MENUITEM_LABEL_LENGTH, ALT_PASTE_APPS)
 clipManager.monitorClipboardChanges()
 
 showMenu := ObjBindMethod(clipManager, "showContextMenu")

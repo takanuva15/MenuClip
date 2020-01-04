@@ -2,8 +2,10 @@
 class ClipManager {
 	static CLIP_TYPE_TEXT := 1
 	static MAX_CLIPS_TO_STORE
-	__New(maxClipsToStore, maxMenuItemLabelLength) {
+	static ALT_PASTE_APPS
+	__New(maxClipsToStore, maxMenuItemLabelLength, altPasteApps) {
 		this.MAX_CLIPS_TO_STORE := maxClipsToStore
+		this.ALT_PASTE_APPS := altPasteApps
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
 		this.menuManager := new MenuClip.MenuManager(ObjBindMethod(this, "pasteClip"),maxMenuItemLabelLength)
 	}
@@ -26,7 +28,12 @@ class ClipManager {
 	pasteClip(textToPaste) {
 		OnClipboardChange(this.saveClipFn, 0)
 		Clipboard := textToPaste
-		Send, ^v
+		WinGet, activeWin, ProcessName, A
+		if(InStr(this.ALT_PASTE_APPS, activeWin)) {
+			Send, +{Insert}
+		} else {
+			Send, ^v
+		}
 		this.menuManager.moveLastSelectedItemToTop()
 		OnClipboardChange(this.saveClipFn)
 	}
