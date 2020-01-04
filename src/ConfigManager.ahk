@@ -18,13 +18,19 @@ class ConfigManager {
 	readAllConfigOptionsFromFile() {
 		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_MAX_CLIPS_TO_STORE
 		this.CONFIG_VAL_MAX_CLIPS_TO_STORE := tmpReadInStorageVar
+		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_ALT_PASTE_APPS
+		this.CONFIG_VAL_ALT_PASTE_APPS := tmpReadInStorageVar
 	}
 	
 	writeAllConfigOptionsToFile() {
-		IniWrite, 15, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_MAX_CLIPS_TO_STORE
+		IniWrite, % "mintty.exe, runemacs.exe", % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_ALT_PASTE_APPS
 	}
 	
 	getMaxClipsToStore() {
 		return this.CONFIG_VAL_MAX_CLIPS_TO_STORE
+	}
+	
+	getAltPasteApps() {
+		return this.CONFIG_VAL_ALT_PASTE_APPS
 	}
 }
