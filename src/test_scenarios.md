@@ -2,8 +2,9 @@
 ### This file lists the scenarios that should be tested prior to merging to develop
 
 All scenarios assume:
-- MAX_CLIPS_TO_STORE := 2
-- MAX_MENUITEM_LABEL_LENGTH := 50
+- MAX_CLIPS_TO_STORE=2
+- MAX_MENUITEM_LABEL_LENGTH=50
+- ALTERNATE_PASTE_APPS=mintty.exe
 
 ##### Functionality Tests
 1. Max limit on stored clips obeyed
@@ -27,4 +28,4 @@ And when you paste it, you should see:
 ---------1---------2---------3---------4---------5---------6
 
 ##### Configurations
-1. Change the configuration variables in `main.ahk`. The property that each variable defines should adjust accordingly when the script is run.
+1. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is run.
