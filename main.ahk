@@ -9,7 +9,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 VERSION := "v1.1.0"
 MAX_CLIPS_TO_STORE := 15
 MAX_MENUITEM_LABEL_LENGTH := 50
-ALT_PASTE_APPS := "mintty.exe"
+ALT_PASTE_APPS := ""
 
 #Include src\MenuClip.ahk
 

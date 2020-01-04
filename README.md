@@ -1,12 +1,14 @@
 # MenuClip
 MenuClip is a menu-based clipboard manager written in AutoHotkey. (Tested on Windows 10 with AHK v1.1.32.00)
 
-When you press a hotkey, a small context menu will show up that indicates the last 10 things that were copied to your clipboard. 
+When you press a hotkey, a small context menu will show up that indicates the last x things that were copied to your clipboard. 
 
 ### Features:
 - Stores all text and filepath (from Explorer) clips into memory
 - Displays stored clips in a context menu via Ctrl+Shift+V
 - Stores 15 clips by default. (Afterwards, it will delete the oldest one and insert the newest clip at the top)
+- Configurable options (eg number of clips stored, clip preview length)
+- Can be configured to work with editors that use Shift+Insert for pasting
 
 ## How to Run
 
@@ -15,8 +17,9 @@ When you press a hotkey, a small context menu will show up that indicates the la
 1. Double click on `main.ahk` to run it.
 
 ## Configuring the Script
-
-1. To adjust the number of clips to store or how many characters of each clip are shown in the menu, adjust the respectively-named variables in `main.ahk` and re-run the script.
+(please re-run the script after changing a configuration)
+- To adjust the number of clips to store or how many characters of each clip are shown in the menu, adjust the respectively-named variables in `main.ahk`.
+- To add a certain editor to the "Shift+Insert" list, add it's exe filename to the `ALT_PASTE_APPS` string in `main.ahk`. (Ideally you should comma-separate each exe. eg: `ALT_PASTE_APPS := "mintty.exe, runemacs.exe"
 
 ## Contributing
 I welcome any contributions that fix bugs or provide additional functionality (please format the code cleanly). Please check with me before developing a PR that is out-of-scope of this application (eg a rotating clip-paste function which [ClipJump](https://github.com/aviaryan/Clipjump) already does, or something that assigns presets like [this](https://www.autohotkey.com/boards/viewtopic.php?t=65004) already does). 
