@@ -2,8 +2,9 @@
 class MenuManager {
 	static menuName := "clipMenu"
 	static menuItemValues := [] ;Used to store the full values of the menu items shown in the menu (in case of long menu items)
-	static MAX_MENUITEM_LABEL_LENGTH := 35
-	__New(onItemClickFn) {
+	static MAX_MENUITEM_LABEL_LENGTH
+	__New(onItemClickFn, maxMenuItemLabelLength) {
+		this.MAX_MENUITEM_LABEL_LENGTH := maxMenuItemLabelLength
 		this.onItemClickFn := onItemClickFn
 		this.callOnItemClickWithValueFn := ObjBindMethod(this, "callOnItemClickWithValue")
 	}
