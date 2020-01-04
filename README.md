@@ -18,8 +18,8 @@ When you press a hotkey, a small context menu will show up that indicates the la
 
 ## Configuring the Script
 (please re-run the script after changing a configuration)
-- To adjust the number of clips to store or how many characters of each clip are shown in the menu, adjust the respectively-named variables in `main.ahk`.
-- To add a certain editor to the "Shift+Insert" list, add it's exe filename to the `ALT_PASTE_APPS` string in `main.ahk`. (Ideally you should comma-separate each exe. eg: `ALT_PASTE_APPS := "mintty.exe, runemacs.exe"
+- To adjust the number of clips to store or how many characters of each clip are shown in the menu, adjust the respectively-named keys in `config.ini`.
+- To add a certain editor to the "Shift+Insert" list, add it's exe filename to the `ALTERNATE_PASTE_APPS` key in `config.ini`. (Ideally you should comma-separate each exe. eg: `ALTERNATE_PASTE_APPS=mintty.exe,runemacs.exe`
 
 ## Contributing
 I welcome any contributions that fix bugs or provide additional functionality (please format the code cleanly). Please check with me before developing a PR that is out-of-scope of this application (eg a rotating clip-paste function which [ClipJump](https://github.com/aviaryan/Clipjump) already does, or something that assigns presets like [this](https://www.autohotkey.com/boards/viewtopic.php?t=65004) already does). 
@@ -34,4 +34,4 @@ You can check out the Trello board for tracking stories on the project [here](ht
 You can view a UML diagram of the application [here](https://www.lucidchart.com/documents/view/8b32b807-f1e5-4cb6-afa5-1380075d861b). (Note: UML will occasionally be out-of-date)
 
 ## Credits
-Special thanks to the people who've helped me with coding obstacles by answering my questions on the AutoHotkey forums. You can see my various questions and people's responses [here](https://www.autohotkey.com/boards/search.php?author_id=117081&sr=posts)
+Special thanks to the people who've helped me with coding obstacles by answering my questions on the AutoHotkey forums. You can see my various questions and people's responses [here](https://www.autohotkey.com/boards/search.php?author_id=117081&sr=posts).
