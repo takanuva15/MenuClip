@@ -1,14 +1,14 @@
 ﻿;Handles changes to the menu
 class TrayManager {
-	static versionNum
+	static VERSION
 	static configFileName
 	__New(configManager) {
-		this.versionNum := configManager.getVersionNum()
+		this.VERSION := configManager.getVersionNum()
 		this.configFileName := configManager.getConfigFileName()
 	}
 	
 	configureTrayTooltip() {
-		Menu, Tray, Tip, % "MenuClip " . this.versionNum
+		Menu, Tray, Tip, % "MenuClip " . this.VERSION
 	}
 	
 	configureTrayOptions() {
@@ -25,7 +25,7 @@ class TrayManager {
 	}
 	
 	showAboutMessage() {
-		MsgBox, 0, About MenuClip, % this.ABOUT_MENUCLIP
+		MsgBox, 0, About MenuClip, % "MenuClip " . this.VERSION . "`n" this.ABOUT_MENUCLIP
 	}
 	
 	reloadScript() {
