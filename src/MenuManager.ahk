@@ -2,6 +2,7 @@
 class MenuManager {
 	static menuName := "clipMenu"
 	static menuItemValues := [] ;Used to store the full values of the menu items shown in the menu (in case of long menu items)
+	static isMenuEmpty := true
 	static MAX_MENUITEM_LABEL_LENGTH
 	static MENU_THEME
 	__New(configManager, onItemClickFn) {
@@ -15,6 +16,12 @@ class MenuManager {
 	}
 	
 	insertItemAtTop(menuItem) {
+		;this if is called only once to prevent error if no clips	
+		if(this.isMenuEmpty) {
+			Menu, % this.menuName, DeleteAll
+			this.isMenuEmpty := false 
+		}
+		
 		callOnItemClickWithValueFn := this.callOnItemClickWithValueFn
 		menuItemLabel := menuItem
 		;not using a ternary below because it worsens readability
@@ -51,7 +58,7 @@ class MenuManager {
 	
 	setTheme() {
 		if(this.MENU_THEME = "dark") {
-			Menu, % this.menuName, Color, darkgray
+			Menu, % this.menuName, Color, a6a6a6
 		} else {
 			Menu, % this.menuName, Color, Default
 		}
