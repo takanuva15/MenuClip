@@ -7,16 +7,16 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance, Force
 
 VERSION := "v1.5.0"
+CONFIG_FILE_NAME := "config.ini"
 
 #Include src\MenuClip.ahk
 
-;Modifies the tooltip in the System tray
-trayManager := new MenuClip.TrayManager()
-trayManager.configureTrayTooltip(VERSION)
-trayManager.configureTrayOptions()
+configManager := new MenuClip.ConfigManager(VERSION, CONFIG_FILE_NAME)
+configManager.readAllConfigOptionsFromFile()
 
-CONFIG_FILE_NAME := "config.ini"
-configManager := new MenuClip.ConfigManager(CONFIG_FILE_NAME)
+trayManager := new MenuClip.TrayManager(configManager)
+trayManager.configureTrayTooltip()
+trayManager.configureTrayOptions()
 
 clipManager := new MenuClip.ClipManager(configManager)
 clipManager.monitorClipboardChanges()

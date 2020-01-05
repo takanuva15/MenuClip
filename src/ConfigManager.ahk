@@ -1,5 +1,6 @@
 ﻿;Handles configuration file reading & writing
 class ConfigManager {
+	static VERSION
 	static CONFIG_FILE_NAME
 	static CONFIG_SECTION := "Configuration Options"
 	static CONFIG_NAME_HOTKEY := "SHOW_MENU_HOTKEY"
@@ -14,7 +15,8 @@ class ConfigManager {
 	static CONFIG_VAL_ALT_PASTE_APPS
 	static CONFIG_VAL_THEME
 	
-	__New(configFileName) {
+	__New(versionNum, configFileName) {
+		this.VERSION := versionNum
 		this.CONFIG_FILE_NAME := configFileName
 		this.readAllConfigOptionsFromFile()
 	}
@@ -30,6 +32,14 @@ class ConfigManager {
 		this.CONFIG_VAL_MAX_MENUITEM_LABEL_LENGTH := this.readConfigFromFile(this.CONFIG_NAME_MAX_MENUITEM_LABEL_LENGTH)
 		this.CONFIG_VAL_ALT_PASTE_APPS := this.readConfigFromFile(this.CONFIG_NAME_ALT_PASTE_APPS)
 		this.CONFIG_VAL_THEME := this.readConfigFromFile(this.CONFIG_NAME_THEME)
+	}
+	
+	getVersionNum() {
+		return this.VERSION
+	}
+	
+	getConfigFileName() {
+		return this.CONFIG_FILE_NAME
 	}
 	
 	getShowMenuHotkey() {
