@@ -1,11 +1,14 @@
 ﻿;Handles changes to the menu
 class TrayManager {
-	__New() {
-		
+	static versionNum
+	static configFileName
+	__New(configManager) {
+		this.versionNum := configManager.getVersionNum()
+		this.configFileName := configManager.getConfigFileName()
 	}
 	
-	configureTrayTooltip(versionNum) {
-		Menu, Tray, Tip, MenuClip %versionNum%
+	configureTrayTooltip() {
+		Menu, Tray, Tip, % "MenuClip " . this.versionNum
 	}
 	
 	configureTrayOptions() {
@@ -14,6 +17,11 @@ class TrayManager {
 		Menu, Tray, Add, &About, % showAboutMessageFn
 		reloadScriptFn := ObjBindMethod(this, "reloadScript")
 		Menu, Tray, Add, &Reload This Script, % reloadScriptFn
+		editConfigFileFn := ObjBindMethod(this, "editConfigFile")
+		Menu, Tray, Add, Edit &Configuration, % editConfigFileFn	
+		Menu, Tray, Default, Edit &Configuration
+		exitScriptFn := ObjBindMethod(this, "exitScript")
+		Menu, Tray, Add, &Exit Script, % exitScriptFn
 	}
 	
 	showAboutMessage() {
@@ -22,6 +30,15 @@ class TrayManager {
 	
 	reloadScript() {
 		Reload
+	}
+	
+	editConfigFile() {
+		configFileName := this.configFileName
+		Run Edit %configFileName%
+	}
+	
+	exitScript() {
+		ExitApp
 	}
 	
 	
