@@ -1,5 +1,6 @@
 # Changelog
 
+2020-01-05 Added a dark theme config option
 ## v1.3.0
 2020-01-04 Added support for ini files. Now all configurable variables are read from ini.
 ## v1.2.0
