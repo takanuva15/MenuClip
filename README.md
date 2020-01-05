@@ -19,7 +19,9 @@ When you press a hotkey, a small context menu will show up that indicates the la
 
 ## Configuring the Script
 (All changes should be done in the `config.ini` file. Please re-run the script after changing a configuration)
-- To adjust the number of clips to store or how many characters of each clip are shown in the menu, adjust their respectively-named keys.
+- To adjust an option, adjust its respectively-named key.
+Note:
+- When changing the shortcut to open the menu, you must use the AHK shortcut syntax (see [here](https://www.autohotkey.com/docs/Hotkeys.htm#Symbols) for a glossary). Example: To use `CapsLock` + `f` as the hotkey, you should write `SHOW_MENU_HOTKEY=CapsLock & f`.
 - To add a certain editor to the "Shift+Insert" list, add it's exe filename to the `ALTERNATE_PASTE_APPS` key. (Ideally you should comma-separate each exe. eg: `ALTERNATE_PASTE_APPS=mintty.exe,runemacs.exe`
 - To adjust theme, put `light` or `dark` for the `THEME` option.
 
