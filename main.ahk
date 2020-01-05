@@ -20,6 +20,6 @@ clipManager := new MenuClip.ClipManager(configManager)
 clipManager.monitorClipboardChanges()
 
 showMenu := ObjBindMethod(clipManager, "showContextMenu")
-Hotkey, ^+v, % showMenu
+Hotkey, % configManager.getShowMenuHotkey(), % showMenu
 
 return
