@@ -58,7 +58,7 @@ class MenuManager {
 	
 	setTheme() {
 		if(this.MENU_THEME = "dark") {
-			Menu, % this.menuName, Color, a6a6a6
+			Menu, % this.menuName, Color, bfbfbf
 		} else {
 			Menu, % this.menuName, Color, Default
 		}
