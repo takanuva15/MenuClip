@@ -9,6 +9,7 @@ When you press a hotkey, a small context menu will show up that indicates the la
 - Stores 15 clips by default. (Afterwards, it will delete the oldest one and insert the newest clip at the top)
 - Configurable options (eg number of clips stored, clip preview length)
 - Can be configured to work with editors that use Shift+Insert for pasting
+- Has a rudimentary dark theme option (changes menu background color)
 
 ## How to Run
 
@@ -17,9 +18,10 @@ When you press a hotkey, a small context menu will show up that indicates the la
 1. Double click on `main.ahk` to run it.
 
 ## Configuring the Script
-(please re-run the script after changing a configuration)
-- To adjust the number of clips to store or how many characters of each clip are shown in the menu, adjust the respectively-named keys in `config.ini`.
-- To add a certain editor to the "Shift+Insert" list, add it's exe filename to the `ALTERNATE_PASTE_APPS` key in `config.ini`. (Ideally you should comma-separate each exe. eg: `ALTERNATE_PASTE_APPS=mintty.exe,runemacs.exe`
+(All changes should be done in the `config.ini` file. Please re-run the script after changing a configuration)
+- To adjust the number of clips to store or how many characters of each clip are shown in the menu, adjust their respectively-named keys.
+- To add a certain editor to the "Shift+Insert" list, add it's exe filename to the `ALTERNATE_PASTE_APPS` key. (Ideally you should comma-separate each exe. eg: `ALTERNATE_PASTE_APPS=mintty.exe,runemacs.exe`
+- To adjust theme, put `light` or `dark` for the `THEME` option.
 
 ## Contributing
 I welcome any contributions that fix bugs or provide additional functionality (please format the code cleanly). Please check with me before developing a PR that is out-of-scope of this application (eg a rotating clip-paste function which [ClipJump](https://github.com/aviaryan/Clipjump) already does, or something that assigns presets like [this](https://www.autohotkey.com/boards/viewtopic.php?t=65004) already does). 
