@@ -19,17 +19,17 @@ class ConfigManager {
 		this.readAllConfigOptionsFromFile()
 	}
 	
+	readConfigFromFile(configKeyName) {
+		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, %configKeyName%
+		return tmpReadInStorageVar
+	}
+	
 	readAllConfigOptionsFromFile() {
-		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_HOTKEY
-		this.CONFIG_VAL_HOTKEY := tmpReadInStorageVar
-		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_MAX_CLIPS_TO_STORE
-		this.CONFIG_VAL_MAX_CLIPS_TO_STORE := tmpReadInStorageVar
-		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_MAX_MENUITEM_LABEL_LENGTH
-		this.CONFIG_VAL_MAX_MENUITEM_LABEL_LENGTH := tmpReadInStorageVar
-		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_ALT_PASTE_APPS
-		this.CONFIG_VAL_ALT_PASTE_APPS := tmpReadInStorageVar
-		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_THEME
-		this.CONFIG_VAL_THEME := tmpReadInStorageVar
+		this.CONFIG_VAL_HOTKEY := this.readConfigFromFile(this.CONFIG_NAME_HOTKEY)
+		this.CONFIG_VAL_MAX_CLIPS_TO_STORE := this.readConfigFromFile(this.CONFIG_NAME_MAX_CLIPS_TO_STORE)
+		this.CONFIG_VAL_MAX_MENUITEM_LABEL_LENGTH := this.readConfigFromFile(this.CONFIG_NAME_MAX_MENUITEM_LABEL_LENGTH)
+		this.CONFIG_VAL_ALT_PASTE_APPS := this.readConfigFromFile(this.CONFIG_NAME_ALT_PASTE_APPS)
+		this.CONFIG_VAL_THEME := this.readConfigFromFile(this.CONFIG_NAME_THEME)
 	}
 	
 	getShowMenuHotkey() {
