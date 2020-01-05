@@ -5,10 +5,12 @@ class ConfigManager {
 	static CONFIG_NAME_MAX_CLIPS_TO_STORE := "MAX_CLIPS_TO_STORE"
 	static CONFIG_NAME_MAX_MENUITEM_LABEL_LENGTH := "MAX_MENUITEM_LABEL_LENGTH"
 	static CONFIG_NAME_ALT_PASTE_APPS := "ALTERNATE_PASTE_APPS"
+	static CONFIG_NAME_THEME := "THEME"
 	
 	static CONFIG_VAL_MAX_CLIPS_TO_STORE
 	static CONFIG_VAL_MAX_MENUITEM_LABEL_LENGTH
 	static CONFIG_VAL_ALT_PASTE_APPS
+	static CONFIG_VAL_THEME
 	
 	__New(configFileName) {
 		this.CONFIG_FILE_NAME := configFileName
@@ -22,6 +24,8 @@ class ConfigManager {
 		this.CONFIG_VAL_MAX_MENUITEM_LABEL_LENGTH := tmpReadInStorageVar
 		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_ALT_PASTE_APPS
 		this.CONFIG_VAL_ALT_PASTE_APPS := tmpReadInStorageVar
+		IniRead, tmpReadInStorageVar, % this.CONFIG_FILE_NAME, % this.CONFIG_SECTION, % this.CONFIG_NAME_THEME
+		this.CONFIG_VAL_THEME := tmpReadInStorageVar
 	}
 	
 	getMaxClipsToStore() {
@@ -34,5 +38,9 @@ class ConfigManager {
 	
 	getAltPasteApps() {
 		return this.CONFIG_VAL_ALT_PASTE_APPS
-	}	
+	}
+	
+	getTheme() {
+		return this.CONFIG_VAL_THEME
+	}
 }

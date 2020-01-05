@@ -3,10 +3,15 @@ class MenuManager {
 	static menuName := "clipMenu"
 	static menuItemValues := [] ;Used to store the full values of the menu items shown in the menu (in case of long menu items)
 	static MAX_MENUITEM_LABEL_LENGTH
+	static MENU_THEME
 	__New(configManager, onItemClickFn) {
 		this.MAX_MENUITEM_LABEL_LENGTH := configManager.getMaxMenuitemLabelLength()
+		this.MENU_THEME := configManager.getTheme()
 		this.onItemClickFn := onItemClickFn
 		this.callOnItemClickWithValueFn := ObjBindMethod(this, "callOnItemClickWithValue")
+		
+		Menu, % this.menuName, Add
+		this.setTheme()
 	}
 	
 	insertItemAtTop(menuItem) {
@@ -42,6 +47,14 @@ class MenuManager {
 	
 	callOnItemClickWithValue() {
 		this.onItemClickFn.call(this.menuItemValues[A_ThisMenuItemPos])
+	}
+	
+	setTheme() {
+		if(this.MENU_THEME = "dark") {
+			Menu, % this.menuName, Color, darkgray
+		} else {
+			Menu, % this.menuName, Color, Default
+		}
 	}
 	
 	printArray() {
