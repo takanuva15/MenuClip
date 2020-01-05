@@ -11,7 +11,9 @@ VERSION := "v1.5.0"
 #Include src\MenuClip.ahk
 
 ;Modifies the tooltip in the System tray
-Menu, Tray, Tip, MenuClip %VERSION%
+trayManager := new MenuClip.TrayManager()
+trayManager.configureTrayTooltip(VERSION)
+trayManager.configureTrayOptions()
 
 CONFIG_FILE_NAME := "config.ini"
 configManager := new MenuClip.ConfigManager(CONFIG_FILE_NAME)
