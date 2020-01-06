@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.6.0
+2020-01-05 Added option to directly modify config from Tray Menu. (Also modified Tray Menu to custom settings)
+## v1.5.0
 2020-01-05 Added shortcut config option
 ## v1.4.0
 2020-01-05 Added a dark theme config option

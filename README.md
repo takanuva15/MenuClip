@@ -18,7 +18,7 @@ When you press a hotkey, a small context menu will show up that indicates the la
 1. Double click on `main.ahk` to run it.
 
 ## Configuring the Script
-(All changes should be done in the `config.ini` file. Please re-run the script after changing a configuration)
+(All changes should be done in the `config.ini` file, which can be modified directly or accessed by right-clicking on MenuClip's System Tray icon and selecting the `Edit Configuration` option. Please re-run the script after changing a configuration)
 - To adjust an option, adjust its respectively-named key.
 Note:
 - When changing the shortcut to open the menu, you must use the AHK shortcut syntax (see [here](https://www.autohotkey.com/docs/Hotkeys.htm#Symbols) for a glossary). Example: To use `CapsLock` + `f` as the hotkey, you should write `SHOW_MENU_HOTKEY=CapsLock & f`.

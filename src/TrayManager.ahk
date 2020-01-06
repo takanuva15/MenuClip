@@ -1,10 +1,10 @@
 ﻿;Handles changes to the menu
 class TrayManager {
 	static VERSION
-	static configFileName
+	static CONFIG_FILE_NAME
 	__New(configManager) {
 		this.VERSION := configManager.getVersionNum()
-		this.configFileName := configManager.getConfigFileName()
+		this.CONFIG_FILE_NAME := configManager.getConfigFileName()
 	}
 	
 	configureTrayTooltip() {
@@ -25,7 +25,7 @@ class TrayManager {
 	}
 	
 	showAboutMessage() {
-		MsgBox, 0, About MenuClip, % "MenuClip " . this.VERSION . "`n" this.ABOUT_MENUCLIP
+		MsgBox, 0, About MenuClip, % "MenuClip " . this.VERSION . "`n`n" this.ABOUT_MENUCLIP
 	}
 	
 	reloadScript() {
@@ -33,14 +33,13 @@ class TrayManager {
 	}
 	
 	editConfigFile() {
-		configFileName := this.configFileName
+		configFileName := this.CONFIG_FILE_NAME
 		Run Edit %configFileName%
 	}
 	
 	exitScript() {
 		ExitApp
 	}
-	
 	
 	static ABOUT_MENUCLIP := ""
 		. "MenuClip is a free, open-source clipboard manager written by takanuva15.`n"
