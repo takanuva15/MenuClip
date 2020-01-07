@@ -16,10 +16,15 @@ class MenuManager {
 	}
 	
 	insertItemAtTop(menuItem) {
-		;this if is called only once to prevent error if no clips	
+		;this is called only once to prevent error if no clips	
 		if(this.isMenuEmpty) {
 			Menu, % this.menuName, DeleteAll
 			this.isMenuEmpty := false 
+		}
+		
+		;avoid recording consecutive identical copies
+		if(menuItem = this.menuItemValues[1]) {
+			return
 		}
 		
 		callOnItemClickWithValueFn := this.callOnItemClickWithValueFn
