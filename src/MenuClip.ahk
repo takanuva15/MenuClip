@@ -6,6 +6,7 @@
 class MenuClip {
 	#Include %A_ScriptDir%\src\TrayManager.ahk
 	#Include %A_ScriptDir%\src\ConfigManager.ahk
+	#Include %A_ScriptDir%\src\ClipCache.ahk
 	#Include %A_ScriptDir%\src\ClipManager.ahk
 	#Include %A_ScriptDir%\src\MenuManager.ahk
 }
