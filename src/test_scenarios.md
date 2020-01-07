@@ -19,6 +19,9 @@ If the menu has 2 clips, "one" and "two" (with "one" being at the top of the lis
 1. Pasting is correct in editors that use Shift+Insert for paste
 Open up git bash. Copy something, and then open up the clip menu and try to paste it into git bash.
 
+1. No repeated copies
+Copy the same word multiple times. There should only be one entry of it at the top of the menu.
+
 ##### Visual Tests
 1. Menu items only show first 50 characters of clip-to-be-pasted
 Copy this: 

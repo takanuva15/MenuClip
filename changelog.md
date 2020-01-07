@@ -1,5 +1,7 @@
 # Changelog
 
+## v1.6.1
+2020-01-06 Fixed bug that would show identical copies of the same string if it was copied repeatedly consecutively
 ## v1.6.0
 2020-01-05 Added option to directly modify config from Tray Menu. (Also modified Tray Menu to custom settings)
 ## v1.5.0
