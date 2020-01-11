@@ -36,16 +36,16 @@ class MenuManager {
 			menuItemLabel := SubStr(menuItem, 1, this.MAX_MENUITEM_LABEL_LENGTH) . "..."
 		}
 		Menu, % this.menuName, Insert, 1&, %menuItemLabel%, % callOnItemClickWithValueFn
-		this.menuItemValues.insertAt(1, menuItem)
+		this.clipCache.insertAtTop(menuItem)
 	}
 	
 	deleteItem(menuItemPos) {
 		Menu, % this.menuName, Delete, %menuItemPos%&
-		this.menuItemValues.removeAt(menuItemPos)
+		this.clipCache.deleteAtIndex(menuItemPos)
 	}
 	
 	moveLastSelectedItemToTop() {
-		lastSelectedItem := this.menuItemValues[A_ThisMenuItemPos]
+		lastSelectedItem := this.clipCache.getAtIndex(A_ThisMenuItemPos)
 		lastSelectedItemPos := A_ThisMenuItemPos
 		this.deleteItem(lastSelectedItemPos)
 		this.insertItemAtTop(lastSelectedItem)
@@ -56,11 +56,11 @@ class MenuManager {
 	}
 	
 	getMenuItemCount() {
-		return this.menuItemValues.maxIndex()
+		return this.clipCache.getSize()
 	}
 	
 	callOnItemClickWithValue() {
-		this.onItemClickFn.call(this.menuItemValues[A_ThisMenuItemPos])
+		this.onItemClickFn.call(this.clipCache.getAtIndex(A_ThisMenuItemPos))
 	}
 	
 	setTheme() {
@@ -69,13 +69,5 @@ class MenuManager {
 		} else {
 			Menu, % this.menuName, Color, Default
 		}
-	}
-	
-	printArray() {
-		s := ""
-		for index, element in this.menuItemValues {
-			s := s . element . " ,"
-		}
-		MsgBox %s%
 	}
 }

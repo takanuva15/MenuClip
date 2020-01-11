@@ -5,10 +5,6 @@ class ClipCache {
 		
 	}
 	
-	write() {
-		MsgBox, Hi
-	}
-	
 	getAtIndex(index) {
 		return this.clips[index]
 	}
@@ -28,7 +24,7 @@ class ClipCache {
 	printClips() {
 		s := ""
 		for index, element in this.clips {
-			s := s . element . " ,"
+			s := s . element . ", "
 		}
 		MsgBox %s%
 	}
