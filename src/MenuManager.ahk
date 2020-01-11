@@ -1,13 +1,15 @@
 ﻿;Handles changes to the menu
 class MenuManager {
 	static menuName := "clipMenu"
+	static clipCache
 	static menuItemValues := [] ;Used to store the full values of the menu items shown in the menu (in case of long menu items)
 	static isMenuEmpty := true
 	static MAX_MENUITEM_LABEL_LENGTH
 	static MENU_THEME
-	__New(configManager, onItemClickFn) {
+	__New(configManager, clipCache, onItemClickFn) {
 		this.MAX_MENUITEM_LABEL_LENGTH := configManager.getMaxMenuitemLabelLength()
 		this.MENU_THEME := configManager.getTheme()
+		this.clipCache := clipCache
 		this.onItemClickFn := onItemClickFn
 		this.callOnItemClickWithValueFn := ObjBindMethod(this, "callOnItemClickWithValue")
 		
