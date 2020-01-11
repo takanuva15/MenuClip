@@ -2,7 +2,6 @@
 class MenuManager {
 	static menuName := "clipMenu"
 	static clipCache
-	static menuItemValues := [] ;Used to store the full values of the menu items shown in the menu (in case of long menu items)
 	static isMenuEmpty := true
 	static MAX_MENUITEM_LABEL_LENGTH
 	static MENU_THEME
@@ -25,7 +24,7 @@ class MenuManager {
 		}
 		
 		;avoid recording consecutive identical copies
-		if(menuItem = this.menuItemValues[1]) {
+		if(menuItem = this.clipCache.getAtIndex(1)) {
 			return
 		}
 		
