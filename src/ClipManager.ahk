@@ -1,13 +1,14 @@
 ﻿;Primary clipboard manager class. Should only be one instance for the duration of the script
 class ClipManager {
 	static CLIP_TYPE_TEXT := 1
+	static clipCache := new MenuClip.ClipCache()
 	static MAX_CLIPS_TO_STORE
 	static ALT_PASTE_APPS
 	__New(configManager) {
 		this.MAX_CLIPS_TO_STORE := configManager.getMaxClipsToStore()
 		this.ALT_PASTE_APPS := configManager.getAltPasteApps()
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
-		this.menuManager := new MenuClip.MenuManager(configManager, ObjBindMethod(this, "pasteClip"))
+		this.menuManager := new MenuClip.MenuManager(configManager, this.clipCache,  ObjBindMethod(this, "pasteClip"))
 	}
 	
 	monitorClipboardChanges() {
