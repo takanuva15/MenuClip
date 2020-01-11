@@ -23,11 +23,6 @@ class MenuManager {
 			this.isMenuEmpty := false 
 		}
 		
-		;avoid recording consecutive identical copies
-		if(menuItem = this.clipCache.getAtIndex(1)) {
-			return
-		}
-		
 		callOnItemClickWithValueFn := this.callOnItemClickWithValueFn
 		menuItemLabel := menuItem
 		;not using a ternary below because it worsens readability
@@ -35,16 +30,17 @@ class MenuManager {
 			menuItemLabel := SubStr(menuItem, 1, this.MAX_MENUITEM_LABEL_LENGTH) . "..."
 		}
 		Menu, % this.menuName, Insert, 1&, %menuItemLabel%, % callOnItemClickWithValueFn
-		this.clipCache.insertAtTop(menuItem)
+		;this.clipCache.insertAtTop(menuItem)
 	}
 	
 	deleteItem(menuItemPos) {
 		Menu, % this.menuName, Delete, %menuItemPos%&
-		this.clipCache.deleteAtIndex(menuItemPos)
+		;this.clipCache.deleteAtIndex(menuItemPos)
 	}
 	
 	moveLastSelectedItemToTop() {
-		lastSelectedItem := this.clipCache.getAtIndex(A_ThisMenuItemPos)
+		;lastSelectedItem := this.clipCache.getAtIndex(A_ThisMenuItemPos)
+		lastSelectedItem := A_ThisMenuItem
 		lastSelectedItemPos := A_ThisMenuItemPos
 		this.deleteItem(lastSelectedItemPos)
 		this.insertItemAtTop(lastSelectedItem)
@@ -54,12 +50,12 @@ class MenuManager {
 		Menu, % this.menuName, Show
 	}
 	
-	getMenuItemCount() {
-		return this.clipCache.getSize()
-	}
+	;getMenuItemCount() {
+		;return this.clipCache.getSize()
+	;}
 	
 	callOnItemClickWithValue() {
-		this.onItemClickFn.call(this.clipCache.getAtIndex(A_ThisMenuItemPos))
+		this.onItemClickFn.call(A_ThisMenuItemPos)
 	}
 	
 	setTheme() {

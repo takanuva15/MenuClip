@@ -17,24 +17,31 @@ class ClipManager {
 	
 	saveClip(clipType) {
 		if (clipType = this.CLIP_TYPE_TEXT) {
-			if(this.menuManager.getMenuItemCount() < this.MAX_CLIPS_TO_STORE) {
+			;avoid recording consecutive identical copies
+			if(Clipboard = this.clipCache.getAtIndex(1)) {
+				return
+			} else if(this.clipCache.getSize() < this.MAX_CLIPS_TO_STORE) {
+				this.clipCache.insertAtTop(Clipboard)
 				this.menuManager.insertItemAtTop(Clipboard)
 			} else {
+				this.clipCache.deleteAtIndex(this.MAX_CLIPS_TO_STORE)
 				this.menuManager.deleteItem(this.MAX_CLIPS_TO_STORE)
+				this.clipCache.insertAtTop(Clipboard)
 				this.menuManager.insertItemAtTop(Clipboard)
 			}
 		}
 	}
 	
-	pasteClip(textToPaste) {
+	pasteClip(posClicked) {
 		OnClipboardChange(this.saveClipFn, 0)
-		Clipboard := textToPaste
+		Clipboard := this.clipCache.getAtIndex(posClicked)
 		WinGet, activeWin, ProcessName, A
 		if(InStr(this.ALT_PASTE_APPS, activeWin)) {
 			Send, +{Insert}
 		} else {
 			Send, ^v
 		}
+		this.clipCache.moveToTop(posClicked)
 		this.menuManager.moveLastSelectedItemToTop()
 		OnClipboardChange(this.saveClipFn)
 	}

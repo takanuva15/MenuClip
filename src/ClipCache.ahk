@@ -13,12 +13,21 @@ class ClipCache {
 		this.clips.insertAt(1, clip)
 	}
 	
+	moveToTop(index) {
+		tmp := this.clips[index]
+		Loop, % loopIndex := index - 1
+		{
+			this.clips[loopIndex + 1] := this.clips[loopIndex]
+		}
+		this.clips[1] := tmp
+	}
+	
 	deleteAtIndex(index) {
 		this.clips.removeAt(index)
 	}
 	
 	getSize() {
-		return this.clips.maxIndex()
+		return this.clips.maxIndex() ? this.clips.maxIndex() : 0
 	}
 	
 	printClips() {
