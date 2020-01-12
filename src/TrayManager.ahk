@@ -15,13 +15,14 @@ class TrayManager {
 		Menu, Tray, NoStandard
 		showAboutMessageFn := ObjBindMethod(this, "showAboutMessage")
 		Menu, Tray, Add, &About, % showAboutMessageFn
-		reloadScriptFn := ObjBindMethod(this, "reloadScript")
-		Menu, Tray, Add, &Reload This Script, % reloadScriptFn
+		Menu, Tray, Add
 		editConfigFileFn := ObjBindMethod(this, "editConfigFile")
 		Menu, Tray, Add, Edit &Configuration, % editConfigFileFn	
 		Menu, Tray, Default, Edit &Configuration
+		reloadScriptFn := ObjBindMethod(this, "reloadScript")
+		Menu, Tray, Add, &Reload This Script, % reloadScriptFn
 		exitScriptFn := ObjBindMethod(this, "exitScript")
-		Menu, Tray, Add, &Exit Script, % exitScriptFn
+		Menu, Tray, Add, &Exit, % exitScriptFn
 	}
 	
 	showAboutMessage() {
