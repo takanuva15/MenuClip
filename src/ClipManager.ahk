@@ -8,7 +8,7 @@ class ClipManager {
 		this.MAX_CLIPS_TO_STORE := configManager.getMaxClipsToStore()
 		this.ALT_PASTE_APPS := configManager.getAltPasteApps()
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
-		this.menuManager := new MenuClip.MenuManager(configManager, this.clipCache,  ObjBindMethod(this, "pasteClip"))
+		this.menuManager := new MenuClip.MenuManager(configManager,  ObjBindMethod(this, "pasteClip"))
 	}
 	
 	monitorClipboardChanges() {
