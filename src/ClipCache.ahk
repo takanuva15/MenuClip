@@ -3,13 +3,29 @@ class ClipCache {
 	static cacheDir := "cache\"
 	static clips := []
 	static cachedClipFileNames := []
-	__New() {
+	__New(callbackOnReadFn) {
 		if(!InStr(FileExist(this.cacheDir), "D")) {
 			FileCreateDir, cache
 		}
-		
+		this.restoreFromCache(callbackOnReadFn)
+	}
+	
+	restoreFromCache(callbackOnReadFn) {
+		;tmp := ClipboardAll
 		Loop, Files, % this.cacheDir . "*.txt"
+		{
+			;FileRead, clip, A_LoopFileName
 			this.cachedClipFileNames.push(A_LoopFileName)
+		}
+		
+		Loop, % index := this.cachedClipFileNames.maxIndex()
+		{
+			FileRead, clip, % this.cacheDir . this.cachedClipFileNames[index--]
+			this.clips.insertAt(1, clip)
+			;MsgBox % "reading " . this.cachedClipFileNames[index] 
+			callbackOnReadFn.call(clip)
+		}
+		;Clipboard := tmp
 	}
 	
 	getAtIndex(index) {
@@ -60,6 +76,9 @@ class ClipCache {
 	
 	deleteAtIndex(index) {
 		this.clips.removeAt(index)
+		
+		;Works as of now because we only ever delete the last element. However, should be a loop available to rename files below this in the cache if we theoretically deleted from the middle of the menu.
+		FileDelete, % this.cacheDir this.cachedClipFileNames[index]
 	}
 	
 	getSize() {
