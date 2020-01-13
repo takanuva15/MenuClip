@@ -15,6 +15,7 @@ class MenuManager {
 	}
 	
 	insertItemAtTop(menuItem) {
+		;MsgBox % "called " . menuItem
 		;this is called only once to prevent error if no clips	
 		if(this.isMenuEmpty) {
 			Menu, % this.menuName, DeleteAll

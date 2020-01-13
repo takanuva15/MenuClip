@@ -1,14 +1,15 @@
 ﻿;Primary clipboard manager class. Should only be one instance for the duration of the script
 class ClipManager {
 	static CLIP_TYPE_TEXT := 1
-	static clipCache := new MenuClip.ClipCache()
+	static clipCache
 	static MAX_CLIPS_TO_STORE
 	static ALT_PASTE_APPS
 	__New(configManager) {
 		this.MAX_CLIPS_TO_STORE := configManager.getMaxClipsToStore()
 		this.ALT_PASTE_APPS := configManager.getAltPasteApps()
-		this.saveClipFn := ObjBindMethod(this, "saveClip")
 		this.menuManager := new MenuClip.MenuManager(configManager,  ObjBindMethod(this, "pasteClip"))
+		this.clipCache := new MenuClip.ClipCache(ObjBindMethod(this.menuManager, "insertItemAtTop"))
+		this.saveClipFn := ObjBindMethod(this, "saveClip")
 	}
 	
 	monitorClipboardChanges() {
@@ -16,6 +17,7 @@ class ClipManager {
 	}
 	
 	saveClip(clipType) {
+		;MsgBox % "called " . Clipboard
 		if (clipType = this.CLIP_TYPE_TEXT) {
 			;avoid recording consecutive identical copies
 			if(Clipboard = this.clipCache.getAtIndex(1)) {
