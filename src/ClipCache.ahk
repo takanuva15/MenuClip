@@ -26,6 +26,7 @@ class ClipCache {
 			callbackOnReadFn.call(clip)
 		}
 		;Clipboard := tmp
+		
 	}
 	
 	getAtIndex(index) {
@@ -58,7 +59,7 @@ class ClipCache {
 		tmp := this.clips[index]
 		Loop, % loopIndex := index - 1
 		{
-			this.clips[loopIndex + 1] := this.clips[loopIndex]
+			this.clips[loopIndex + 1] := this.clips[loopIndex--]
 		}
 		this.clips[1] := tmp
 		
@@ -66,7 +67,7 @@ class ClipCache {
 		FileMove, % this.cacheDir . tmp, % this.cacheDir . tmp . ".tmp"
 		Loop, % loopIndex := index - 1
 		{
-			fileName := this.cachedClipFileNames[loopIndex]
+			fileName := this.cachedClipFileNames[loopIndex--]
 			RegExMatch(fileName, "^(?P<Num>\d+)\.", file)
 			FileMove, % this.cacheDir . fileName, % this.cacheDir . fileNum + 1 . ".txt"
 			this.cachedClipFileNames[fileNum + 1] := fileNum + 1 . ".txt"
@@ -88,6 +89,12 @@ class ClipCache {
 	printClips() {
 		s := ""
 		for index, element in this.clips {
+			s := s . element . ", "
+		}
+		MsgBox %s%
+		
+		s := ""
+		for index, element in this.cachedClipFileNames {
 			s := s . element . ", "
 		}
 		MsgBox %s%
