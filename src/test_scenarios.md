@@ -2,25 +2,33 @@
 ### This file lists the scenarios that should be tested prior to merging to develop
 
 All scenarios assume:
-- MAX_CLIPS_TO_STORE=2
+- MAX_CLIPS_TO_STORE=3
 - MAX_MENUITEM_LABEL_LENGTH=50
 - ALTERNATE_PASTE_APPS=mintty.exe
 
 ##### Functionality Tests
 1. Max limit on stored clips obeyed
-If the limit is 2, copying 3 things should cause only the most recent 2 clips to show in the menu
+Copy "four", "three", "two", "one", in that order. The menu should show "one", "two", "three", in that order.
 
 1. Correct clip is pasted on selection
-Copy "one", then "two". Paste "two" from the menu. Now paste "one" from the menu.
+From previous, paste "one". Now, paste "two".
 
 1. Selected clip shifts to top of menu
-If the menu has 2 clips, "one" and "two" (with "one" being at the top of the list), in that order, then clicking "two" should shift it to the top of the menu. The resulting menu order is "two", "one".
+From previous, menu should show "two", "one", "three"
 
 1. Pasting is correct in editors that use Shift+Insert for paste
-Open up git bash. Copy something, and then open up the clip menu and try to paste it into git bash.
+Open up git bash. Paste "three" into it.
 
 1. No repeated copies
-Copy the same word multiple times. There should only be one entry of it at the top of the menu.
+Copy "one" multiple times. There should only be one entry of it at the top of the menu.
+
+##### Storage Tests
+1. Clip order is preserved
+ * Make sure cache is empty. Copy "three", "two", "one", in that order. The cache folder should show "1.txt", "2.txt", "3.txt", in that order, with file contents "one", "two", "three", respectively.
+ * Paste "two" from the menu. The cache folder should show the same file names, but now the file contents should be "two", "one", "three", respectively.
+ 
+2. Cache contents restored on script start
+Exit the script and then run it. The menu should show "two", "one", "three", in that order. Paste "one". Now paste "two".
 
 ##### Visual Tests
 1. Menu items only show first 50 characters of clip-to-be-pasted
