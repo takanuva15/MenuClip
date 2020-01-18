@@ -1,5 +1,5 @@
 # MenuClip
-MenuClip is a menu-based clipboard manager written in AutoHotkey. (Tested on Windows 10 with AHK v1.1.32.00)
+MenuClip is a menu-based clipboard manager written by takanuva15 in AutoHotkey. (Tested on Windows 10 with AHK v1.1.32.00)
 
 When you press a hotkey, a small context menu will show up that indicates the last x things that were copied to your clipboard. 
 
