@@ -46,5 +46,5 @@ class TrayManager {
 		. "MenuClip is a free, open-source clipboard manager written by takanuva15.`n"
 		. "It watches your clipboard and stores new clips into memory, which you "
 		. "can recall later by invoking the 'clip menu' through a hotkey.`n`n"
-		. "See the README.md file on the MenuClip GitHub page for more info"
+		. "See the README.md file on the MenuClip GitHub page (bit.ly/MenuClip) for more info"
 }
