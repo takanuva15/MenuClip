@@ -2,9 +2,13 @@
 class ClipStore {
 	static clips := []
 	static cacheDirManager
-	__New(callbackOnReadFn) {
-		this.cacheDirManager := new MenuClip.CacheDirManager(callbackOnReadFn)
+	__New() {
+		this.cacheDirManager := new MenuClip.CacheDirManager()
 		this.clips := this.cacheDirManager.restoreFromCache()
+	}
+	
+	getClips() {
+		return this.clips
 	}
 	
 	getAtIndex(index) {
@@ -45,6 +49,6 @@ class ClipStore {
 		for index, element in this.cachedClipFileNames {
 			t := t . element . ", "
 		}
-		MsgBox % s . "`n`n"  t
+		MsgBox % s . "`n`n" . t
 	}
 }

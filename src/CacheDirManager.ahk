@@ -2,12 +2,10 @@
 class CacheDirManager {
 	static cacheDir := "cache\"
 	static cachedClipFileNames := []
-	static callbackOnReadFn
-	__New(callbackOnReadFn) {
+	__New() {
 		if(!InStr(FileExist(this.cacheDir), "D")) {
 			FileCreateDir, cache
 		}
-		this.callbackOnReadFn := callbackOnReadFn
 	}
 	
 	;returns array of what was restored from cache
@@ -20,7 +18,6 @@ class CacheDirManager {
 		{
 			FileRead, clip, % this.cacheDir . this.cachedClipFileNames[index--]
 			tmp.insertAt(1, clip)
-			this.callbackOnReadFn.call(clip)
 		}
 		return tmp
 	}
@@ -53,7 +50,7 @@ class CacheDirManager {
 	}
 	
 	deleteFromCache(index) {
-		;Works as of now because we only ever delete the last element. However, should be a loop available to rename files below this in the cache if we theoretically deleted from the middle of the menu.
+		;Works as of now because we only ever delete the last element in ClipManager. However, should be a loop available to rename files below this in the cache if we theoretically deleted from the middle of the menu.
 		FileDelete, % this.cacheDir this.cachedClipFileNames[index]
 		this.cachedClipFileNames.removeAt(index)
 	}

@@ -56,4 +56,9 @@ class MenuManager {
 			Menu, % this.menuName, Color, Default
 		}
 	}
+	
+	populateMenuFromArray(arr) {
+		Loop, % loopIndex := arr.maxIndex()
+			this.insertItemAtTop(arr[loopIndex--])
+	}
 }
