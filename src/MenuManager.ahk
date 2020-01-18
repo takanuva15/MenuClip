@@ -15,7 +15,6 @@ class MenuManager {
 	}
 	
 	insertItemAtTop(menuItem) {
-		;MsgBox % "called " . menuItem
 		;this is called only once to prevent error if no clips	
 		if(this.isMenuEmpty) {
 			Menu, % this.menuName, DeleteAll
@@ -29,16 +28,13 @@ class MenuManager {
 			menuItemLabel := SubStr(menuItem, 1, this.MAX_MENUITEM_LABEL_LENGTH) . "..."
 		}
 		Menu, % this.menuName, Insert, 1&, %menuItemLabel%, % callOnItemClickWithValueFn
-		;this.clipCache.insertAtTop(menuItem)
 	}
 	
 	deleteItem(menuItemPos) {
 		Menu, % this.menuName, Delete, %menuItemPos%&
-		;this.clipCache.deleteAtIndex(menuItemPos)
 	}
 	
 	moveLastSelectedItemToTop() {
-		;lastSelectedItem := this.clipCache.getAtIndex(A_ThisMenuItemPos)
 		lastSelectedItem := A_ThisMenuItem
 		lastSelectedItemPos := A_ThisMenuItemPos
 		this.deleteItem(lastSelectedItemPos)
@@ -48,10 +44,6 @@ class MenuManager {
 	showMenu() {
 		Menu, % this.menuName, Show
 	}
-	
-	;getMenuItemCount() {
-		;return this.clipCache.getSize()
-	;}
 	
 	callOnItemClickWithValue() {
 		this.onItemClickFn.call(A_ThisMenuItemPos)
