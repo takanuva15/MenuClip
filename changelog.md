@@ -1,5 +1,7 @@
 # Changelog
 
+## v1.7.1
+2020-01-18 Config file is now generated if it doesn't exist
 ## v1.7.0
 2020-01-18 Clip menu contents are now saved to a cache folder and will be restored on restart
 ## v1.6.2

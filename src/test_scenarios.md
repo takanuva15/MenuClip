@@ -45,4 +45,6 @@ And when you paste it, you should see:
 ---------1---------2---------3---------4---------5---------6
 
 ### Configurations
-1. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is run.
+1. Delete the config file. Restart the script and the config file should appear with default values.
+
+2. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is restarted.
