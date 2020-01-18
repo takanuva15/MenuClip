@@ -1,4 +1,5 @@
 .project
+*.ini
 nppBackup/
 AHK-Studio Backup/
 cache/
