@@ -7,9 +7,10 @@ When you press a hotkey, a small context menu will show up that indicates the la
 - Stores all text and filepath (from Explorer) clips into memory
 - Displays stored clips in a context menu via Ctrl+Shift+V
 - Stores 15 clips by default. (Afterwards, it will delete the oldest one and insert the newest clip at the top)
-- Configurable options (eg number of clips stored, clip preview length)
+- Has configurable options (eg number of clips stored, clip preview length)
 - Can be configured to work with editors that use Shift+Insert for pasting
 - Has a rudimentary dark theme option (changes menu background color)
+- Saves clips to file so that they are restored when the script is restarted
 
 ## How to Run
 
@@ -38,4 +39,6 @@ You can check out the Trello board for tracking stories on the project [here](ht
 You can view a UML diagram of the application [here](https://www.lucidchart.com/documents/view/8b32b807-f1e5-4cb6-afa5-1380075d861b). (Note: UML will occasionally be out-of-date)
 
 ## Credits
+This program was developed in [AHK Studio](https://www.autohotkey.com/boards/viewtopic.php?t=300).
+
 Special thanks to the people who've helped me with coding obstacles by answering my questions on the AutoHotkey forums. You can see my various questions and people's responses [here](https://www.autohotkey.com/boards/search.php?author_id=117081&sr=posts).
