@@ -1,5 +1,7 @@
 # Changelog
 
+### v1.7.3
+2020-01-19 Converted code structure into MVC
 ### v1.7.2
 2020-01-19 Added 1/4 sec delay before adding a clip to the menu, so if an application is rapidly changing the clipboard, only the latest clip will be saved. (Fixes issue when copying text from IntelliJ terminal)
 ### v1.7.1
