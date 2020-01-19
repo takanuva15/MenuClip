@@ -3,7 +3,7 @@ class ClipStore {
 	static clips := []
 	static cacheDirManager
 	__New() {
-		this.cacheDirManager := new MenuClip.CacheDirManager()
+		this.cacheDirManager := new MenuClip.Model.CacheDirManager()
 		this.clips := this.cacheDirManager.restoreFromCache()
 	}
 	

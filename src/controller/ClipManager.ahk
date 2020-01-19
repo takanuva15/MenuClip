@@ -8,8 +8,8 @@ class ClipManager {
 	__New(configManager) {
 		this.MAX_CLIPS_TO_STORE := configManager.getMaxClipsToStore()
 		this.ALT_PASTE_APPS := configManager.getAltPasteApps()
-		this.clipStore := new MenuClip.ClipStore()
-		this.menuManager := new MenuClip.MenuManager(configManager,  ObjBindMethod(this, "pasteClip"))
+		this.clipStore := new MenuClip.Model.ClipStore()
+		this.menuManager := new MenuClip.View.MenuManager(configManager,  ObjBindMethod(this, "pasteClip"))
 		this.menuManager.populateMenuFromArray(this.clipStore.getClips())
 		this.postNewClipFn := ObjBindMethod(this, "postNewClip")
 		this.saveClipFn := ObjBindMethod(this, "saveClip")

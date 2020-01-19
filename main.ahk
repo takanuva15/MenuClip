@@ -11,14 +11,14 @@ CONFIG_FILE_NAME := "config.ini"
 
 #Include src\MenuClip.ahk
 
-configManager := new MenuClip.ConfigManager(VERSION, CONFIG_FILE_NAME)
+configManager := new MenuClip.Controller.ConfigManager(VERSION, CONFIG_FILE_NAME)
 configManager.readAllConfigOptionsFromFile()
 
-trayManager := new MenuClip.TrayManager(configManager)
+trayManager := new MenuClip.Controller.TrayManager(configManager)
 trayManager.configureTrayTooltip()
 trayManager.configureTrayOptions()
 
-clipManager := new MenuClip.ClipManager(configManager)
+clipManager := new MenuClip.Controller.ClipManager(configManager)
 clipManager.monitorClipboardChanges()
 
 showMenu := ObjBindMethod(clipManager, "showContextMenu")
