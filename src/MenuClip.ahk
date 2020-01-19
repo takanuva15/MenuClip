@@ -4,10 +4,10 @@
 
 ;Container class for the classes that MenuClip directly uses
 class MenuClip {
-	#Include %A_ScriptDir%\src\TrayManager.ahk
-	#Include %A_ScriptDir%\src\ConfigManager.ahk
-	#Include %A_ScriptDir%\src\ClipStore.ahk
-	#Include %A_ScriptDir%\src\CacheDirManager.ahk
-	#Include %A_ScriptDir%\src\ClipManager.ahk
-	#Include %A_ScriptDir%\src\MenuManager.ahk
+	#Include %A_ScriptDir%\src\controller\TrayManager.ahk
+	#Include %A_ScriptDir%\src\controller\ConfigManager.ahk
+	#Include %A_ScriptDir%\src\controller\ClipManager.ahk
+	#Include %A_ScriptDir%\src\model\ClipStore.ahk
+	#Include %A_ScriptDir%\src\model\CacheDirManager.ahk
+	#Include %A_ScriptDir%\src\view\MenuManager.ahk
 }
