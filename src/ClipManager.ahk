@@ -4,20 +4,29 @@ class ClipManager {
 	static clipStore
 	static MAX_CLIPS_TO_STORE
 	static ALT_PASTE_APPS
+	static lastSavedClipType
 	__New(configManager) {
 		this.MAX_CLIPS_TO_STORE := configManager.getMaxClipsToStore()
 		this.ALT_PASTE_APPS := configManager.getAltPasteApps()
 		this.clipStore := new MenuClip.ClipStore()
 		this.menuManager := new MenuClip.MenuManager(configManager,  ObjBindMethod(this, "pasteClip"))
-		this.MenuManager.populateMenuFromArray(this.clipStore.getClips())
+		this.menuManager.populateMenuFromArray(this.clipStore.getClips())
+		this.postNewClipFn := ObjBindMethod(this, "postNewClip")
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
 	}
 	
 	monitorClipboardChanges() {
-		OnClipboardChange(this.saveClipFn)
+		OnClipboardChange(this.postNewClipFn)
 	}
 	
-	saveClip(clipType) {
+	postNewClip(clipType) {
+		this.lastSavedClipType := clipType
+		saveClipFn := this.saveClipFn
+		SetTimer, % saveClipFn, -250
+	}
+	
+	saveClip() {
+		clipType := this.lastSavedClipType
 		if (clipType = this.CLIP_TYPE_TEXT) {
 			;avoid recording consecutive identical copies
 			if(Clipboard = this.clipStore.getAtIndex(1)) {
@@ -35,7 +44,7 @@ class ClipManager {
 	}
 	
 	pasteClip(posClicked) {
-		OnClipboardChange(this.saveClipFn, 0)
+		OnClipboardChange(this.postNewClipFn, 0)
 		Clipboard := this.clipStore.getAtIndex(posClicked)
 		WinGet, activeWin, ProcessName, A
 		if(InStr(this.ALT_PASTE_APPS, activeWin)) {
@@ -45,7 +54,7 @@ class ClipManager {
 		}
 		this.clipStore.moveToTop(posClicked)
 		this.menuManager.moveLastSelectedItemToTop()
-		OnClipboardChange(this.saveClipFn)
+		OnClipboardChange(this.postNewClipFn)
 	}
 	
 	showContextMenu() {

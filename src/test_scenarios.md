@@ -48,3 +48,6 @@ And when you paste it, you should see:
 1. Delete the config file. Restart the script and the config file should appear with default values.
 
 2. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is restarted.
+
+### Bugfix Tests
+1. Open up Terminal in IntelliJ (download it if you don't have it). Try highlighting a word in command prompt; then open the menu. There should only be one entry with the word you highlighted.
