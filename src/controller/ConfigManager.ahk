@@ -20,6 +20,8 @@ class ConfigManager {
 		this.CONFIG_FILE_NAME := configFileName
 		this.readAllConfigOptionsFromFile()
 		this.writeAllConfigOptionsToFile()
+		
+		this.configManagerGui := new MenuClip.Controller.ConfigManagerGui(this)
 	}
 	
 	readConfigFromFile(configKeyName, defaultValue) {
