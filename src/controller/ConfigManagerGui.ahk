@@ -6,6 +6,7 @@ class ConfigManagerGui {
 	static CONFIG_HANDLE_MAX_CLIPS_TO_STORE
 	static CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH
 	static CONFIG_HANDLE_ALT_PASTE_APPS
+	static CONFIG_HANDLE_THEME
 	static CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD
 	__New(configManager) {
 		this.configManager := configManager
@@ -16,6 +17,7 @@ class ConfigManagerGui {
 		this.addMaxMenuItemLabelLengthOpt()
 		this.addAltPasteAppsOpt()
 		this.addSaveAndReloadButton()
+		this.addThemeOpt()
 		this.showGui()
 	}
 	
@@ -43,6 +45,13 @@ class ConfigManagerGui {
 		this.CONFIG_HANDLE_ALT_PASTE_APPS := AltPasteApps
 	}
 	
+	addThemeOpt() {
+		this.themes := {"light":1, "dark":2}
+		Gui EditConfig:Add, Text, x10 y140 w170 h15, Theme:
+		Gui EditConfig:Add, DDL, % "x" this.COL_TWO_X " y138 w50 hWndMenuTheme Choose" this.themes[this.configManager.CONFIG_VAL_THEME], light|dark
+		this.CONFIG_HANDLE_THEME := MenuTheme
+	}
+	
 	addSaveAndReloadButton() {
 		Gui EditConfig:Add, Button, x100 y170 w100 h25 hWndSaveAndReload, &Save and Reload
 		this.CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD := SaveAndReload
@@ -55,6 +64,7 @@ class ConfigManagerGui {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_CLIPS_TO_STORE, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_CLIPS_TO_STORE))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_MENUITEM_LABEL_LENGTH, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_ALT_PASTE_APPS, this.getConfigOptionValue(this.CONFIG_HANDLE_ALT_PASTE_APPS))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, this.getConfigOptionValue(this.CONFIG_HANDLE_THEME))
 		Reload
 	}
 	
