@@ -1,5 +1,7 @@
 # Changelog
 
+## v1.8.0
+2020-01-31 Added a gui window that opens when you edit config (rather than opening up the ini file directly)
 ### v1.7.3
 2020-01-19 Converted code structure into MVC
 ### v1.7.2

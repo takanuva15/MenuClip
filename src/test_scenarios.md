@@ -49,5 +49,7 @@ And when you paste it, you should see:
 
 2. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is restarted.
 
+3. Change the configurations through the GUI that appears when selecting "Edit Configuration" from the System Tray icon's menu. Saving changes on the GUI should change it in the config.ini.
+
 ### Bugfix Tests
 1. Open up Terminal in IntelliJ (download it if you don't have it). Try highlighting a word in command prompt; then open the menu. There should only be one entry with the word you highlighted.

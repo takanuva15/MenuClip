@@ -5,7 +5,7 @@ When you press a hotkey, a small context menu will show up that indicates the la
 
 ### Features:
 - Stores all text and filepath (from Explorer) clips into memory
-- Displays stored clips in a context menu via Ctrl+Shift+V
+- Displays stored clips in a context menu via `Ctrl+Shift+V`
 - Stores 15 clips by default. (Afterwards, it will delete the oldest one and insert the newest clip at the top)
 - Has configurable options (eg number of clips stored, clip preview length)
 - Can be configured to work with editors that use Shift+Insert for pasting
@@ -19,19 +19,17 @@ When you press a hotkey, a small context menu will show up that indicates the la
 1. Double click on `main.ahk` to run it.
 
 ## Configuring the Script
-(All changes should be done in the `config.ini` file, which is generated when you run the script for the first time. It can be easily accessed by right-clicking on MenuClip's system tray icon and selecting the `Edit Configuration` option. Please re-run the script after changing a configuration)
-- To adjust an option, adjust its respectively-named key.
+The configuration can be edited by right-clicking on MenuClip's system tray icon and selecting the `Edit Configuration` option. (Alternatively, you can directly edit the `config.ini` file, which is generated when you run the script for the first time.)
 Note:
-- When changing the shortcut to open the menu, you must use the AHK shortcut syntax (see [here](https://www.autohotkey.com/docs/Hotkeys.htm#Symbols) for a glossary). Example: To use `CapsLock` + `f` as the hotkey, you should write `SHOW_MENU_HOTKEY=CapsLock & f`.
-- To add a certain editor to the "Shift+Insert" list, add it's exe filename to the `SHIFT_INS_PASTE_APPS` key. (Ideally you should comma-separate each exe. eg: `SHIFT_INS_PASTE_APPS=mintty.exe,runemacs.exe`
-- To adjust theme, put `light` or `dark` for the `THEME` option.
+- When changing the shortcut to open the menu, you must use the AHK shortcut syntax (see [here](https://www.autohotkey.com/docs/Hotkeys.htm#Symbols) for a glossary). Example: To use `CapsLock` + `f` as the hotkey, you should write `CapsLock & f` for the hotkey config option.
+- To add a certain editor to the "Shift+Insert pasting" list, add its exe filename to the Shift Ins paste list. (You must comma-separate each exe. Do not use newlines. eg: `mintty.exe,runemacs.exe`)
 
 ## Contributing
-I welcome any contributions that fix bugs or provide additional functionality (please format the code cleanly). Please check with me before developing a PR that is out-of-scope of this application (eg a rotating clip-paste function which [ClipJump](https://github.com/aviaryan/Clipjump) already does, or something that assigns presets like [this](https://www.autohotkey.com/boards/viewtopic.php?t=65004) already does). 
+Contributions are accepted on a case-by-case basis. Please check with me before starting work on a PR, especially if it is out-of-scope of this application (eg a rotating clip-paste function which [ClipJump](https://github.com/aviaryan/Clipjump) already does, or something that assigns presets like [this](https://www.autohotkey.com/boards/viewtopic.php?t=65004) already does). 
 
 In addition, if you are not restricted from downloading & running exe files on your computer, you can download [ClipClip](https://clipclip.com/) for Windows, which is a free, full-fledged clipboard manager that serves the same function as MenuClip but with better functionality. (If you're on a Mac, you can download [ClipMenu](http://www.clipmenu.com/) which has the same essential features)
 
-(I tried my best to structure the code in OOP-style.)
+Random: I tried my best to structure the code in OOP-style.
 
 ## Notes
 A [similar application](https://autohotkey.com/board/topic/69834-probably-yet-another-clipboard-manager/) was posted on the AutoHotkey forum by [spg SCOTT](https://www.autohotkey.com/boards/memberlist.php?mode=viewprofile&u=66846). It also fulfills the purpose of a context-based clipboard manager. 
