@@ -42,3 +42,5 @@ You can view a UML diagram of the application [here](https://www.lucidchart.com/
 This program was developed in [AHK Studio](https://www.autohotkey.com/boards/viewtopic.php?t=300).
 
 Special thanks to the people who've helped me with coding obstacles by answering my questions on the AutoHotkey forums. You can see my various questions and people's responses [here](https://www.autohotkey.com/boards/search.php?author_id=117081&sr=posts).
+
+I used the library [`Class_OD_Colors`](https://www.autohotkey.com/boards/viewtopic.php?t=338) for coloring certain controls when dark theme is active. (Please note that library files may not be covered under the same license that the repository is under. If such is the case, a comment will be placed at the top of the library file indicating its status)
