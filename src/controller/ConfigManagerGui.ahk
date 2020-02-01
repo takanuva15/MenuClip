@@ -1,6 +1,7 @@
 ﻿;Handles configuration file reading & writing
 class ConfigManagerGui {
 	static configManager
+	static themes
 	static CONFIG_HANDLE_HOTKEY
 	static CONFIG_HANDLE_MAX_CLIPS_TO_STORE
 	static CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH
@@ -14,6 +15,10 @@ class ConfigManagerGui {
 		Gui +hWndEditConfig
 		Gui EditConfig:-MinimizeBox -MaximizeBox
 		Gui EditConfig:Margin, 10, 10
+		
+		Gui EditConfig:Font, % (FontOptions := "s8"), % (FontName := "Segoe UI Regular")
+		OD_Colors.SetItemHeight(FontOptions, FontName)
+		
 		if(this.themeStyle = "dark") {
 			Gui EditConfig:Color, 2B2B2B, 43474A
 			Gui EditConfig:Font, cCCCCCC
@@ -54,7 +59,12 @@ class ConfigManagerGui {
 	addThemeOpt() {
 		this.themes := {"light":1, "dark":2}
 		Gui EditConfig:Add, Text, xm y+10 w170, Theme:
-		Gui EditConfig:Add, DDL, % "x+5 yp-2 w50 hWndMenuTheme Choose" this.themes[this.configManager.getTheme()], light|dark
+		Gui EditConfig:Add, DDL, % "x+5 yp-2 w50 hWndMenuTheme +0x0210 Choose" this.themes[this.themeStyle], light|dark
+		if(this.themeStyle = "dark") {
+			OD_Colors.Attach(MenuTheme, {T: 0xCCCCCC, B: 0x43474A})
+		} else {
+			OD_Colors.Attach(MenuTheme, {})
+		}
 		this.CONFIG_HANDLE_THEME := MenuTheme
 	}
 	
