@@ -1,10 +1,10 @@
 ﻿;Handles changes to the menu
 class TrayManager {
+	static configManager
 	static VERSION
-	static CONFIG_FILE_NAME
 	__New(configManager) {
+		this.configManager := configManager
 		this.VERSION := configManager.getVersionNum()
-		this.CONFIG_FILE_NAME := configManager.getConfigFileName()
 	}
 	
 	configureTrayTooltip() {
@@ -34,8 +34,7 @@ class TrayManager {
 	}
 	
 	editConfigFile() {
-		configFileName := this.CONFIG_FILE_NAME
-		Run Edit %configFileName%
+		this.configManager.openEditConfigWindow()
 	}
 	
 	exitScript() {

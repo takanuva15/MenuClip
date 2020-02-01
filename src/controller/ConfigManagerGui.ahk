@@ -25,7 +25,7 @@ class ConfigManagerGui {
 		this.addAltPasteAppsOpt()
 		this.addSaveAndReloadButton()
 		this.addThemeOpt()
-		this.showGui()
+		;this.showGui()
 	}
 	
 	addHotkeyOpt() {
