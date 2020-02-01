@@ -76,4 +76,8 @@ class ConfigManager {
 	getTheme() {
 		return this.CONFIG_VAL_THEME
 	}
+	
+	openEditConfigWindow() {
+		this.configManagerGui.showGui()
+	}
 }
