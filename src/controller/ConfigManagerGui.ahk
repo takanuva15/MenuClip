@@ -10,8 +10,15 @@ class ConfigManagerGui {
 	static CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD
 	__New(configManager) {
 		this.configManager := configManager
+		this.themeStyle := this.configManager.getTheme()
+		
 		Gui +hWndEditConfig
 		Gui EditConfig:-MinimizeBox -MaximizeBox
+		if(this.themeStyle = "dark") {
+			Gui EditConfig:Color, 2B2B2B, 43474A
+			Gui EditConfig:Font, cA9B7C6
+		}
+		
 		this.addHotkeyOpt()
 		this.addMaxClipsToStoreOpt()
 		this.addMaxMenuItemLabelLengthOpt()
@@ -41,7 +48,6 @@ class ConfigManagerGui {
 	
 	addAltPasteAppsOpt() {
 		Gui EditConfig:Add, Text, x10 y100 w170, App exes that use Shift+Ins pasting: (comma-separated)
-		;Gui EditConfig:Add, Text, x10 y115 w170 h15, (comma-separated)
 		Gui EditConfig:Add, Edit, % "x" this.COL_TWO_X " y98 w100 r2 hWndAltPasteApps", % this.configManager.getAltPasteApps()
 		this.CONFIG_HANDLE_ALT_PASTE_APPS := AltPasteApps
 	}
@@ -49,12 +55,12 @@ class ConfigManagerGui {
 	addThemeOpt() {
 		this.themes := {"light":1, "dark":2}
 		Gui EditConfig:Add, Text, x10 y145 w170 h15, Theme:
-		Gui EditConfig:Add, DDL, % "x" this.COL_TWO_X " y143 w50 hWndMenuTheme Choose" this.themes[this.configManager.CONFIG_VAL_THEME], light|dark
+		Gui EditConfig:Add, DDL, % "x" this.COL_TWO_X " y143 w50 hWndMenuTheme Choose" this.themes[this.configManager.getTheme()], light|dark
 		this.CONFIG_HANDLE_THEME := MenuTheme
 	}
 	
 	addSaveAndReloadButton() {
-		Gui EditConfig:Add, Button, x100 y185 w100 h28 hWndSaveAndReload, &Save and Reload
+		Gui EditConfig:Add, Button, x100 y185 w100 h28 hWndSaveAndReload cFF0000, &Save and Reload
 		this.CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD := SaveAndReload
 		saveConfigAndReloadFn := ObjBindMethod(this, "saveConfigAndReload")
 		GuiControl +g, %SaveAndReload%, % saveConfigAndReloadFn
