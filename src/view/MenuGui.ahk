@@ -22,16 +22,19 @@ class MenuGui {
 		this.HANDLE_CLIPS_VIEW := ClipsView
 		callOnItemClickWithValueFn := ObjBindMethod(this, "callOnItemClickWithValue")
 		GuiControl +g, %ClipsView%, % callOnItemClickWithValueFn
-		
-		;SendMessage, (LB_INSERTSTRING:=0x181),0,"Hi",, ahk_id %ClipsView%
 	}
 	
 	moveToTop(index) {
-		tmp := this.getConfigOptionValue(this.HANDLE_CLIPS_VIEW)
-		tmp2 := this.HANDLE_CLIPS_VIEW
-		SendMessage, (LB_DELETESTRING:=0x182), % index - 1, 0,, ahk_id %tmp2%
-		;MsgBox % this.clipStore.getAtIndex(1)
-		SendMessage, (LB_INSERTSTRING:=0x181), 0, % "" . this.clipStore.getAtIndex(1),, ahk_id %tmp2%
+		this.deleteItemAtIndex(index)
+		this.insertItemAtTop(this.clipStore.getAtIndex(1))
+	}
+	
+	insertItemAtTop(item) {
+		SendMessage, (LB_INSERTSTRING:=0x181), 0, &item,, % "ahk_id " . this.HANDLE_CLIPS_VIEW
+	}
+	
+	deleteItemAtIndex(index) {
+		SendMessage, (LB_DELETESTRING:=0x182), % index - 1, 0,, % "ahk_id " . this.HANDLE_CLIPS_VIEW
 	}
 	
 	convertArrayToListBoxString(arr) {
