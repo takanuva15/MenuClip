@@ -13,6 +13,8 @@ class ClipManager {
 		this.menuManager.populateMenuFromArray(this.clipStore.getClips())
 		this.postNewClipFn := ObjBindMethod(this, "postNewClip")
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
+		
+		this.menuGui := new MenuClip.View.MenuGui(this.clipStore, ObjBindMethod(this, "pasteClip"))
 	}
 	
 	monitorClipboardChanges() {
@@ -53,12 +55,14 @@ class ClipManager {
 			Send, ^v
 		}
 		this.clipStore.moveToTop(posClicked)
-		this.menuManager.moveLastSelectedItemToTop()
+		;this.menuManager.moveLastSelectedItemToTop()
+		this.menuGui.moveToTop(posClicked)
 		OnClipboardChange(this.postNewClipFn)
 	}
 	
 	showContextMenu() {
-		this.menuManager.showMenu()
+		;this.menuManager.showMenu()
+		this.menuGui.showGui()
 	}
 	
 	__Delete() {
