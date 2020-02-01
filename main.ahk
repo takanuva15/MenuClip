@@ -6,12 +6,11 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance, Force
 
-VERSION := "v1.7.3"
-CONFIG_FILE_NAME := "config.ini"
+VERSION := "v1.8.0"
 
 #Include src\MenuClip.ahk
 
-configManager := new MenuClip.Controller.ConfigManager(VERSION, CONFIG_FILE_NAME)
+configManager := new MenuClip.Controller.ConfigManager(VERSION)
 configManager.readAllConfigOptionsFromFile()
 
 trayManager := new MenuClip.Controller.TrayManager(configManager)

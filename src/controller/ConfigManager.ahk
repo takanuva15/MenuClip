@@ -1,7 +1,7 @@
 ﻿;Handles configuration file reading & writing
 class ConfigManager {
 	static VERSION
-	static CONFIG_FILE_NAME
+	static CONFIG_FILE_NAME := "config.ini"
 	static CONFIG_SECTION := "Configuration Options"
 	static CONFIG_NAME_HOTKEY := "SHOW_MENU_HOTKEY"
 	static CONFIG_NAME_MAX_CLIPS_TO_STORE := "MAX_CLIPS_TO_STORE"
@@ -15,9 +15,8 @@ class ConfigManager {
 	static CONFIG_VAL_ALT_PASTE_APPS
 	static CONFIG_VAL_THEME
 	
-	__New(versionNum, configFileName) {
+	__New(versionNum) {
 		this.VERSION := versionNum
-		this.CONFIG_FILE_NAME := configFileName
 		this.readAllConfigOptionsFromFile()
 		this.writeAllConfigOptionsToFile()
 		
@@ -51,10 +50,6 @@ class ConfigManager {
 	
 	getVersionNum() {
 		return this.VERSION
-	}
-	
-	getConfigFileName() {
-		return this.CONFIG_FILE_NAME
 	}
 	
 	getShowMenuHotkey() {
