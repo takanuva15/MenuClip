@@ -1,3 +1,5 @@
+;;License note by takanuva15: This code is authored by "Just Me" (https://www.autohotkey.com/boards/viewtopic.php?t=338) and is NOT under the MIT license provided in the root directory of this repository. Please see the code comments for information on its license.
+
 ; ======================================================================================================================
 ; AHK 1.1.13+
 ; ======================================================================================================================
