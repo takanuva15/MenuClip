@@ -1,5 +1,7 @@
 # Changelog
 
+## v1.9.0
+2020-02-02 Changed the menu display to be a gui window now. Has some bugs but not going to worry about it since I'm switching to Ditto anyways.
 ### v1.8.1
 2020-02-01 Recolored dropdown list in config gui
 ## v1.8.0

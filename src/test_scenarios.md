@@ -3,7 +3,6 @@
 
 All scenarios assume:
 - MAX_CLIPS_TO_STORE=3
-- MAX_MENUITEM_LABEL_LENGTH=50
 - ALTERNATE_PASTE_APPS=mintty.exe
 
 ### Functionality Tests
@@ -29,20 +28,6 @@ Copy "five" multiple times. There should only be one entry of it at the top of t
  
 2. Cache contents restored on script start
 Exit the script and then run it. The menu should show "two", "one", "three", in that order. Paste "one". Check that the cache shows "1.txt", "2.txt", "3.txt" with file contents matching "one", "two", "three", respectively.
-
-### Visual Tests
-1. Menu items only show first 50 characters of clip-to-be-pasted
-Copy this:
-
----------1---------2---------3---------4---------5---------6
-
-Now show the menu. You should see: 
-
----------1---------2---------3---------4---------5...
-
-And when you paste it, you should see:
-
----------1---------2---------3---------4---------5---------6
 
 ### Configurations
 1. Delete the config file. Restart the script and the config file should appear with default values.

@@ -9,7 +9,7 @@ When you press a hotkey, a small context menu will show up that indicates the la
 - Stores 15 clips by default. (Afterwards, it will delete the oldest one and insert the newest clip at the top)
 - Has configurable options (eg number of clips stored, clip preview length)
 - Can be configured to work with editors that use Shift+Insert for pasting
-- Has a rudimentary dark theme option (changes menu background color)
+- Has a dark theme option
 - Saves clips to file so that they are restored when the script is restarted
 
 ## How to Run
@@ -25,9 +25,9 @@ Note:
 - To add a certain editor to the "Shift+Insert pasting" list, add its exe filename to the Shift Ins paste list. (You must comma-separate each exe. Do not use newlines. eg: `mintty.exe,runemacs.exe`)
 
 ## Contributing
-Contributions are accepted on a case-by-case basis. Please check with me before starting work on a PR, especially if it is out-of-scope of this application (eg a rotating clip-paste function which [ClipJump](https://github.com/aviaryan/Clipjump) already does, or something that assigns presets like [this](https://www.autohotkey.com/boards/viewtopic.php?t=65004) already does). 
+Please open up an issue if you see a bug. Depending on the situation, you can also make PRs, but check with me before starting work on a PR, especially if it is out-of-scope of this application. (eg a rotating clip-paste function which [ClipJump](https://github.com/aviaryan/Clipjump) already does, or something that assigns presets like [this](https://www.autohotkey.com/boards/viewtopic.php?t=65004) already does). 
 
-In addition, if you are not restricted from downloading & running exe files on your computer, you can download [ClipClip](https://clipclip.com/) for Windows, which is a free, full-fledged clipboard manager that serves the same function as MenuClip but with better functionality. (If you're on a Mac, you can download [ClipMenu](http://www.clipmenu.com/) which has the same essential features)
+In addition, if you are not restricted from downloading & running exe files on your computer, you should just download [Ditto](https://ditto-cp.sourceforge.io/) which does the same thing with much better functionality. You can also download [ClipClip](https://clipclip.com/) for Windows. (If you're on a Mac, you can download [ClipMenu](http://www.clipmenu.com/) which has the same essential features)
 
 Random: I tried my best to structure the code in OOP-style.
 
@@ -43,4 +43,4 @@ This program was developed in [AHK Studio](https://www.autohotkey.com/boards/vie
 
 Special thanks to the people who've helped me with coding obstacles by answering my questions on the AutoHotkey forums. You can see my various questions and people's responses [here](https://www.autohotkey.com/boards/search.php?author_id=117081&sr=posts).
 
-I used the library [`Class_OD_Colors`](https://www.autohotkey.com/boards/viewtopic.php?t=338) for coloring certain controls when dark theme is active. (Please note that library files may not be covered under the same license that the repository is under. If such is the case, a comment will be placed at the top of the library file indicating its status)
+I used the library [`Class_OD_Colors`](https://www.autohotkey.com/boards/viewtopic.php?t=338) for coloring certain controls when dark theme is active. (Please note that library files may not be covered under the same license that the repository is under. If such is the case, a comment will be placed at the top of the library file indicating its status). Also used other libraries with credits given in the file's comments.
