@@ -32,7 +32,7 @@ class MenuGui {
 	
 	addClipsView() {
 		LBS_NOINTEGRALHEIGHT := 0x0100
-		Gui ClipMenu:Add, ListBox, xm ym w350 r10 hWndClipsView AltSubmit +0x0100
+		Gui ClipMenu:Add, ListBox, xm ym w350 r11 hWndClipsView AltSubmit +0x0100
 		this.HANDLE_CLIPS_VIEW := ClipsView
 		LB_AdjustItemHeight(ClipsView, 5)
 	}
@@ -75,7 +75,6 @@ class MenuGui {
 		Hotkey, LButton, On
 		MouseGetPos, mouseXPos, mouseYPos
 		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos%
-		;Gui ClipMenu:Show, xCenter yCenter w310 h205
 	}
 	
 	watchMouseClickAndHideGuiOnOutsideClick() {
