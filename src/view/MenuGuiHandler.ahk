@@ -2,6 +2,12 @@
 class MenuGuiHandler {
 	__New(menuGui) {
 		this.menuGui := menuGui
+		hideGuiOnOutsideClickFn := ObjBindMethod(this, "watchMouseClickAndHideGuiOnOutsideClick")
+		Hotkey, LButton, % hideGuiOnOutsideClickFn
+		Hotkey, LButton, Off
+		hideGuiOnEscOrWinFn := ObjBindMethod(this, "hideGuiOnEscOrWin")
+		Hotkey, Escape, % hideGuiOnEscOrWinFn
+		;Hotkey, Escape, Off
 	}
 	
 	populateMenuFromArray(arr) {
@@ -32,5 +38,19 @@ class MenuGuiHandler {
 	getControlValue(hWnd) {
 		GuiControlGet, tmp,, %hWnd%
 		return tmp
+	}
+	
+	hideGuiOnEscOrWin() {
+		MsgBox hi
+		;Gui ClipMenu:Hide
+		Hotkey, Escape, Off
+	}
+	
+	showGui() {
+		GuiControl, Choose, % this.menuGui.HANDLE_CLIPS_VIEW, 1
+		Hotkey, LButton, On
+		Hotkey, Escape, On
+		MouseGetPos, mouseXPos, mouseYPos
+		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos%
 	}
 }
