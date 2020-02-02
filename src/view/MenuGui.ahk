@@ -2,19 +2,21 @@
 class MenuGui {
 	static clipStore
 	static HANDLE_CLIPS_VIEW
+	static GUI_WINDOW_ID
 	__New(clipStore, onItemClickFn) {
 		this.clipStore := clipStore
 		this.onItemClickFn := onItemClickFn
+		hideGuiOnOutsideClickFn := ObjBindMethod(this, "watchMouseClickAndHideGuiOnOutsideClick")
+		Hotkey, LButton, % hideGuiOnOutsideClickFn
+		Hotkey, LButton, Off
 		
 		Gui +hWndClipMenu
-		Gui ClipMenu:-MinimizeBox -MaximizeBox
+		Gui ClipMenu:-MinimizeBox -MaximizeBox +LastFound
+		this.GUI_WINDOW_ID := WinExist()
 		Gui ClipMenu:Margin, 10, 10
 		
 		this.addClipsView()
-		;Gui ClipMenu:Hide
-		;tmp2 := this.HANDLE_CLIPS_VIEW
-		;SendMessage, (LB_INSERTSTRING:=0x181),0,"Hi",, ahk_id %tmp2%
-		;this.showGui()
+		CoordMode, Mouse, Screen
 	}
 	
 	addClipsView() {
@@ -56,6 +58,16 @@ class MenuGui {
 	}
 	
 	showGui() {
-		Gui ClipMenu:Show, w300 h200
+		Hotkey, LButton, On
+		MouseGetPos, mouseXPos, mouseYPos
+		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos% w300 h200
+	}
+	
+	watchMouseClickAndHideGuiOnOutsideClick() {
+		MouseGetPos, , , windowClicked
+		if(windowClicked != this.GUI_WINDOW_ID) {
+			Gui ClipMenu:Hide
+		}
+		Hotkey, LButton, Off
 	}
 }
