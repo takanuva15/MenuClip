@@ -31,7 +31,6 @@ class MenuGui {
 	addClipsView() {
 		LBS_NOINTEGRALHEIGHT := 0x0100
 		Gui ClipMenu:Add, ListBox, % "xm ym w" . this.configManager.getMaxWidth() . " r11 hWndClipsView AltSubmit +0x0100"
-		;Gui ClipMenu:Add, ListBox, xm ym w350 r11 hWndClipsView AltSubmit +0x0100
 		this.HANDLE_CLIPS_VIEW := ClipsView
 		LB_AdjustItemHeight(ClipsView, 5)
 	}
