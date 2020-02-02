@@ -9,6 +9,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 VERSION := "v1.8.1"
 
 #Include <Class_OD_Colors>
+#Include <Class_LB_AdjustHeight>
 #Include src\MenuClip.ahk
 
 configManager := new MenuClip.Controller.ConfigManager(VERSION)

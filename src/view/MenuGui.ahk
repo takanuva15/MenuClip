@@ -15,7 +15,7 @@ class MenuGui {
 		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
 		this.GUI_WINDOW_ID := WinExist()
 		Gui ClipMenu:Margin, 5, 5
-		Gui ClipMenu:Font, % (FontOptions := "s11"), % (FontName := "Segoe UI Regular")
+		Gui ClipMenu:Font, % (FontOptions := "s10"), % (FontName := "Segoe UI Regular")
 		
 		this.themeStyle := this.configManager.getTheme()
 		if(this.themeStyle = "dark") {
@@ -24,15 +24,18 @@ class MenuGui {
 		}
 		
 		this.addClipsView()
+		this.populateMenuFromArray(this.clipStore.getClips())
 		CoordMode, Mouse, Screen
-		this.showGui()
+		;this.showGui()
 	}
 	
 	addClipsView() {
-		Gui ClipMenu:Add, ListBox, xm ym w300 h200 hWndClipsView AltSubmit, % this.convertArrayToListBoxString(this.clipStore.getClips())
+		LBS_NOINTEGRALHEIGHT := 0x0100
+		Gui ClipMenu:Add, ListBox, xm ym w350 r10 hWndClipsView AltSubmit +0x0100
 		this.HANDLE_CLIPS_VIEW := ClipsView
 		callOnItemClickWithValueFn := ObjBindMethod(this, "callOnItemClickWithValue")
 		GuiControl +g, %ClipsView%, % callOnItemClickWithValueFn
+		LB_AdjustItemHeight(ClipsView, 5)
 	}
 	
 	moveToTop(index) {
@@ -48,20 +51,19 @@ class MenuGui {
 		SendMessage, (LB_DELETESTRING:=0x182), % index - 1, 0,, % "ahk_id " . this.HANDLE_CLIPS_VIEW
 	}
 	
-	convertArrayToListBoxString(arr) {
-		str := ""
-		for index, element in arr {
-			str := str . element . "|"
-		}
-		return str
+	populateMenuFromArray(arr) {
+		GuiControl, -Redraw, % this.HANDLE_CLIPS_VIEW
+		Loop, % loopIndex := arr.maxIndex()
+			this.insertItemAtTop(arr[loopIndex--])
+		GuiControl, +Redraw, % this.HANDLE_CLIPS_VIEW
 	}
 	
 	callOnItemClickWithValue() {
 		Gui ClipMenu:Hide
-		this.onItemClickFn.call(this.getConfigOptionValue(this.HANDLE_CLIPS_VIEW))
+		this.onItemClickFn.call(this.getControlValue(this.HANDLE_CLIPS_VIEW))
 	}
 	
-	getConfigOptionValue(hWnd) {
+	getControlValue(hWnd) {
 		GuiControlGet, tmp,, %hWnd%
 		return tmp
 	}
@@ -69,7 +71,7 @@ class MenuGui {
 	showGui() {
 		Hotkey, LButton, On
 		MouseGetPos, mouseXPos, mouseYPos
-		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos% w310 h205
+		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos%
 		;Gui ClipMenu:Show, xCenter yCenter w310 h205
 	}
 	
@@ -80,6 +82,6 @@ class MenuGui {
 		}
 		Click
 		Hotkey, LButton, Off
-		Send, {Ctrl up}
+		Send, {Ctrl up} ;depresses Ctrl if you're using Ctrl in the showMenu shortcut
 	}
 }
