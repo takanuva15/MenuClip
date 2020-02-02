@@ -69,7 +69,7 @@ class ConfigManagerGui {
 	}
 	
 	addSaveAndReloadButton() {
-		Gui EditConfig:Add, Button, x93 y+20 w110 h28 hWndSaveAndReload cFF0000, &Save and Reload
+		Gui EditConfig:Add, Button, x93 y+20 w110 h28 hWndSaveAndReload +Default, &Save and Reload
 		this.CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD := SaveAndReload
 		saveConfigAndReloadFn := ObjBindMethod(this, "saveConfigAndReload")
 		GuiControl +g, %SaveAndReload%, % saveConfigAndReloadFn
