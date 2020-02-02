@@ -9,8 +9,6 @@ class ClipManager {
 		this.MAX_CLIPS_TO_STORE := configManager.getMaxClipsToStore()
 		this.ALT_PASTE_APPS := configManager.getAltPasteApps()
 		this.clipStore := new MenuClip.Model.ClipStore()
-		;this.menuManager := new MenuClip.View.MenuManager(configManager,  ObjBindMethod(this, "pasteClip"))
-		;this.menuManager.populateMenuFromArray(this.clipStore.getClips())
 		this.postNewClipFn := ObjBindMethod(this, "postNewClip")
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
 		
@@ -35,14 +33,11 @@ class ClipManager {
 				return
 			} else if(this.clipStore.getSize() < this.MAX_CLIPS_TO_STORE) {
 				this.clipStore.insertAtTop(Clipboard)
-				;this.menuManager.insertItemAtTop(Clipboard)
 				this.menuGui.insertItemAtTop(Clipboard)
 			} else {
 				this.clipStore.deleteAtIndex(this.MAX_CLIPS_TO_STORE)
-				;this.menuManager.deleteItem(this.MAX_CLIPS_TO_STORE)
 				this.menuGui.deleteItemAtIndex(this.MAX_CLIPS_TO_STORE)
 				this.clipStore.insertAtTop(Clipboard)
-				;this.menuManager.insertItemAtTop(Clipboard)
 				this.menuGui.insertItemAtTop(Clipboard)
 			}
 		}
@@ -58,13 +53,11 @@ class ClipManager {
 			Send, ^v
 		}
 		this.clipStore.moveToTop(posClicked)
-		;this.menuManager.moveLastSelectedItemToTop()
 		this.menuGui.moveToTop(posClicked)
 		OnClipboardChange(this.postNewClipFn)
 	}
 	
 	showContextMenu() {
-		;this.menuManager.showMenu()
 		this.menuGui.showGui()
 	}
 	
