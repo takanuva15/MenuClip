@@ -1,4 +1,4 @@
-﻿;Handles changes to the menu
+﻿;Represents the menu
 class MenuGui {
 	static clipStore
 	static HANDLE_CLIPS_VIEW
@@ -7,6 +7,7 @@ class MenuGui {
 		this.configManager := configManager
 		this.clipStore := clipStore
 		this.onItemClickFn := onItemClickFn
+		this.menuGuiHandler := new MenuClip.View.MenuGuiHandler(this)
 		hideGuiOnOutsideClickFn := ObjBindMethod(this, "watchMouseClickAndHideGuiOnOutsideClick")
 		Hotkey, LButton, % hideGuiOnOutsideClickFn
 		Hotkey, LButton, Off
