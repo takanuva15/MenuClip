@@ -4,7 +4,8 @@ class ConfigManagerGui {
 	static themes
 	static CONFIG_HANDLE_HOTKEY
 	static CONFIG_HANDLE_MAX_CLIPS_TO_STORE
-	static CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH
+	static CONFIG_HANDLE_MAX_WIDTH
+	static CONFIG_HANDLE_MAX_HEIGHT
 	static CONFIG_HANDLE_ALT_PASTE_APPS
 	static CONFIG_HANDLE_THEME
 	static CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD
@@ -27,6 +28,7 @@ class ConfigManagerGui {
 		this.addHotkeyOpt()
 		this.addMaxClipsToStoreOpt()
 		this.addMaxWidth()
+		this.addMaxHeight()
 		this.addAltPasteAppsOpt()
 		this.addThemeOpt()
 		this.addSaveAndReloadButton()
@@ -46,8 +48,14 @@ class ConfigManagerGui {
 	
 	addMaxWidth() {
 		Gui EditConfig:Add, Text, xm y+10 w170, Max width:
-		Gui EditConfig:Add, Edit, x+5 yp-2 w32 h17 hWndMaxMenuItemLabelLength, % this.configManager.getMaxWidth()
-		this.CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH := MaxMenuItemLabelLength
+		Gui EditConfig:Add, Edit, x+5 yp-2 w32 h17 hWndMaxWidth, % this.configManager.getMaxWidth()
+		this.CONFIG_HANDLE_MAX_WIDTH := MaxWidth
+	}
+	
+	addMaxHeight() {
+		Gui EditConfig:Add, Text, xm y+10 w170, Max height (# rows):
+		Gui EditConfig:Add, Edit, x+5 yp-2 w32 h17 hWndMaxHeight, % this.configManager.getMaxHeight()
+		this.CONFIG_HANDLE_MAX_HEIGHT := MaxHeight
 	}
 	
 	addAltPasteAppsOpt() {
@@ -78,7 +86,8 @@ class ConfigManagerGui {
 	saveConfigAndReload() {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_HOTKEY, this.getConfigOptionValue(this.CONFIG_HANDLE_HOTKEY))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_CLIPS_TO_STORE, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_CLIPS_TO_STORE))
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_WIDTH, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_WIDTH, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_WIDTH))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_HEIGHT, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_HEIGHT))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_ALT_PASTE_APPS, this.getConfigOptionValue(this.CONFIG_HANDLE_ALT_PASTE_APPS))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, this.getConfigOptionValue(this.CONFIG_HANDLE_THEME))
 		Reload
@@ -90,6 +99,6 @@ class ConfigManagerGui {
 	}
 	
 	showGui() {
-		Gui EditConfig:Show, w295 h200, Edit Configuration
+		Gui EditConfig:Show, Autosize, Edit Configuration
 	}
 }

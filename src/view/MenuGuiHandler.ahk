@@ -2,6 +2,8 @@
 class MenuGuiHandler {
 	static totalScreenWidth
 	static totalScreenHeight
+	static guiWidth
+	static guiHeight
 	__New(menuGui) {
 		this.menuGui := menuGui
 		hideGuiOnOutsideClickFn := ObjBindMethod(this, "watchMouseClickAndHideGuiOnOutsideClick")
@@ -19,18 +21,11 @@ class MenuGuiHandler {
 		this.totalScreenHeight := tmp
 	}
 	
-	populateMenuFromArray(arr) {
-		GuiControl, -Redraw, % this.menuGui.HANDLE_CLIPS_VIEW
-		Loop, % loopIndex := arr.maxIndex()
-			this.menuGui.insertItemAtTop(arr[loopIndex--])
-		GuiControl, +Redraw, % this.menuGui.HANDLE_CLIPS_VIEW
-	}
-	
 	watchMouseClickAndHideGuiOnOutsideClick() {
 		MouseGetPos, , , windowClicked
 		Click
 		Gui ClipMenu:Hide
-		if(windowClicked = this.HANDLE_GUI) {
+		if(windowClicked = this.menuGui.HANDLE_GUI) {
 			this.menuGui.onItemClickFn.call(this.getControlValue(this.menuGui.HANDLE_CLIPS_VIEW))
 		}
 		Hotkey, LButton, Off
@@ -63,13 +58,19 @@ class MenuGuiHandler {
 		Hotkey, LWin, On
 		
 		MouseGetPos, mouseXPos, mouseYPos
-		this.getGuiSize(this.menuGui.HANDLE_GUI, guiWidth, guiHeight)
-		dispXPos := % mouseXPos + guiWidth > this.totalScreenWidth ? mouseXPos - guiWidth : mouseXPos 
-		dispYPos := % mouseYPos + guiHeight > this.totalScreenHeight ? mouseYPos - guiHeight : mouseYPos 
+		;this.getGuiSize(this.menuGui.HANDLE_GUI, guiWidth, guiHeight)
+		dispXPos := % mouseXPos + this.guiWidth > this.totalScreenWidth ? mouseXPos - this.guiWidth : mouseXPos 
+		dispYPos := % mouseYPos + this.guiHeight > this.totalScreenHeight ? mouseYPos - this.guiHeight : mouseYPos 
 		Gui ClipMenu:Show, AutoSize x%dispXPos% y%dispYPos%
 	}
 	
-	;This fucntion came from https://autohotkey.com/board/topic/85172-solved-gui-width-height/. Not under MIT license
+	updateGuiDims() {
+		this.getGuiSize(this.menuGui.HANDLE_GUI, guiWidth, guiHeight)
+		this.guiWidth := guiWidth
+		this.guiHeight := guiHeight
+	}
+	
+	;This function came from https://autohotkey.com/board/topic/85172-solved-gui-width-height/. Not under MIT license
 	getGuiSize(hwnd, ByRef w, ByRef h) {
 		VarSetCapacity(rc, 16)
 		DllCall("GetClientRect", "uint", hwnd, "uint", &rc)
