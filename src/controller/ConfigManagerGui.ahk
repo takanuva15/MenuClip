@@ -26,7 +26,7 @@ class ConfigManagerGui {
 		
 		this.addHotkeyOpt()
 		this.addMaxClipsToStoreOpt()
-		this.addMaxMenuItemLabelLengthOpt()
+		this.addMaxWidth()
 		this.addAltPasteAppsOpt()
 		this.addThemeOpt()
 		this.addSaveAndReloadButton()
@@ -44,9 +44,9 @@ class ConfigManagerGui {
 		this.CONFIG_HANDLE_MAX_CLIPS_TO_STORE := MaxClipsToStore
 	}
 	
-	addMaxMenuItemLabelLengthOpt() {
-		Gui EditConfig:Add, Text, xm y+10 w170, Max length of menu item preview:
-		Gui EditConfig:Add, Edit, x+5 yp-2 w32 h17 hWndMaxMenuItemLabelLength, % this.configManager.getMaxMenuitemLabelLength()
+	addMaxWidth() {
+		Gui EditConfig:Add, Text, xm y+10 w170, Max width:
+		Gui EditConfig:Add, Edit, x+5 yp-2 w32 h17 hWndMaxMenuItemLabelLength, % this.configManager.getMaxWidth()
 		this.CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH := MaxMenuItemLabelLength
 	}
 	
@@ -78,7 +78,7 @@ class ConfigManagerGui {
 	saveConfigAndReload() {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_HOTKEY, this.getConfigOptionValue(this.CONFIG_HANDLE_HOTKEY))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_CLIPS_TO_STORE, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_CLIPS_TO_STORE))
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_MENUITEM_LABEL_LENGTH, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_WIDTH, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_MENUITEM_LABEL_LENGTH))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_ALT_PASTE_APPS, this.getConfigOptionValue(this.CONFIG_HANDLE_ALT_PASTE_APPS))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, this.getConfigOptionValue(this.CONFIG_HANDLE_THEME))
 		Reload
