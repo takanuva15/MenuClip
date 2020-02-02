@@ -11,16 +11,17 @@ class MenuGui {
 		Hotkey, LButton, Off
 		
 		Gui +hWndClipMenu
-		Gui ClipMenu:-MinimizeBox -MaximizeBox +LastFound
+		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
 		this.GUI_WINDOW_ID := WinExist()
-		Gui ClipMenu:Margin, 10, 10
+		Gui ClipMenu:Margin, 5, 5
 		
 		this.addClipsView()
 		CoordMode, Mouse, Screen
+		;this.showGui()
 	}
 	
 	addClipsView() {
-		Gui ClipMenu:Add, ListBox, xm ym r8 w280 hWndClipsView AltSubmit, % this.convertArrayToListBoxString(this.clipStore.getClips())
+		Gui ClipMenu:Add, ListBox, xm ym w300 h200 hWndClipsView AltSubmit, % this.convertArrayToListBoxString(this.clipStore.getClips())
 		this.HANDLE_CLIPS_VIEW := ClipsView
 		callOnItemClickWithValueFn := ObjBindMethod(this, "callOnItemClickWithValue")
 		GuiControl +g, %ClipsView%, % callOnItemClickWithValueFn
@@ -60,7 +61,8 @@ class MenuGui {
 	showGui() {
 		Hotkey, LButton, On
 		MouseGetPos, mouseXPos, mouseYPos
-		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos% w300 h200
+		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos% w310 h205
+		;Gui ClipMenu:Show, xCenter yCenter w310 h205
 	}
 	
 	watchMouseClickAndHideGuiOnOutsideClick() {
