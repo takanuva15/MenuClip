@@ -29,6 +29,9 @@ Copy "five" multiple times. There should only be one entry of it at the top of t
 2. Cache contents restored on script start
 Exit the script and then run it. The menu should show "two", "one", "three", in that order. Paste "one". Check that the cache shows "1.txt", "2.txt", "3.txt" with file contents matching "one", "two", "three", respectively.
 
+### Visual Tests
+1. Try to open up the paste window with your mouse at the bottom-right of the screen. The window should not render off-screen.
+
 ### Configurations
 1. Delete the config file. Restart the script and the config file should appear with default values.
 

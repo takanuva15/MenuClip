@@ -6,8 +6,8 @@ When you press a hotkey, a small context menu will show up that indicates the la
 ### Features:
 - Stores all text and filepath (from Explorer) clips into memory
 - Displays stored clips in a context menu via `Ctrl+Shift+V`
-- Stores 15 clips by default. (Afterwards, it will delete the oldest one and insert the newest clip at the top)
-- Has configurable options (eg number of clips stored, clip preview length)
+- Stores 100 clips by default. (Afterwards, it will delete the oldest one and insert the newest clip at the top)
+- Has configurable options (eg number of clips stored, clip view size)
 - Can be configured to work with editors that use Shift+Insert for pasting
 - Has a dark theme option
 - Saves clips to file so that they are restored when the script is restarted
