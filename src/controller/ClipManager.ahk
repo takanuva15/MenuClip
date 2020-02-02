@@ -14,7 +14,7 @@ class ClipManager {
 		this.postNewClipFn := ObjBindMethod(this, "postNewClip")
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
 		
-		this.menuGui := new MenuClip.View.MenuGui(this.clipStore, ObjBindMethod(this, "pasteClip"))
+		this.menuGui := new MenuClip.View.MenuGui(configManager, this.clipStore, ObjBindMethod(this, "pasteClip"))
 	}
 	
 	monitorClipboardChanges() {

@@ -3,7 +3,8 @@ class MenuGui {
 	static clipStore
 	static HANDLE_CLIPS_VIEW
 	static GUI_WINDOW_ID
-	__New(clipStore, onItemClickFn) {
+	__New(configManager, clipStore, onItemClickFn) {
+		this.configManager := configManager
 		this.clipStore := clipStore
 		this.onItemClickFn := onItemClickFn
 		hideGuiOnOutsideClickFn := ObjBindMethod(this, "watchMouseClickAndHideGuiOnOutsideClick")
@@ -14,10 +15,17 @@ class MenuGui {
 		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
 		this.GUI_WINDOW_ID := WinExist()
 		Gui ClipMenu:Margin, 5, 5
+		Gui ClipMenu:Font, % (FontOptions := "s11"), % (FontName := "Segoe UI Regular")
+		
+		this.themeStyle := this.configManager.getTheme()
+		if(this.themeStyle = "dark") {
+			Gui ClipMenu:Color, 2B2B2B, 43474A
+			Gui ClipMenu:Font, cCCCCCC
+		}
 		
 		this.addClipsView()
 		CoordMode, Mouse, Screen
-		;this.showGui()
+		this.showGui()
 	}
 	
 	addClipsView() {
@@ -70,6 +78,8 @@ class MenuGui {
 		if(windowClicked != this.GUI_WINDOW_ID) {
 			Gui ClipMenu:Hide
 		}
+		Click
 		Hotkey, LButton, Off
+		Send, {Ctrl up}
 	}
 }
