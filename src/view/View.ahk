@@ -2,4 +2,5 @@
 class View {
 	#Include %A_ScriptDir%\src\view\MenuManager.ahk
 	#Include %A_ScriptDir%\src\view\MenuGui.ahk
+	#Include %A_ScriptDir%\src\view\MenuGuiHandler.ahk
 }
