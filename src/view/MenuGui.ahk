@@ -2,7 +2,7 @@
 class MenuGui {
 	static clipStore
 	static HANDLE_CLIPS_VIEW
-	static GUI_WINDOW_ID
+	static HANDLE_GUI
 	__New(configManager, clipStore, onItemClickFn) {
 		this.configManager := configManager
 		this.clipStore := clipStore
@@ -11,7 +11,7 @@ class MenuGui {
 		
 		Gui +hWndClipMenu
 		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
-		this.GUI_WINDOW_ID := WinExist()
+		this.HANDLE_GUI := WinExist()
 		Gui ClipMenu:Margin, 5, 5
 		Gui ClipMenu:Font, % (FontOptions := "s10"), % (FontName := "Segoe UI Regular")
 		
