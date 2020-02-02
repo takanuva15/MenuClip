@@ -8,9 +8,6 @@ class MenuGui {
 		this.clipStore := clipStore
 		this.onItemClickFn := onItemClickFn
 		this.menuGuiHandler := new MenuClip.View.MenuGuiHandler(this)
-		hideGuiOnOutsideClickFn := ObjBindMethod(this, "watchMouseClickAndHideGuiOnOutsideClick")
-		Hotkey, LButton, % hideGuiOnOutsideClickFn
-		Hotkey, LButton, Off
 		
 		Gui +hWndClipMenu
 		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
@@ -26,14 +23,15 @@ class MenuGui {
 		
 		this.addClipsView()
 		this.addInvisibleOKButton()
-		this.populateMenuFromArray(this.clipStore.getClips())
+		this.menuGuiHandler.populateMenuFromArray(this.clipStore.getClips())
 		CoordMode, Mouse, Screen
 		;this.showGui()
 	}
 	
 	addClipsView() {
 		LBS_NOINTEGRALHEIGHT := 0x0100
-		Gui ClipMenu:Add, ListBox, xm ym w350 r11 hWndClipsView AltSubmit +0x0100
+		;Gui ClipMenu:Add, ListBox, % "xm ym w350 r" . this.clipStore.getSize() . " hWndClipsView AltSubmit +0x0100"
+		Gui ClipMenu:Add, ListBox, % "xm ym w350 r11 hWndClipsView AltSubmit +0x0100"
 		this.HANDLE_CLIPS_VIEW := ClipsView
 		LB_AdjustItemHeight(ClipsView, 5)
 	}
@@ -42,7 +40,7 @@ class MenuGui {
 	addInvisibleOKButton() {
 		Gui ClipMenu:Add, Button, h0 w0 hWndPasteSelected +Default
 		this.HANDLE_BUTTON_PASTE := PasteSelected
-		pasteSelectedFn := ObjBindMethod(this, "pasteSelectedOnEnter")
+		pasteSelectedFn := ObjBindMethod(this.menuGuiHandler, "pasteSelectedOnEnter")
 		GuiControl +g, %PasteSelected%, % pasteSelectedFn
 	}
 	
@@ -59,40 +57,7 @@ class MenuGui {
 		LB_DeleteItem(this.HANDLE_CLIPS_VIEW, index)
 	}
 	
-	populateMenuFromArray(arr) {
-		GuiControl, -Redraw, % this.HANDLE_CLIPS_VIEW
-		Loop, % loopIndex := arr.maxIndex()
-			this.insertItemAtTop(arr[loopIndex--])
-		GuiControl, +Redraw, % this.HANDLE_CLIPS_VIEW
-	}
-	
-	getControlValue(hWnd) {
-		GuiControlGet, tmp,, %hWnd%
-		return tmp
-	}
-	
 	showGui() {
-		GuiControl, Choose, % this.HANDLE_CLIPS_VIEW, 1
-		Hotkey, LButton, On
-		MouseGetPos, mouseXPos, mouseYPos
-		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos%
-	}
-	
-	watchMouseClickAndHideGuiOnOutsideClick() {
-		MouseGetPos, , , windowClicked
-		Click
-		Gui ClipMenu:Hide
-		if(windowClicked = this.GUI_WINDOW_ID) {
-			this.onItemClickFn.call(this.getControlValue(this.HANDLE_CLIPS_VIEW))
-		}
-		Hotkey, LButton, Off
-		Send, {Ctrl up} ;depresses Ctrl if you're using Ctrl in the showMenu shortcut
-	}
-	
-	pasteSelectedOnEnter() {
-		Gui ClipMenu:Hide
-		this.onItemClickFn.call(this.getControlValue(this.HANDLE_CLIPS_VIEW))
-		Hotkey, LButton, Off
-		Send, {Ctrl up}
+		this.menuGui.showGui()
 	}
 }
