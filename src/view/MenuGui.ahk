@@ -23,14 +23,16 @@ class MenuGui {
 		
 		this.addClipsView()
 		this.addInvisibleOKButton()
-		this.menuGuiHandler.populateMenuFromArray(this.clipStore.getClips())
 		CoordMode, Mouse, Screen
-		;this.showGui()
+		Gui ClipMenu:Show, Hide ;Renders it once to give it dimensions for the handler to use
+		this.menuGuiHandler.updateGuiDims()
+		
+		this.populateMenuFromArray(this.clipStore.getClips())
 	}
 	
 	addClipsView() {
 		LBS_NOINTEGRALHEIGHT := 0x0100
-		Gui ClipMenu:Add, ListBox, % "xm ym w" . this.configManager.getMaxWidth() . " r11 hWndClipsView AltSubmit +0x0100"
+		Gui ClipMenu:Add, ListBox, % "xm ym w" . this.configManager.getMaxWidth() . " r" . this.configManager.getMaxHeight() . " hWndClipsView AltSubmit +0x0100"
 		this.HANDLE_CLIPS_VIEW := ClipsView
 		LB_AdjustItemHeight(ClipsView, 5)
 	}
@@ -39,8 +41,15 @@ class MenuGui {
 	addInvisibleOKButton() {
 		Gui ClipMenu:Add, Button, h0 w0 hWndPasteSelected +Default
 		this.HANDLE_BUTTON_PASTE := PasteSelected
-		pasteSelectedFn := ObjBindMethod(this.menuGuiHandler, "pasteSelectedOnEnter")
+		()pasteSelectedFn := ObjBindMethod(this.menuGuiHandler, "pasteSelectedOnEnter")
 		GuiControl +g, %PasteSelected%, % pasteSelectedFn
+	}
+	
+	populateMenuFromArray(arr) {
+		GuiControl, -Redraw, % this.HANDLE_CLIPS_VIEW
+		Loop, % loopIndex := arr.maxIndex()
+			this.insertItemAtTop(arr[loopIndex--])
+		GuiControl, +Redraw, % this.HANDLE_CLIPS_VIEW
 	}
 	
 	moveToTop(index) {
