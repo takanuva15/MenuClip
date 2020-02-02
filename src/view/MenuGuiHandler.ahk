@@ -7,7 +7,9 @@ class MenuGuiHandler {
 		Hotkey, LButton, Off
 		hideGuiOnEscOrWinFn := ObjBindMethod(this, "hideGuiOnEscOrWin")
 		Hotkey, Escape, % hideGuiOnEscOrWinFn
-		;Hotkey, Escape, Off
+		Hotkey, Escape, Off
+		Hotkey, LWin, % hideGuiOnEscOrWinFn
+		Hotkey, LWin, Off
 	}
 	
 	populateMenuFromArray(arr) {
@@ -41,16 +43,18 @@ class MenuGuiHandler {
 	}
 	
 	hideGuiOnEscOrWin() {
-		MsgBox hi
-		;Gui ClipMenu:Hide
+		Gui ClipMenu:Hide
 		Hotkey, Escape, Off
+		Hotkey, LWin, Off
 	}
 	
 	showGui() {
+		;GuiControl, Move, % this.menuGui.HANDLE_CLIPS_VIEW, h200
 		GuiControl, Choose, % this.menuGui.HANDLE_CLIPS_VIEW, 1
 		Hotkey, LButton, On
 		Hotkey, Escape, On
+		Hotkey, LWin, On
 		MouseGetPos, mouseXPos, mouseYPos
-		Gui ClipMenu:Show, x%mouseXPos% y%mouseYPos%
+		Gui ClipMenu:Show, AutoSize x%mouseXPos% y%mouseYPos%
 	}
 }
