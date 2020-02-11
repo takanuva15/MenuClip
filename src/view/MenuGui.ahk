@@ -22,6 +22,7 @@ class MenuGui {
 		}
 		
 		this.addClipsView()
+		this.addSearchBox()
 		this.addInvisibleOKButton()
 		CoordMode, Mouse, Screen
 		Gui ClipMenu:Show, Hide ;Renders it once to give it dimensions for the handler to use
@@ -35,6 +36,10 @@ class MenuGui {
 		Gui ClipMenu:Add, ListBox, % "xm ym w" . this.configManager.getMaxWidth() . " r" . this.configManager.getMaxHeight() . " hWndClipsView AltSubmit +0x0100"
 		this.HANDLE_CLIPS_VIEW := ClipsView
 		LB_AdjustItemHeight(ClipsView, 5)
+	}
+	
+	addSearchBox() {
+		Gui ClipMenu:Add, Edit, % "xm y+5 w" . this.configManager.getMaxWidth()
 	}
 	
 	;handles user pressing Enter on the menu
