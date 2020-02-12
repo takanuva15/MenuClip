@@ -2,6 +2,7 @@
 class MenuGui {
 	static clipStore
 	static HANDLE_CLIPS_VIEW
+	static HANDLE_SEARCH_BOX
 	static HANDLE_GUI
 	__New(configManager, clipStore, onItemClickFn) {
 		this.configManager := configManager
@@ -39,14 +40,15 @@ class MenuGui {
 	}
 	
 	addSearchBox() {
-		Gui ClipMenu:Add, Edit, % "xm y+5 w" . this.configManager.getMaxWidth()
+		Gui ClipMenu:Add, Edit, % "xm y+5 w" . this.configManager.getMaxWidth() . " hWndSearchBox"
+		this.HANDLE_SEARCH_BOX := SearchBox
 	}
 	
 	;handles user pressing Enter on the menu
 	addInvisibleOKButton() {
 		Gui ClipMenu:Add, Button, h0 w0 hWndPasteSelected +Default
 		this.HANDLE_BUTTON_PASTE := PasteSelected
-		()pasteSelectedFn := ObjBindMethod(this.menuGuiHandler, "pasteSelectedOnEnter")
+		pasteSelectedFn := ObjBindMethod(this.menuGuiHandler, "pasteSelectedOnEnter")
 		GuiControl +g, %PasteSelected%, % pasteSelectedFn
 	}
 	
