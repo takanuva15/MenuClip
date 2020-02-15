@@ -25,6 +25,7 @@ class MenuGui {
 		
 		this.addClipsView()
 		this.addSearchBox()
+		GuiControl, Focus, % this.HANDLE_SEARCH_BOX
 		this.addInvisibleOKButton()
 		CoordMode, Mouse, Screen
 		Gui ClipMenu:Show, Hide ;Renders it once to give it dimensions for the handler to use
