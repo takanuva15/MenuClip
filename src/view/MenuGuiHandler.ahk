@@ -24,15 +24,14 @@ class MenuGuiHandler {
 	watchMouseClickAndHideGuiOnOutsideClick() {
 		MouseGetPos, , , windowClicked, controlClicked
 		Click
-		;MsgBox, win clicked: %windowClicked%`nControl: %controlClicked%
 		if(controlClicked = "ListBox1") {
-			msgbox hi
+			Gui ClipMenu:Hide
 			this.menuGui.onItemClickFn.call(this.getControlValue(this.menuGui.HANDLE_CLIPS_VIEW))
 		} else if(windowClicked = this.menuGui.HANDLE_GUI) {
-			msgbox hi
 			return
+		} else {
+			Gui ClipMenu:Hide
 		}
-		Gui ClipMenu:Hide
 		Hotkey, LButton, Off
 		Send, {Ctrl up} ;depresses Ctrl if you're using Ctrl in the showMenu shortcut
 	}
