@@ -1,6 +1,7 @@
 ﻿;Represents the menu
 class MenuGui {
 	static clipStore
+	static menuGuiHandler
 	static HANDLE_CLIPS_VIEW
 	static HANDLE_SEARCH_BOX
 	static HANDLE_GUI
@@ -42,6 +43,8 @@ class MenuGui {
 	addSearchBox() {
 		Gui ClipMenu:Add, Edit, % "xm y+5 w" . this.configManager.getMaxWidth() . " hWndSearchBox"
 		this.HANDLE_SEARCH_BOX := SearchBox
+		handleSearchFn := ObjBindMethod(this, "handleSearch")
+		GuiControl +g, %SearchBox%, % handleSearchFn
 	}
 	
 	;handles user pressing Enter on the menu
@@ -50,6 +53,10 @@ class MenuGui {
 		this.HANDLE_BUTTON_PASTE := PasteSelected
 		pasteSelectedFn := ObjBindMethod(this.menuGuiHandler, "pasteSelectedOnEnter")
 		GuiControl +g, %PasteSelected%, % pasteSelectedFn
+	}
+	
+	handleSearch() {
+		tmp := this.menuGuiHandler.getControlValue(this.HANDLE_SEARCH_BOX)
 	}
 	
 	populateMenuFromArray(arr) {
