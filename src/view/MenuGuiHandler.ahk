@@ -1,5 +1,6 @@
 ﻿;Handles changes to the menu
 class MenuGuiHandler {
+	static menuGui
 	static totalScreenWidth
 	static totalScreenHeight
 	static guiWidth
@@ -33,7 +34,7 @@ class MenuGuiHandler {
 	}
 	
 	pasteSelectedOnEnter() {
-		Gui ClipMenu:Hide
+		this.hideMenuGui()
 		this.menuGui.onItemClickFn.call(this.getControlValue(this.menuGui.HANDLE_CLIPS_VIEW))
 		Hotkey, LButton, Off
 		Send, {Ctrl up}
@@ -54,7 +55,7 @@ class MenuGuiHandler {
 		dispXPos := % mouseXPos + this.guiWidth > this.totalScreenWidth ? mouseXPos - this.guiWidth : mouseXPos 
 		dispYPos := % mouseYPos + this.guiHeight > this.totalScreenHeight ? mouseYPos - this.guiHeight : mouseYPos 
 		Gui ClipMenu:Show, AutoSize x%dispXPos% y%dispYPos%
-		this.hideMenuGuiOnConditionalKeyPress()
+		this.handleKeyPresses()
 	}
 	
 	hideMenuGui() {
@@ -62,10 +63,22 @@ class MenuGuiHandler {
 		Input
 	}
 	
-	hideMenuGuiOnConditionalKeyPress() {
-		Input, tmp, V, {Esc}{LWin}{RWin}{AppsKey}{LAlt}{RAlt}
+	handleKeyPresses() {
+		Input, tmp, V, {Esc}{LWin}{RWin}{AppsKey}{LAlt}{RAlt}{Up}{Down}
 		if(InStr(ErrorLevel, "EndKey:")) {
-			this.hideMenuGui()
+			if(InStr(ErrorLevel, "Up")) {
+				GuiControl, Focus, % this.menuGui.HANDLE_CLIPS_VIEW
+				Send, {Up}
+				GuiControl, Focus, % this.menuGui.HANDLE_SEARCH_BOX
+			} else if(InStr(ErrorLevel, "Down")) {
+				GuiControl, Focus, % this.menuGui.HANDLE_CLIPS_VIEW
+				Send, {Down}
+				GuiControl, Focus, % this.menuGui.HANDLE_SEARCH_BOX
+			} else {
+				this.hideMenuGui()
+				return
+			}
+			this.handleKeyPresses()
 		}
 	}
 	
