@@ -14,6 +14,8 @@ class MenuGuiHandler {
 		Hotkey, Escape, Off
 		Hotkey, LWin, % hideGuiOnEscOrWinFn
 		Hotkey, LWin, Off
+		;Hotkey, Tab, % hideGuiOnEscOrWinFn
+		;Hotkey, Tab, Off
 		
 		SysGet, tmp, 78
 		this.totalScreenWidth := tmp
@@ -24,6 +26,7 @@ class MenuGuiHandler {
 	watchMouseClickAndHideGuiOnOutsideClick() {
 		MouseGetPos, , , windowClicked, controlClicked
 		Click
+		Sleep, 50 ;allows time for Gui to show what was selected
 		if(controlClicked = "ListBox1") {
 			Gui ClipMenu:Hide
 			this.menuGui.onItemClickFn.call(this.getControlValue(this.menuGui.HANDLE_CLIPS_VIEW))
@@ -49,6 +52,7 @@ class MenuGuiHandler {
 	}
 	
 	hideGuiOnEscOrWin() {
+		;WinGet, activeWin, , A
 		Gui ClipMenu:Hide
 		Hotkey, Escape, Off
 		Hotkey, LWin, Off
