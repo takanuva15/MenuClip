@@ -46,7 +46,7 @@ class MenuGuiHandler {
 	}
 	
 	showGui() {
-		;GuiControl, Move, % this.menuGui.HANDLE_CLIPS_VIEW, h200
+		GuiControl, Focus, % this.menuGui.HANDLE_SEARCH_BOX
 		GuiControl, Choose, % this.menuGui.HANDLE_CLIPS_VIEW, 1
 		Hotkey, LButton, On
 		
@@ -60,6 +60,7 @@ class MenuGuiHandler {
 	
 	hideMenuGui() {
 		Gui ClipMenu:Hide
+		GuiControl, , % this.menuGui.HANDLE_SEARCH_BOX
 		Input
 	}
 	

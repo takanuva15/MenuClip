@@ -11,6 +11,16 @@ class ClipStore {
 		return this.clips
 	}
 	
+	getClipsFilteredBy(searchStr) {
+		tmp := []
+		for index, element in this.clips {
+			if(InStr(element, searchStr)) {
+				tmp.push(element)
+			}
+		}
+		return tmp
+	}
+	
 	getAtIndex(index) {
 		return this.clips[index]
 	}
