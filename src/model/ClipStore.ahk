@@ -13,7 +13,6 @@ class ClipStore {
 	
 	getClipsFilteredBy(searchStr) {
 		tmp := []
-		;count := 0
 		for index, element in this.clips {
 			if(InStr(element, searchStr)) {
 				tmp.push({"origIndex": index, "clip": element})
