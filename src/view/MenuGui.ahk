@@ -31,6 +31,7 @@ class MenuGui {
 		this.menuGuiHandler.updateGuiDims()
 		
 		this.populateMenuFromArray(this.clipStore.getClips())
+		this.handleSearch() ;called once to prefill the filtered menu
 	}
 	
 	addClipsView() {
@@ -51,16 +52,18 @@ class MenuGui {
 	addInvisibleOKButton() {
 		Gui ClipMenu:Add, Button, h0 w0 hWndPasteSelected +Default
 		this.HANDLE_BUTTON_PASTE := PasteSelected
-		pasteSelectedFn := ObjBindMethod(this.menuGuiHandler, "pasteSelectedOnEnter")
-		GuiControl +g, %PasteSelected%, % pasteSelectedFn
+		pasteSelectedClipFn := ObjBindMethod(this.menuGuiHandler, "pasteSelectedClip")
+		GuiControl +g, %PasteSelected%, % pasteSelectedClipFn
 	}
 	
 	handleSearch() {
-		tmp := this.menuGuiHandler.getControlValue(this.HANDLE_SEARCH_BOX)
-		tmp2 := this.clipStore.getClipsFilteredBy(tmp)
+		searchStr := this.menuGuiHandler.getControlValue(this.HANDLE_SEARCH_BOX)
+		this.filteredClips := this.clipStore.getClipsFilteredBy(searchStr)
 		GuiControl, , % this.HANDLE_CLIPS_VIEW, |
-		;MsgBox % tmp2
-		this.populateMenuFromArray(tmp2)
+		filteredClipsTextOnly := []
+		Loop, % loopIndex := this.filteredClips.maxIndex()
+			filteredClipsTextOnly.insertAt(1, this.filteredClips[loopIndex--].clip)
+		this.populateMenuFromArray(filteredClipsTextOnly)
 		GuiControl, Choose, % this.HANDLE_CLIPS_VIEW, 1
 	}
 	
