@@ -28,8 +28,6 @@ class MenuGuiHandler {
 		} else {
 			this.hideMenuGui()
 		}
-		;Hotkey, LButton, Off
-		;Send, {Ctrl up} ;depresses Ctrl if you're using Ctrl in the showMenu shortcut
 	}
 	
 	pasteSelectedClip() {
@@ -50,17 +48,10 @@ class MenuGuiHandler {
 		Hotkey, LButton, On
 		
 		MouseGetPos, mouseXPos, mouseYPos
-		;this.getGuiSize(this.menuGui.HANDLE_GUI, guiWidth, guiHeight)
 		dispXPos := % mouseXPos + this.guiWidth > this.totalScreenWidth ? mouseXPos - this.guiWidth : mouseXPos 
 		dispYPos := % mouseYPos + this.guiHeight > this.totalScreenHeight ? mouseYPos - this.guiHeight : mouseYPos 
 		Gui ClipMenu:Show, AutoSize x%dispXPos% y%dispYPos%
 		this.handleKeyPresses()
-	}
-	
-	hideMenuGui() {
-		Gui ClipMenu:Hide
-		GuiControl, , % this.menuGui.HANDLE_SEARCH_BOX
-		Input
 	}
 	
 	handleKeyPresses() {
@@ -80,6 +71,12 @@ class MenuGuiHandler {
 			}
 			this.handleKeyPresses()
 		}
+	}
+	
+	hideMenuGui() {
+		Gui ClipMenu:Hide
+		GuiControl, , % this.menuGui.HANDLE_SEARCH_BOX
+		Input
 	}
 	
 	updateGuiDims() {
