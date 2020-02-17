@@ -1,5 +1,7 @@
 # Changelog
 
+## v1.10.0
+2020-02-16 Added search box to filter clips list
 ### v1.9.1
 2020-02-02 Added option to config height. Fixed bug where menu would render offscreen
 ## v1.9.0

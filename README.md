@@ -11,6 +11,7 @@ When you press a hotkey, a small context menu will show up that indicates the la
 - Can be configured to work with editors that use Shift+Insert for pasting
 - Has a dark theme option
 - Saves clips to file so that they are restored when the script is restarted
+- Has a search box to filter clips list
 
 ## How to Run
 
