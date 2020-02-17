@@ -21,6 +21,18 @@ Open up git bash. Paste "three" into it.
 1. No repeated copies
 Copy "five" multiple times. There should only be one entry of it at the top of the menu.
 
+#### Gui-related functionality
+
+1. Open the menu. Use the arrow keys to select a paste option and press "enter" to paste it.
+
+1. Type some letters into the search filter. Then use the arrow keys to move the highlighted selection around. Both should work interchangeably. 
+
+1. Filter the entries by a few letters. Click on an entry and paste it.
+
+1. Filter the entries by a few letters. Use the arrow keys to select an entry and hit "enter" to paste.
+
+1. Ensure the search box is cleared each time you open the gui
+
 ### Storage Tests
 1. Clip order is preserved
  * Make sure cache is empty & restart the script. Copy "four", "three", "two", "one", in that order. The cache folder should show "1.txt", "2.txt", "3.txt", in that order, with file contents "one", "two", "three", respectively.
