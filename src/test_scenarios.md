@@ -38,7 +38,7 @@ Copy "five" multiple times. There should only be one entry of it at the top of t
  * Make sure cache is empty & restart the script. Copy "four", "three", "two", "one", in that order. The cache folder should show "1.txt", "2.txt", "3.txt", in that order, with file contents "one", "two", "three", respectively.
  * Paste "two" from the menu. The cache folder should show the same file names, but now the file contents should be "two", "one", "three", respectively.
  
-2. Cache contents restored on script start
+1. Cache contents restored on script start
 Exit the script and then run it. The menu should show "two", "one", "three", in that order. Paste "one". Check that the cache shows "1.txt", "2.txt", "3.txt" with file contents matching "one", "two", "three", respectively.
 
 ### Visual Tests
@@ -47,9 +47,11 @@ Exit the script and then run it. The menu should show "two", "one", "three", in 
 ### Configurations
 1. Delete the config file. Restart the script and the config file should appear with default values.
 
-2. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is restarted.
+1. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is restarted.
 
-3. Change the configurations through the GUI that appears when selecting "Edit Configuration" from the System Tray icon's menu. Saving changes on the GUI should change it in the config.ini.
+1. Change the configurations through the GUI that appears when selecting "Edit Configuration" from the System Tray icon's menu. Saving changes on the GUI should change it in the config.ini.
 
 ### Bugfix Tests
 1. Open up Terminal in IntelliJ (download it if you don't have it). Try highlighting a word in command prompt; then open the menu. There should only be one entry with the word you highlighted.
+
+1. Open up the menu and click outside of it. The menu should close and you should be able to click-drag random text.

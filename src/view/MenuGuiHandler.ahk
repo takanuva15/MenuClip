@@ -22,19 +22,23 @@ class MenuGuiHandler {
 		Click
 		Sleep, 50 ;allows time for Gui to show what was selected
 		if(controlClicked = "ListBox1") {
-			this.pasteSelectedClip()
+			this.hideMenuGuiAndPasteSelectedClip()
 		} else if(windowClicked = this.menuGui.HANDLE_GUI) {
 			return
 		} else {
 			this.hideMenuGui()
+			this.resetGuiState()
 		}
 	}
 	
-	pasteSelectedClip() {
+	hideMenuGuiAndPasteSelectedClip() {
 		this.hideMenuGui()
+		this.pasteSelectedClip()
+		this.resetGuiState()
+	}
+	
+	pasteSelectedClip() {
 		this.menuGui.onItemClickFn.call(this.menuGui.filteredClips[this.getControlValue(this.menuGui.HANDLE_CLIPS_VIEW)].origIndex)
-		Hotkey, LButton, Off
-		Send, {Ctrl up} ;depresses Ctrl if you're using Ctrl in the showMenu shortcut
 	}
 	
 	getControlValue(hWnd) {
@@ -75,8 +79,13 @@ class MenuGuiHandler {
 	
 	hideMenuGui() {
 		Gui ClipMenu:Hide
+	}
+	
+	resetGuiState() {
 		GuiControl, , % this.menuGui.HANDLE_SEARCH_BOX
 		Input
+		Hotkey, LButton, Off
+		Send, {Ctrl up} ;depresses Ctrl if you're using Ctrl in the showMenu shortcut
 	}
 	
 	updateGuiDims() {
