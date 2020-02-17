@@ -1,5 +1,7 @@
 # Changelog
 
+### v1.10.1
+2020-02-17 Fixed bug that caused click-drag not to work if you clicked outside of gui to close it
 ## v1.10.0
 2020-02-16 Added search box to filter clips list
 ### v1.9.1
