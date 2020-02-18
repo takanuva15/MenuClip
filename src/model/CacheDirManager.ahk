@@ -4,7 +4,7 @@ class CacheDirManager {
 	static cachedClipFileNames := []
 	__New() {
 		if(!InStr(FileExist(this.cacheDir), "D")) {
-			FileCreateDir, cache
+			FileCreateDir, % this.cacheDir
 		}
 	}
 	
@@ -53,5 +53,10 @@ class CacheDirManager {
 		;Works as of now because we only ever delete the last element in ClipManager. However, should be a loop available to rename files below this in the cache if we theoretically deleted from the middle of the menu.
 		FileDelete, % this.cacheDir this.cachedClipFileNames[index]
 		this.cachedClipFileNames.removeAt(index)
+	}
+	
+	clearCache() {
+		FileRemoveDir, % this.cacheDir, 1
+		FileCreateDir, % this.cacheDir
 	}
 }
