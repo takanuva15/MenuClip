@@ -1,9 +1,11 @@
 ﻿;Handles changes to the menu
 class TrayManager {
 	static configManager
+	static clipManager
 	static VERSION
-	__New(configManager) {
+	__New(configManager, clipManager) {
 		this.configManager := configManager
+		this.clipManager := clipManager
 		this.VERSION := configManager.getVersionNum()
 	}
 	
@@ -21,6 +23,9 @@ class TrayManager {
 		Menu, Tray, Default, Edit &Configuration
 		reloadScriptFn := ObjBindMethod(this, "reloadScript")
 		Menu, Tray, Add, &Reload This Script, % reloadScriptFn
+		clearCacheAndReloadFn := ObjBindMethod(this, "clearCacheAndReload")
+		Menu, Tray, Add, Clear Cache && Reload, % clearCacheAndReloadFn
+		Menu, Tray, Add
 		exitScriptFn := ObjBindMethod(this, "exitScript")
 		Menu, Tray, Add, &Exit, % exitScriptFn
 	}
@@ -29,12 +34,17 @@ class TrayManager {
 		MsgBox, 0, About MenuClip, % "MenuClip " . this.VERSION . " (c) takanuva15 `n`n" this.ABOUT_MENUCLIP
 	}
 	
+	editConfigFile() {
+		this.configManager.openEditConfigWindow()
+	}
+	
 	reloadScript() {
 		Reload
 	}
 	
-	editConfigFile() {
-		this.configManager.openEditConfigWindow()
+	clearCacheAndReload() {
+		this.clipManager.clipStore.cacheDirManager.clearCache()
+		this.reloadScript()
 	}
 	
 	exitScript() {

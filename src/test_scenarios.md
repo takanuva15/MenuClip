@@ -49,7 +49,12 @@ Exit the script and then run it. The menu should show "two", "one", "three", in 
 
 1. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is restarted.
 
+### Tray Menu Options
 1. Change the configurations through the GUI that appears when selecting "Edit Configuration" from the System Tray icon's menu. Saving changes on the GUI should change it in the config.ini.
+
+1. While the script is running, change the 1st text file in the cache and save. Then click "reload script" in the tray. The 1st entry in the clip menu should reflect the change made in the file.
+
+1. With items in the clip menu, click the "clear cache & reload" option in the tray. Then open up the menu again and it should be empty. Check the cache dir to make sure it is also empty.
 
 ### Bugfix Tests
 1. Open up Terminal in IntelliJ (download it if you don't have it). Try highlighting a word in command prompt; then open the menu. There should only be one entry with the word you highlighted.
