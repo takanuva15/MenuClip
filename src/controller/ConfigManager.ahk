@@ -1,4 +1,6 @@
-﻿;Handles configuration file reading & writing
+﻿#Include %A_ScriptDir%\src\controller\ConfigManagerGui.ahk
+
+;Handles configuration file reading & writing
 class ConfigManager {
 	static VERSION
 	static CONFIG_FILE_NAME := "config.ini"

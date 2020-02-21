@@ -1,4 +1,6 @@
-﻿;Manages the stored clips. (Basically an array manager)
+﻿#Include %A_ScriptDir%\src\model\CacheDirManager.ahk
+
+;Manages the stored clips. (Basically an array manager)
 class ClipStore {
 	static clips := []
 	static cacheDirManager
