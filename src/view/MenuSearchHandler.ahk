@@ -6,7 +6,7 @@ class MenuSearchHandler {
 	}
 	
 	handleSearch() {
-		searchStr := this.menuGui.getControlValue(this.menuGui.HANDLE_SEARCH_BOX)
+		searchStr := GetControlValue(this.menuGui.HANDLE_SEARCH_BOX)
 		this.filteredClips := this.menuGui.clipStore.getClipsFilteredBy(searchStr)
 		GuiControl, , % this.menuGui.HANDLE_CLIPS_VIEW, |
 		filteredClipsTextOnly := []

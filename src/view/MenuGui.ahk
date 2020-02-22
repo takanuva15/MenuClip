@@ -83,9 +83,4 @@ class MenuGui {
 	showGui() {
 		this.menuWindowHandler.showGui()
 	}
-	
-	getControlValue(hWnd) {
-		GuiControlGet, tmp,, %hWnd%
-		return tmp
-	}
 }
