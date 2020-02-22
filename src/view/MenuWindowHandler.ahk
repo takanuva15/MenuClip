@@ -1,5 +1,5 @@
 ﻿;Handles changes to the menu
-class MenuGuiHandler {
+class MenuWindowHandler {
 	static menuGui
 	static totalScreenWidth
 	static totalScreenHeight
