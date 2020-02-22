@@ -1,4 +1,5 @@
 ﻿#Include %A_ScriptDir%\src\view\MenuWindowHandler.ahk
+#Include %A_ScriptDir%\src\view\MenuSearchHandler.ahk
 
 ;Represents the menu
 class MenuGui {
@@ -12,6 +13,7 @@ class MenuGui {
 		this.clipStore := clipStore
 		this.onItemClickFn := onItemClickFn
 		this.menuWindowHandler := new MenuClip.View.MenuWindowHandler(this)
+		this.menuSearchHandler := new MenuClip.View.MenuSearchHandler(this)
 		
 		Gui +hWndClipMenu
 		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
@@ -33,7 +35,7 @@ class MenuGui {
 		this.menuWindowHandler.updateGuiDims()
 		
 		this.populateMenuFromArray(this.clipStore.getClips())
-		this.handleSearch() ;called once to prefill the filtered menu
+		this.menuSearchHandler.handleSearch() ;called once to prefill the filtered menu
 	}
 	
 	addClipsView() {
@@ -46,7 +48,7 @@ class MenuGui {
 	addSearchBox() {
 		Gui ClipMenu:Add, Edit, % "xm y+5 w" . this.configManager.getMaxWidth() . " hWndSearchBox"
 		this.HANDLE_SEARCH_BOX := SearchBox
-		handleSearchFn := ObjBindMethod(this, "handleSearch")
+		handleSearchFn := ObjBindMethod(this.menuSearchHandler, "handleSearch")
 		GuiControl +g, %SearchBox%, % handleSearchFn
 	}
 	
@@ -56,17 +58,6 @@ class MenuGui {
 		this.HANDLE_BUTTON_PASTE := PasteSelected
 		hideMenuGuiAndPasteSelectedClipFn := ObjBindMethod(this.menuWindowHandler, "hideMenuGuiAndPasteSelectedClip")
 		GuiControl +g, %PasteSelected%, % hideMenuGuiAndPasteSelectedClipFn
-	}
-	
-	handleSearch() {
-		searchStr := this.menuWindowHandler.getControlValue(this.HANDLE_SEARCH_BOX)
-		this.filteredClips := this.clipStore.getClipsFilteredBy(searchStr)
-		GuiControl, , % this.HANDLE_CLIPS_VIEW, |
-		filteredClipsTextOnly := []
-		Loop, % loopIndex := this.filteredClips.maxIndex()
-			filteredClipsTextOnly.insertAt(1, this.filteredClips[loopIndex--].clip)
-		this.populateMenuFromArray(filteredClipsTextOnly)
-		GuiControl, Choose, % this.HANDLE_CLIPS_VIEW, 1
 	}
 	
 	populateMenuFromArray(arr) {
@@ -91,5 +82,10 @@ class MenuGui {
 	
 	showGui() {
 		this.menuWindowHandler.showGui()
+	}
+	
+	getControlValue(hWnd) {
+		GuiControlGet, tmp,, %hWnd%
+		return tmp
 	}
 }
