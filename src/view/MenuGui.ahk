@@ -1,4 +1,6 @@
-﻿;Represents the menu
+﻿#Include %A_ScriptDir%\src\view\MenuGuiHandler.ahk
+
+;Represents the menu
 class MenuGui {
 	static clipStore
 	static menuGuiHandler
