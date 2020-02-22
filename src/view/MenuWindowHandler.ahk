@@ -38,7 +38,7 @@ class MenuWindowHandler {
 	}
 	
 	pasteSelectedClip() {
-		this.menuGui.onItemClickFn.call(this.menuGui.filteredClips[this.getControlValue(this.menuGui.HANDLE_CLIPS_VIEW)].origIndex)
+		this.menuGui.onItemClickFn.call(this.menuGui.menuSearchHandler.filteredClips[this.getControlValue(this.menuGui.HANDLE_CLIPS_VIEW)].origIndex)
 	}
 	
 	getControlValue(hWnd) {
