@@ -84,18 +84,13 @@ class ConfigManagerGui {
 	}
 	
 	saveConfigAndReload() {
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_HOTKEY, this.getConfigOptionValue(this.CONFIG_HANDLE_HOTKEY))
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_CLIPS_TO_STORE, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_CLIPS_TO_STORE))
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_WIDTH, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_WIDTH))
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_HEIGHT, this.getConfigOptionValue(this.CONFIG_HANDLE_MAX_HEIGHT))
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_ALT_PASTE_APPS, this.getConfigOptionValue(this.CONFIG_HANDLE_ALT_PASTE_APPS))
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, this.getConfigOptionValue(this.CONFIG_HANDLE_THEME))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_HOTKEY, GetControlValue(this.CONFIG_HANDLE_HOTKEY))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_CLIPS_TO_STORE, GetControlValue(this.CONFIG_HANDLE_MAX_CLIPS_TO_STORE))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_WIDTH, GetControlValue(this.CONFIG_HANDLE_MAX_WIDTH))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_HEIGHT, GetControlValue(this.CONFIG_HANDLE_MAX_HEIGHT))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_ALT_PASTE_APPS, GetControlValue(this.CONFIG_HANDLE_ALT_PASTE_APPS))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, GetControlValue(this.CONFIG_HANDLE_THEME))
 		Reload
-	}
-	
-	getConfigOptionValue(hWnd) {
-		GuiControlGet, tmp,, %hWnd%
-		return tmp
 	}
 	
 	showGui() {
