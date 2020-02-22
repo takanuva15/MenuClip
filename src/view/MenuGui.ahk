@@ -1,9 +1,9 @@
-﻿#Include %A_ScriptDir%\src\view\MenuGuiHandler.ahk
+﻿#Include %A_ScriptDir%\src\view\MenuWindowHandler.ahk
 
 ;Represents the menu
 class MenuGui {
 	static clipStore
-	static menuGuiHandler
+	static menuWindowHandler
 	static HANDLE_CLIPS_VIEW
 	static HANDLE_SEARCH_BOX
 	static HANDLE_GUI
@@ -11,7 +11,7 @@ class MenuGui {
 		this.configManager := configManager
 		this.clipStore := clipStore
 		this.onItemClickFn := onItemClickFn
-		this.menuGuiHandler := new MenuClip.View.MenuGuiHandler(this)
+		this.menuWindowHandler := new MenuClip.View.MenuWindowHandler(this)
 		
 		Gui +hWndClipMenu
 		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
@@ -30,7 +30,7 @@ class MenuGui {
 		this.addInvisibleOKButton()
 		CoordMode, Mouse, Screen
 		Gui ClipMenu:Show, Hide ;Renders it once to give it dimensions for the handler to use
-		this.menuGuiHandler.updateGuiDims()
+		this.menuWindowHandler.updateGuiDims()
 		
 		this.populateMenuFromArray(this.clipStore.getClips())
 		this.handleSearch() ;called once to prefill the filtered menu
@@ -54,12 +54,12 @@ class MenuGui {
 	addInvisibleOKButton() {
 		Gui ClipMenu:Add, Button, h0 w0 hWndPasteSelected +Default
 		this.HANDLE_BUTTON_PASTE := PasteSelected
-		hideMenuGuiAndPasteSelectedClipFn := ObjBindMethod(this.menuGuiHandler, "hideMenuGuiAndPasteSelectedClip")
+		hideMenuGuiAndPasteSelectedClipFn := ObjBindMethod(this.menuWindowHandler, "hideMenuGuiAndPasteSelectedClip")
 		GuiControl +g, %PasteSelected%, % hideMenuGuiAndPasteSelectedClipFn
 	}
 	
 	handleSearch() {
-		searchStr := this.menuGuiHandler.getControlValue(this.HANDLE_SEARCH_BOX)
+		searchStr := this.menuWindowHandler.getControlValue(this.HANDLE_SEARCH_BOX)
 		this.filteredClips := this.clipStore.getClipsFilteredBy(searchStr)
 		GuiControl, , % this.HANDLE_CLIPS_VIEW, |
 		filteredClipsTextOnly := []
@@ -90,6 +90,6 @@ class MenuGui {
 	}
 	
 	showGui() {
-		this.menuGuiHandler.showGui()
+		this.menuWindowHandler.showGui()
 	}
 }
