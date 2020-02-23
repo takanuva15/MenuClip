@@ -17,4 +17,9 @@ class MenuClipsViewHandler {
 	deleteItemAtIndex(index) {
 		LB_DeleteItem(this.menuGui.HANDLE_CLIPS_VIEW, index)
 	}
+	
+	moveToTop(index) {
+		this.deleteItemAtIndex(index)
+		this.insertItemAtTop(this.clipStore.getAtIndex(1))
+	}
 }

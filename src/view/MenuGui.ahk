@@ -60,11 +60,6 @@ class MenuGui {
 		GuiControl +g, %PasteSelected%, % hideMenuGuiAndPasteSelectedClipFn
 	}
 	
-	moveToTop(index) {
-		this.menuClipsViewHandler.deleteItemAtIndex(index)
-		this.menuClipsViewHandler.insertItemAtTop(this.clipStore.getAtIndex(1))
-	}
-	
 	showGui() {
 		this.menuWindowHandler.showGui()
 	}
