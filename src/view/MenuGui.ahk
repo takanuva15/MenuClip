@@ -35,7 +35,6 @@ class MenuGui {
 		this.addSearchBox()
 		this.addInvisibleOKButton()
 		this.menuWindowHandler.updateGuiDims()
-		
 		this.menuSearchHandler.handleSearch() ;called once to prefill the filtered menu
 	}
 	
@@ -61,21 +60,9 @@ class MenuGui {
 		GuiControl +g, %PasteSelected%, % hideMenuGuiAndPasteSelectedClipFn
 	}
 	
-	populateMenuFromArray(arr) {
-		PopulateLBFromArray(this.HANDLE_CLIPS_VIEW, arr)
-	}
-	
 	moveToTop(index) {
-		this.deleteItemAtIndex(index)
-		this.insertItemAtTop(this.clipStore.getAtIndex(1))
-	}
-	
-	insertItemAtTop(item) {
-		LB_InsertItemAtIndex(this.HANDLE_CLIPS_VIEW, item, 1)
-	}
-	
-	deleteItemAtIndex(index) {
-		LB_DeleteItem(this.HANDLE_CLIPS_VIEW, index)
+		this.menuClipsViewHandler.deleteItemAtIndex(index)
+		this.menuClipsViewHandler.insertItemAtTop(this.clipStore.getAtIndex(1))
 	}
 	
 	showGui() {
