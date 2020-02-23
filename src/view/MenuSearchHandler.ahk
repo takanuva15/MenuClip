@@ -1,4 +1,4 @@
-﻿;Handles changes to the menu
+﻿;Handles changes to the search box
 class MenuSearchHandler {
 	static menuGui
 	__New(menuGui) {
@@ -14,12 +14,5 @@ class MenuSearchHandler {
 			filteredClipsTextOnly.insertAt(1, this.filteredClips[loopIndex--].clip)
 		this.menuGui.populateMenuFromArray(filteredClipsTextOnly)
 		GuiControl, Choose, % this.menuGui.HANDLE_CLIPS_VIEW, 1
-	}
-	
-	printClips() {
-		s := ""
-		for index, element in this.filteredClips {
-			s := s . element.clip . ", "
-		}
 	}
 }

@@ -11,6 +11,7 @@ class MenuWindowHandler {
 		Hotkey, LButton, % hideGuiOnOutsideClickFn
 		Hotkey, LButton, Off
 		
+		CoordMode, Mouse, Screen
 		SysGet, tmp, 78
 		this.totalScreenWidth := tmp
 		SysGet, tmp, 79
@@ -89,15 +90,9 @@ class MenuWindowHandler {
 	}
 	
 	updateGuiDims() {
-		this.getGuiSize(this.menuGui.HANDLE_GUI, guiWidth, guiHeight)
+		Gui ClipMenu:Show, Hide ;Renders it once to give it dimensions for the handler to use
+		GetGuiSize(this.menuGui.HANDLE_GUI, guiWidth, guiHeight)
 		this.guiWidth := guiWidth
 		this.guiHeight := guiHeight
-	}
-	
-	;This function came from https://autohotkey.com/board/topic/85172-solved-gui-width-height/. Not under MIT license
-	getGuiSize(hwnd, ByRef w, ByRef h) {
-		VarSetCapacity(rc, 16)
-		DllCall("GetClientRect", "uint", hwnd, "uint", &rc)
-		w := NumGet(rc, 8, "int"), h := NumGet(rc, 12, "int")
 	}
 }

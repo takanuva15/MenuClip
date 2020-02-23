@@ -1,10 +1,13 @@
 ﻿#Include %A_ScriptDir%\src\view\MenuWindowHandler.ahk
+#Include %A_ScriptDir%\src\view\MenuClipsViewHandler.ahk
 #Include %A_ScriptDir%\src\view\MenuSearchHandler.ahk
 
-;Represents the menu
+;Represents the menu gui
 class MenuGui {
 	static clipStore
 	static menuWindowHandler
+	static menuClipsViewHandler
+	static menuSearchHandler
 	static HANDLE_CLIPS_VIEW
 	static HANDLE_SEARCH_BOX
 	static HANDLE_GUI
@@ -13,6 +16,7 @@ class MenuGui {
 		this.clipStore := clipStore
 		this.onItemClickFn := onItemClickFn
 		this.menuWindowHandler := new MenuClip.View.MenuWindowHandler(this)
+		this.menuClipsViewHandler := new MenuClip.View.MenuClipsViewHandler(this)
 		this.menuSearchHandler := new MenuClip.View.MenuSearchHandler(this)
 		
 		Gui +hWndClipMenu
@@ -30,8 +34,6 @@ class MenuGui {
 		this.addClipsView()
 		this.addSearchBox()
 		this.addInvisibleOKButton()
-		CoordMode, Mouse, Screen
-		Gui ClipMenu:Show, Hide ;Renders it once to give it dimensions for the handler to use
 		this.menuWindowHandler.updateGuiDims()
 		
 		this.populateMenuFromArray(this.clipStore.getClips())
