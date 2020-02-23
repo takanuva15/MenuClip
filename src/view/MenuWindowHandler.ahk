@@ -34,12 +34,8 @@ class MenuWindowHandler {
 	
 	hideMenuGuiAndPasteSelectedClip() {
 		this.hideMenuGui()
-		this.pasteSelectedClip()
+		this.menuGui.menuClipsViewHandler.pasteSelectedClip()
 		this.resetGuiState()
-	}
-	
-	pasteSelectedClip() {
-		this.menuGui.onItemClickFn.call(this.menuGui.clipStore.filteredClips[GetControlValue(this.menuGui.HANDLE_CLIPS_VIEW)].origIndex)
 	}
 	
 	showGui() {
