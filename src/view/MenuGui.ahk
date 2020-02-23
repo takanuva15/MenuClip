@@ -23,12 +23,12 @@ class MenuGui {
 		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
 		this.HANDLE_GUI := WinExist()
 		Gui ClipMenu:Margin, 5, 5
-		Gui ClipMenu:Font, % (FontOptions := "s10"), % (FontName := "Segoe UI Regular")
+		Gui ClipMenu:Font, % (FontOptions := "s10")
 		
 		this.themeStyle := this.configManager.getTheme()
 		if(this.themeStyle = "dark") {
 			Gui ClipMenu:Color, 2B2B2B, 43474A
-			Gui ClipMenu:Font, cCCCCCC
+			Gui ClipMenu:Font, cDDDDDD
 		}
 		
 		this.addClipsView()
