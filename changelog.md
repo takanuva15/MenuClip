@@ -1,5 +1,7 @@
 # Changelog
 
+### v1.11.1
+2020-02-23 Multiple refactorings of the code base to reduce repetition and break down large classes
 ## v1.11.0
 2020-02-17 Added tray option to clear cache and reload script
 ### v1.10.1
