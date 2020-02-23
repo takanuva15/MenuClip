@@ -36,7 +36,6 @@ class MenuGui {
 		this.addInvisibleOKButton()
 		this.menuWindowHandler.updateGuiDims()
 		
-		this.populateMenuFromArray(this.clipStore.getClips())
 		this.menuSearchHandler.handleSearch() ;called once to prefill the filtered menu
 	}
 	
@@ -63,10 +62,7 @@ class MenuGui {
 	}
 	
 	populateMenuFromArray(arr) {
-		GuiControl, -Redraw, % this.HANDLE_CLIPS_VIEW
-		Loop, % loopIndex := arr.maxIndex()
-			this.insertItemAtTop(arr[loopIndex--])
-		GuiControl, +Redraw, % this.HANDLE_CLIPS_VIEW
+		PopulateLBFromArray(this.HANDLE_CLIPS_VIEW, arr)
 	}
 	
 	moveToTop(index) {
