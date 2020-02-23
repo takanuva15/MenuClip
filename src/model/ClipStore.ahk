@@ -30,6 +30,10 @@ class ClipStore {
 		return filteredClipsTextOnly
 	}
 	
+	getOrigClipFromFilteredClipByIndex(filteredClipIndex) {
+		return this.filteredClips[filteredClipIndex].origIndex
+	}
+	
 	getClips() {
 		return this.clips
 	}

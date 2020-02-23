@@ -22,4 +22,8 @@ class MenuClipsViewHandler {
 		this.deleteItemAtIndex(index)
 		this.insertItemAtTop(this.clipStore.getAtIndex(1))
 	}
+	
+	pasteSelectedClip() {
+		this.menuGui.onItemClickFn.call(this.menuGui.clipStore.getOrigClipFromFilteredClipByIndex(GetControlValue(this.menuGui.HANDLE_CLIPS_VIEW)))
+	}
 }
