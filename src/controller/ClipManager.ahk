@@ -53,7 +53,7 @@ class ClipManager {
 			Send, ^v
 		}
 		this.clipStore.moveToTop(posClicked)
-		this.menuGui.moveToTop(posClicked)
+		this.menuGui.menuClipsViewHandler.moveToTop(posClicked)
 		OnClipboardChange(this.postNewClipFn)
 	}
 	
