@@ -12,7 +12,7 @@ class MenuSearchHandler {
 		filteredClipsTextOnly := []
 		Loop, % loopIndex := this.filteredClips.maxIndex()
 			filteredClipsTextOnly.insertAt(1, this.filteredClips[loopIndex--].clip)
-		this.menuGui.populateMenuFromArray(filteredClipsTextOnly)
+		this.menuGui.menuClipsViewHandler.populateMenuFromArray(filteredClipsTextOnly)
 		GuiControl, Choose, % this.menuGui.HANDLE_CLIPS_VIEW, 1
 	}
 }

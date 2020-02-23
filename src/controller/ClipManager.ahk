@@ -33,12 +33,12 @@ class ClipManager {
 				return
 			} else if(this.clipStore.getSize() < this.MAX_CLIPS_TO_STORE) {
 				this.clipStore.insertAtTop(Clipboard)
-				this.menuGui.insertItemAtTop(Clipboard)
+				this.menuGui.menuClipsViewHandler.insertItemAtTop(Clipboard)
 			} else {
 				this.clipStore.deleteAtIndex(this.MAX_CLIPS_TO_STORE)
-				this.menuGui.deleteItemAtIndex(this.MAX_CLIPS_TO_STORE)
+				this.menuGui.menuClipsViewHandler.deleteItemAtIndex(this.MAX_CLIPS_TO_STORE)
 				this.clipStore.insertAtTop(Clipboard)
-				this.menuGui.insertItemAtTop(Clipboard)
+				this.menuGui.menuClipsViewHandler.insertItemAtTop(Clipboard)
 			}
 		}
 	}
