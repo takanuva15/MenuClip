@@ -7,12 +7,9 @@ class MenuSearchHandler {
 	
 	handleSearch() {
 		searchStr := GetControlValue(this.menuGui.HANDLE_SEARCH_BOX)
-		this.filteredClips := this.menuGui.clipStore.getClipsFilteredBy(searchStr)
+		this.menuGui.clipStore.applyFilter(searchStr)
 		GuiControl, , % this.menuGui.HANDLE_CLIPS_VIEW, |
-		filteredClipsTextOnly := []
-		Loop, % loopIndex := this.filteredClips.maxIndex()
-			filteredClipsTextOnly.insertAt(1, this.filteredClips[loopIndex--].clip)
-		this.menuGui.menuClipsViewHandler.populateMenuFromArray(filteredClipsTextOnly)
+		this.menuGui.menuClipsViewHandler.populateMenuFromArray(this.menuGui.clipStore.getFilteredClips())
 		GuiControl, Choose, % this.menuGui.HANDLE_CLIPS_VIEW, 1
 	}
 }

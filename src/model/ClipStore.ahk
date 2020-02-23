@@ -4,23 +4,34 @@
 class ClipStore {
 	static clips := []
 	static cacheDirManager
+	static filterString := ""
+	static filteredClips := []
 	__New() {
 		this.cacheDirManager := new MenuClip.Model.CacheDirManager()
 		this.clips := this.cacheDirManager.restoreFromCache()
+		this.applyFilter(this.filterString)
+	}
+	
+	applyFilter(searchStr) {
+		this.filterString := searchStr
+		this.filteredClips := []
+		for index, element in this.clips {
+			if(InStr(element, searchStr)) {
+				this.filteredClips.push({"origIndex": index, "clip": element})
+			}
+		}
+	}
+	
+	getFilteredClips() {
+		filteredClipsTextOnly := []
+		for index, element in this.filteredClips {
+			filteredClipsTextOnly.push(this.filteredClips[index].clip)
+		}
+		return filteredClipsTextOnly
 	}
 	
 	getClips() {
 		return this.clips
-	}
-	
-	getClipsFilteredBy(searchStr) {
-		tmp := []
-		for index, element in this.clips {
-			if(InStr(element, searchStr)) {
-				tmp.push({"origIndex": index, "clip": element})
-			}
-		}
-		return tmp
 	}
 	
 	getAtIndex(index) {
