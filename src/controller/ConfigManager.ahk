@@ -11,6 +11,7 @@ class ConfigManager {
 	static CONFIG_NAME_MAX_HEIGHT := "MAX_HEIGHT"
 	static CONFIG_NAME_ALT_PASTE_APPS := "SHIFT_INS_PASTE_APPS"
 	static CONFIG_NAME_THEME := "THEME"
+	static CONFIG_NAME_CONV_SPEC_CHAR := "CONV_SPEC_CHAR"
 	
 	static CONFIG_VAL_HOTKEY
 	static CONFIG_VAL_MAX_CLIPS_TO_STORE
@@ -18,6 +19,7 @@ class ConfigManager {
 	static CONFIG_VAL_MAX_HEIGHT
 	static CONFIG_VAL_ALT_PASTE_APPS
 	static CONFIG_VAL_THEME
+	static CONFIG_VAL_CONV_SPEC_CHAR
 	
 	__New(versionNum) {
 		this.VERSION := versionNum
@@ -39,6 +41,7 @@ class ConfigManager {
 		this.CONFIG_VAL_MAX_HEIGHT := this.readConfigFromFile(this.CONFIG_NAME_MAX_HEIGHT, 12)
 		this.CONFIG_VAL_ALT_PASTE_APPS := this.readConfigFromFile(this.CONFIG_NAME_ALT_PASTE_APPS, A_Space)
 		this.CONFIG_VAL_THEME := this.readConfigFromFile(this.CONFIG_NAME_THEME, "light")
+		this.CONFIG_VAL_CONV_SPEC_CHAR := this.readConfigFromFile(this.CONFIG_NAME_CONV_SPEC_CHAR, 1)
 	}
 	
 	writeConfigToFile(configKeyName, configValue) {
@@ -52,6 +55,7 @@ class ConfigManager {
 		this.writeConfigToFile(this.CONFIG_NAME_MAX_HEIGHT, this.CONFIG_VAL_MAX_HEIGHT)
 		this.writeConfigToFile(this.CONFIG_NAME_ALT_PASTE_APPS, this.CONFIG_VAL_ALT_PASTE_APPS)
 		this.writeConfigToFile(this.CONFIG_NAME_THEME, this.CONFIG_VAL_THEME)
+		this.writeConfigToFile(this.CONFIG_NAME_CONV_SPEC_CHAR, this.CONFIG_VAL_CONV_SPEC_CHAR)
 	}
 	
 	getVersionNum() {
@@ -80,6 +84,10 @@ class ConfigManager {
 	
 	getTheme() {
 		return this.CONFIG_VAL_THEME
+	}
+	
+	getConvSpecChar() {
+		return this.CONFIG_VAL_CONV_SPEC_CHAR
 	}
 	
 	openEditConfigWindow() {
