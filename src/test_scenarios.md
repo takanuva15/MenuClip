@@ -60,3 +60,5 @@ Exit the script and then run it. The menu should show "two", "one", "three", in 
 1. Open up Terminal in IntelliJ (download it if you don't have it). Try highlighting a word in command prompt; then open the menu. There should only be one entry with the word you highlighted.
 
 1. Open up the menu and click outside of it. The menu should close and you should be able to click-drag random text.
+
+1. Open up the menu and type in a random search term. Exit the gui using the Escape key. Reopen the menu. There should be no search term there

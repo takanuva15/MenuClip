@@ -63,6 +63,7 @@ class MenuWindowHandler {
 				GuiControl, Focus, % this.menuGui.HANDLE_SEARCH_BOX
 			} else {
 				this.hideMenuGui()
+				this.resetGuiState()
 				return
 			}
 			this.handleKeyPresses()
