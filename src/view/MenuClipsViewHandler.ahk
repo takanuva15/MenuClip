@@ -7,9 +7,13 @@ class MenuClipsViewHandler {
 	}
 	
 	populateMenuFromArray(arr) {
-		prettifiedArr := []
-		for index, element in arr {
-			prettifiedArr.push(this.prettifyClip(element))
+		if(this.menuGui.configManager.getConvSpecChar()) {
+			prettifiedArr := []
+			for index, element in arr {
+				prettifiedArr.push(this.prettifyClip(element))
+			}
+		} else {
+			prettifiedArr := arr
 		}
 		PopulateLBFromArray(this.menuGui.HANDLE_CLIPS_VIEW, prettifiedArr)
 	}
