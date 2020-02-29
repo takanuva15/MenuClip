@@ -22,12 +22,20 @@ class ClipStore {
 		}
 	}
 	
-	getFilteredClips() {
+	getFilteredClipsForDisplay() {
 		filteredClipsTextOnly := []
 		for index, element in this.filteredClips {
-			filteredClipsTextOnly.push(this.filteredClips[index].clip)
+			filteredClipsTextOnly.push(this.prettifyClip(element.clip))
 		}
 		return filteredClipsTextOnly
+	}
+	
+	prettifyClip(clip) {
+		filteredClip := StrReplace(clip, A_Tab, "[\t]")
+		filteredClip := StrReplace(filteredClip, "`r`n", "[\n]")
+		filteredClip := StrReplace(filteredClip, "`r", "[\n]")
+		filteredClip := StrReplace(filteredClip, "`n", "[\n]")
+		return filteredClip
 	}
 	
 	getOrigClipFromFilteredClipByIndex(filteredClipIndex) {
