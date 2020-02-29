@@ -3,7 +3,7 @@
 
 All scenarios assume:
 - MAX_CLIPS_TO_STORE=3
-- ALTERNATE_PASTE_APPS=mintty.exe
+- ALT_PASTE_APPS=mintty.exe
 
 ### Functionality Tests
 1. Max limit on stored clips obeyed
@@ -44,7 +44,7 @@ Exit the script and then run it. The menu should show "two", "one", "three", in 
 ### Visual Tests
 1. Try to open up the paste window with your mouse at the bottom-right of the screen. The window should not render off-screen.
 
-### Configurations
+### Config File
 1. Delete the config file. Restart the script and the config file should appear with default values.
 
 1. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is restarted.
