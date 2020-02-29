@@ -1,5 +1,7 @@
 # Changelog
 
+### v1.11.2
+2020-02-29 Fixed bug thta caused search term to remain in box if you exited gui window using Esc
 ### v1.11.1
 2020-02-23 Multiple refactorings of the code base to reduce repetition and break down large classes
 ## v1.11.0
