@@ -7,15 +7,16 @@ class MenuClipsViewHandler {
 	}
 	
 	populateMenuFromArray(arr) {
-		;filteredClipsTextOnly := []
-		;for index, element in arr {
-			;filteredClipsTextOnly.push(this.prettifyClip(element.clip))
-		;}
-		PopulateLBFromArray(this.menuGui.HANDLE_CLIPS_VIEW, arr)
+		prettifiedArr := []
+		for index, element in arr {
+			prettifiedArr.push(this.prettifyClip(element))
+		}
+		PopulateLBFromArray(this.menuGui.HANDLE_CLIPS_VIEW, prettifiedArr)
 	}
 	
 	insertItemAtTop(item) {
-		LB_InsertItemAtIndex(this.menuGui.HANDLE_CLIPS_VIEW, item, 1)
+		newItem := this.prettifyClip(item)
+		LB_InsertItemAtIndex(this.menuGui.HANDLE_CLIPS_VIEW, newItem, 1)
 	}
 	
 	deleteItemAtIndex(index) {
