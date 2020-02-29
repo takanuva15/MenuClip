@@ -7,6 +7,10 @@ class MenuClipsViewHandler {
 	}
 	
 	populateMenuFromArray(arr) {
+		;filteredClipsTextOnly := []
+		;for index, element in arr {
+			;filteredClipsTextOnly.push(this.prettifyClip(element.clip))
+		;}
 		PopulateLBFromArray(this.menuGui.HANDLE_CLIPS_VIEW, arr)
 	}
 	
@@ -24,6 +28,14 @@ class MenuClipsViewHandler {
 	}
 	
 	pasteSelectedClip() {
-		this.menuGui.onItemClickFn.call(this.menuGui.clipStore.getOrigClipFromFilteredClipByIndex(GetControlValue(this.menuGui.HANDLE_CLIPS_VIEW)))
+		this.menuGui.onItemClickFn.call(this.menuGui.menuSearchHandler.getOrigClipFromFilteredClipByIndex(GetControlValue(this.menuGui.HANDLE_CLIPS_VIEW)))
+	}
+	
+	prettifyClip(clip) {
+		filteredClip := StrReplace(clip, A_Tab, "[\t]")
+		filteredClip := StrReplace(filteredClip, "`r`n", "[\n]")
+		filteredClip := StrReplace(filteredClip, "`r", "[\n]")
+		filteredClip := StrReplace(filteredClip, "`n", "[\n]")
+		return filteredClip
 	}
 }

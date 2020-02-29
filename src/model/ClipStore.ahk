@@ -4,42 +4,9 @@
 class ClipStore {
 	static clips := []
 	static cacheDirManager
-	static filterString := ""
-	static filteredClips := []
 	__New() {
 		this.cacheDirManager := new MenuClip.Model.CacheDirManager()
 		this.clips := this.cacheDirManager.restoreFromCache()
-		this.applyFilter(this.filterString)
-	}
-	
-	applyFilter(searchStr) {
-		this.filterString := searchStr
-		this.filteredClips := []
-		for index, element in this.clips {
-			if(InStr(element, searchStr)) {
-				this.filteredClips.push({"origIndex": index, "clip": element})
-			}
-		}
-	}
-	
-	getFilteredClipsForDisplay() {
-		filteredClipsTextOnly := []
-		for index, element in this.filteredClips {
-			filteredClipsTextOnly.push(this.prettifyClip(element.clip))
-		}
-		return filteredClipsTextOnly
-	}
-	
-	prettifyClip(clip) {
-		filteredClip := StrReplace(clip, A_Tab, "[\t]")
-		filteredClip := StrReplace(filteredClip, "`r`n", "[\n]")
-		filteredClip := StrReplace(filteredClip, "`r", "[\n]")
-		filteredClip := StrReplace(filteredClip, "`n", "[\n]")
-		return filteredClip
-	}
-	
-	getOrigClipFromFilteredClipByIndex(filteredClipIndex) {
-		return this.filteredClips[filteredClipIndex].origIndex
 	}
 	
 	getClips() {
