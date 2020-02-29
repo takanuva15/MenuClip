@@ -8,6 +8,7 @@ class ConfigManagerGui {
 	static CONFIG_HANDLE_MAX_HEIGHT
 	static CONFIG_HANDLE_ALT_PASTE_APPS
 	static CONFIG_HANDLE_THEME
+	static CONFIG_HANDLE_CONV_SPEC_CHAR
 	static CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD
 	__New(configManager) {
 		this.configManager := configManager
@@ -31,6 +32,7 @@ class ConfigManagerGui {
 		this.addMaxHeight()
 		this.addAltPasteAppsOpt()
 		this.addThemeOpt()
+		this.addConvSpecCharOpt()
 		this.addSaveAndReloadButton()
 	}
 	
@@ -76,6 +78,12 @@ class ConfigManagerGui {
 		this.CONFIG_HANDLE_THEME := MenuTheme
 	}
 	
+	addConvSpecCharOpt() {
+		Gui EditConfig:Add, Text, xm y+10 w170, Convert tabs and newlines to [\t] and [\n] in clips view
+		Gui EditConfig:Add, CheckBox, % "x+5 yp-2 w100 r2 hWndConvSpecChar Checked" this.configManager.getConvSpecChar()
+		this.CONFIG_HANDLE_CONV_SPEC_CHAR := ConvSpecChar
+	}
+	
 	addSaveAndReloadButton() {
 		Gui EditConfig:Add, Button, x93 y+20 w110 h28 hWndSaveAndReload +Default, &Save and Reload
 		this.CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD := SaveAndReload
@@ -90,6 +98,7 @@ class ConfigManagerGui {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_HEIGHT, GetControlValue(this.CONFIG_HANDLE_MAX_HEIGHT))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_ALT_PASTE_APPS, GetControlValue(this.CONFIG_HANDLE_ALT_PASTE_APPS))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, GetControlValue(this.CONFIG_HANDLE_THEME))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_CONV_SPEC_CHAR, GetControlValue(this.CONFIG_HANDLE_CONV_SPEC_CHAR))
 		Reload
 	}
 	
