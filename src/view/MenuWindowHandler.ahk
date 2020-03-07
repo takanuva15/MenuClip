@@ -42,6 +42,7 @@ class MenuWindowHandler {
 		dispXPos := % mouseXPos + this.guiWidth > this.totalScreenWidth ? mouseXPos - this.guiWidth : mouseXPos 
 		dispYPos := % mouseYPos + this.guiHeight > this.totalScreenHeight ? mouseYPos - this.guiHeight : mouseYPos 
 		Gui ClipMenu:Show, AutoSize x%dispXPos% y%dispYPos%
+		WinSet, Transparent, Off, % "ahk_id " this.menuGui.HANDLE_GUI
 		this.handleKeyPresses()
 	}
 	
@@ -66,6 +67,11 @@ class MenuWindowHandler {
 	}
 	
 	hideMenuGui() {
+		Loop, % loopIndex := 10
+		{
+			WinSet, Transparent, % loopIndex-- * 25, % "ahk_id " this.menuGui.HANDLE_GUI
+			Sleep 20
+		}
 		Gui ClipMenu:Hide
 	}
 	
