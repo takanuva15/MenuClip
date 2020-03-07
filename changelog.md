@@ -1,5 +1,7 @@
 # Changelog
 
+## v1.13.0
+2020-03-07 Added a fade-away animation to the gui window
 ### v1.12.1
 2020-03-07 Changed the left-click tracking to try to mitigate bug where left-click doesn't select correct item in listbox
 ## v1.12.0

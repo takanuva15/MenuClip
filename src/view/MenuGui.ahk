@@ -20,7 +20,7 @@ class MenuGui {
 		this.menuSearchHandler := new MenuClip.View.MenuSearchHandler(this)
 		
 		Gui +hWndClipMenu
-		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound
+		Gui ClipMenu:-MinimizeBox -MaximizeBox -Caption +LastFound AlwaysOnTop
 		this.HANDLE_GUI := WinExist()
 		Gui ClipMenu:Margin, 5, 5
 		Gui ClipMenu:Font, % (FontOptions := "s10")
