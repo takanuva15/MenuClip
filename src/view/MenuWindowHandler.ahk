@@ -8,8 +8,8 @@ class MenuWindowHandler {
 	__New(menuGui) {
 		this.menuGui := menuGui
 		hideGuiOnOutsideClickFn := ObjBindMethod(this, "watchMouseClickAndHideGuiOnOutsideClick")
-		Hotkey, LButton, % hideGuiOnOutsideClickFn
-		Hotkey, LButton, Off
+		Hotkey, ~LButton, % hideGuiOnOutsideClickFn
+		Hotkey, ~LButton, Off
 		
 		CoordMode, Mouse, Screen
 		SysGet, tmp, 78
@@ -20,10 +20,11 @@ class MenuWindowHandler {
 	
 	watchMouseClickAndHideGuiOnOutsideClick() {
 		MouseGetPos, , , windowClicked, controlClicked
-		Click
-		Sleep, 50 ;allows time for Gui to show what was selected
 		if(controlClicked = "ListBox1") {
-			this.hideMenuGuiAndPasteSelectedClip()
+			Sleep, 100 ;allows time for Gui to show what was selected
+			this.hideMenuGui()
+			this.menuGui.menuClipsViewHandler.pasteSelectedClip()
+			this.resetGuiState()
 		} else if(windowClicked = this.menuGui.HANDLE_GUI) {
 			return
 		} else {
@@ -32,16 +33,10 @@ class MenuWindowHandler {
 		}
 	}
 	
-	hideMenuGuiAndPasteSelectedClip() {
-		this.hideMenuGui()
-		this.menuGui.menuClipsViewHandler.pasteSelectedClip()
-		this.resetGuiState()
-	}
-	
 	showGui() {
 		GuiControl, Focus, % this.menuGui.HANDLE_SEARCH_BOX
 		GuiControl, Choose, % this.menuGui.HANDLE_CLIPS_VIEW, 1
-		Hotkey, LButton, On
+		Hotkey, ~LButton, On
 		
 		MouseGetPos, mouseXPos, mouseYPos
 		dispXPos := % mouseXPos + this.guiWidth > this.totalScreenWidth ? mouseXPos - this.guiWidth : mouseXPos 
@@ -77,7 +72,7 @@ class MenuWindowHandler {
 	resetGuiState() {
 		GuiControl, , % this.menuGui.HANDLE_SEARCH_BOX
 		Input
-		Hotkey, LButton, Off
+		Hotkey, ~LButton, Off
 		Send, {Ctrl up} ;depresses Ctrl if you're using Ctrl in the showMenu shortcut
 	}
 	

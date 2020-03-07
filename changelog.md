@@ -1,5 +1,7 @@
 # Changelog
 
+### v1.12.1
+2020-03-07 Changed the left-click tracking to try to mitigate bug where left-click doesn't select correct item in listbox
 ## v1.12.0
 2020-02-29 Added option to convert tabs and newlines to [\t] and [\n] when viewing clips
 ### v1.11.2
