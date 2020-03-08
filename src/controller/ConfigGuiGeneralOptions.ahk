@@ -9,7 +9,6 @@ class ConfigGuiGeneralOptions {
 	static CONFIG_HANDLE_ALT_PASTE_APPS
 	static CONFIG_HANDLE_THEME
 	static CONFIG_HANDLE_CONV_SPEC_CHAR
-	static CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD
 	__New(configManager) {
 		this.configManager := configManager
 		this.themeStyle := this.configManager.getTheme()
@@ -23,7 +22,6 @@ class ConfigGuiGeneralOptions {
 		this.addAltPasteAppsOpt()
 		this.addThemeOpt()
 		this.addConvSpecCharOpt()
-		this.addSaveAndReloadButton()
 	}
 	
 	addHotkeyOpt() {
@@ -72,14 +70,7 @@ class ConfigGuiGeneralOptions {
 		this.CONFIG_HANDLE_CONV_SPEC_CHAR := ConvSpecChar
 	}
 	
-	addSaveAndReloadButton() {
-		Gui EditConfig:Add, Button, xs+93 y+20 w110 h28 hWndSaveAndReload +Default, &Save and Reload
-		this.CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD := SaveAndReload
-		saveConfigAndReloadFn := ObjBindMethod(this, "saveConfigAndReload")
-		GuiControl +g, %SaveAndReload%, % saveConfigAndReloadFn
-	}
-	
-	saveConfigAndReload() {
+	saveConfigs() {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_HOTKEY, GetControlValue(this.CONFIG_HANDLE_HOTKEY))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_CLIPS_TO_STORE, GetControlValue(this.CONFIG_HANDLE_MAX_CLIPS_TO_STORE))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_WIDTH, GetControlValue(this.CONFIG_HANDLE_MAX_WIDTH))
@@ -87,6 +78,5 @@ class ConfigGuiGeneralOptions {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_ALT_PASTE_APPS, GetControlValue(this.CONFIG_HANDLE_ALT_PASTE_APPS))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, GetControlValue(this.CONFIG_HANDLE_THEME))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_CONV_SPEC_CHAR, GetControlValue(this.CONFIG_HANDLE_CONV_SPEC_CHAR))
-		Reload
 	}
 }
