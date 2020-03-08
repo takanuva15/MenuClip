@@ -59,13 +59,9 @@ class ConfigGuiGeneralOptions {
 	addThemeOpt() {
 		this.themes := {"light":1, "dark":2}
 		Gui EditConfig:Add, Text, xs y+10 w170, Theme:
-		;Gui EditConfig:Add, DDL, % "x+5 yp-2 w50 hWndMenuTheme +0x0210 Choose" this.themes[this.themeStyle], light|dark
 		Gui EditConfig:Add, DDL, % "x+5 yp-2 w50 hWndMenuTheme Choose" this.themes[this.themeStyle], light|dark
 		if(this.themeStyle = "dark") {
 			CtlColors.Attach(MenuTheme, "43474A","CCCCCC")
-			;OD_Colors.Attach(MenuTheme, {T: 0xCCCCCC, B: 0x43474A})
-		} else {
-			;OD_Colors.Attach(MenuTheme, {})
 		}
 		this.CONFIG_HANDLE_THEME := MenuTheme
 	}

@@ -12,9 +12,6 @@ class ConfigManagerGui {
 		Gui EditConfig:-MinimizeBox -MaximizeBox
 		Gui EditConfig:Margin, 10, 10
 		
-		;Gui EditConfig:Font, % (FontOptions := "s8"), % (FontName := "Segoe UI Regular")
-		;OD_Colors.SetItemHeight(FontOptions, FontName)
-		
 		if(this.themeStyle = "dark") {
 			Gui EditConfig:Color, 2B2B2B, 43474A
 			Gui EditConfig:Font, cCCCCCC
