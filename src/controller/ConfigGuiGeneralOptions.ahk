@@ -1,7 +1,6 @@
 ﻿;Handles configuration file reading & writing
 class ConfigGuiGeneralOptions {
 	static configManager
-	static themes
 	static CONFIG_HANDLE_HOTKEY
 	static CONFIG_HANDLE_MAX_CLIPS_TO_STORE
 	static CONFIG_HANDLE_MAX_WIDTH
@@ -11,7 +10,6 @@ class ConfigGuiGeneralOptions {
 	static CONFIG_HANDLE_CONV_SPEC_CHAR
 	__New(configManager) {
 		this.configManager := configManager
-		this.themeStyle := this.configManager.getTheme()
 	}
 	
 	addAllOptions() {
@@ -20,7 +18,6 @@ class ConfigGuiGeneralOptions {
 		this.addMaxWidth()
 		this.addMaxHeight()
 		this.addAltPasteAppsOpt()
-		this.addThemeOpt()
 		this.addConvSpecCharOpt()
 	}
 	
@@ -54,16 +51,6 @@ class ConfigGuiGeneralOptions {
 		this.CONFIG_HANDLE_ALT_PASTE_APPS := AltPasteApps
 	}
 	
-	addThemeOpt() {
-		this.themes := {"light":1, "dark":2}
-		Gui EditConfig:Add, Text, xs y+10 w170, Theme:
-		Gui EditConfig:Add, DDL, % "x+5 yp-2 w50 hWndMenuTheme Choose" this.themes[this.themeStyle], light|dark
-		if(this.themeStyle = "dark") {
-			CtlColors.Attach(MenuTheme, "43474A","CCCCCC")
-		}
-		this.CONFIG_HANDLE_THEME := MenuTheme
-	}
-	
 	addConvSpecCharOpt() {
 		Gui EditConfig:Add, Text, xs y+10 w170, Convert tabs and newlines to [\t] and [\n] in clips view
 		Gui EditConfig:Add, CheckBox, % "x+5 yp-2 w100 r2 hWndConvSpecChar Checked" this.configManager.getConvSpecChar()
@@ -76,7 +63,6 @@ class ConfigGuiGeneralOptions {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_WIDTH, GetControlValue(this.CONFIG_HANDLE_MAX_WIDTH))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_MAX_HEIGHT, GetControlValue(this.CONFIG_HANDLE_MAX_HEIGHT))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_ALT_PASTE_APPS, GetControlValue(this.CONFIG_HANDLE_ALT_PASTE_APPS))
-		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, GetControlValue(this.CONFIG_HANDLE_THEME))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_CONV_SPEC_CHAR, GetControlValue(this.CONFIG_HANDLE_CONV_SPEC_CHAR))
 	}
 }

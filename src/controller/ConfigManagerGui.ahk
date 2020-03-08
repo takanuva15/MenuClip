@@ -1,13 +1,17 @@
 ﻿#Include %A_ScriptDir%\src\controller\ConfigGuiGeneralOptions.ahk
+#Include %A_ScriptDir%\src\controller\ConfigGuiThemeOptions.ahk
 
 ;Handles configuration file reading & writing
 class ConfigManagerGui {
 	static configManager
+	static themeStyle
+	static configGuiGeneralOptions, configGuiThemeOptions
 	static CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD
 	__New(configManager) {
 		this.configManager := configManager
 		this.themeStyle := this.configManager.getTheme()
 		this.configGuiGeneralOptions := new MenuClip.Controller.ConfigGuiGeneralOptions(configManager)
+		this.configGuiThemeOptions := new MenuClip.Controller.ConfigGuiThemeOptions(configManager)
 		
 		Gui +hWndEditConfig
 		Gui EditConfig:-MinimizeBox -MaximizeBox
@@ -18,17 +22,17 @@ class ConfigManagerGui {
 			Gui EditConfig:Font, cCCCCCC
 		}
 		
-		
-		Gui EditConfig:Add, Tab3, , General
+		Gui EditConfig:Add, Tab3, , General|Theme
 		Gui EditConfig:Tab, General
 		this.configGuiGeneralOptions.addAllOptions()
+		Gui EditConfig:Tab, Theme
+		this.configGuiThemeOptions.addAllOptions()
 		Gui EditConfig:Tab
 		this.addSaveAndReloadButton()
-		this.showGui()
 	}
 	
 	addSaveAndReloadButton() {
-		Gui EditConfig:Add, Button, x107 y+10 w110 h28 hWndSaveAndReload +Default, &Save and Reload
+		Gui EditConfig:Add, Button, x107 y+10 w110 h26 hWndSaveAndReload +Default, &Save and Reload
 		this.CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD := SaveAndReload
 		saveConfigsAndReloadFn := ObjBindMethod(this, "saveConfigsAndReload")
 		GuiControl +g, %SaveAndReload%, % saveConfigsAndReloadFn
@@ -36,6 +40,7 @@ class ConfigManagerGui {
 	
 	saveConfigsAndReload() {
 		this.configGuiGeneralOptions.saveConfigs()
+		this.configGuiThemeOptions.saveConfigs()
 		Reload
 	}
 	
