@@ -12,17 +12,17 @@ class ConfigManagerGui {
 		Gui EditConfig:-MinimizeBox -MaximizeBox
 		Gui EditConfig:Margin, 10, 10
 		
-		Gui EditConfig:Font, % (FontOptions := "s8"), % (FontName := "Segoe UI Regular")
-		OD_Colors.SetItemHeight(FontOptions, FontName)
+		;Gui EditConfig:Font, % (FontOptions := "s8"), % (FontName := "Segoe UI Regular")
+		;OD_Colors.SetItemHeight(FontOptions, FontName)
 		
 		if(this.themeStyle = "dark") {
 			Gui EditConfig:Color, 2B2B2B, 43474A
 			Gui EditConfig:Font, cCCCCCC
 		}
 		
-		;Gui EditConfig:Add, Tab3, , General
+		Gui EditConfig:Add, Tab3, , General
 		this.configGuiGeneralOptions.addAllOptions()
-		;this.showGui()
+		this.showGui()
 	}
 	
 	showGui() {
