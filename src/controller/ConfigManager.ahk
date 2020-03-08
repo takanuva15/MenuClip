@@ -82,12 +82,12 @@ class ConfigManager {
 		return this.CONFIG_VAL_ALT_PASTE_APPS
 	}
 	
-	getTheme() {
-		return this.CONFIG_VAL_THEME
-	}
-	
 	getConvSpecChar() {
 		return this.CONFIG_VAL_CONV_SPEC_CHAR
+	}
+	
+	getTheme() {
+		return this.CONFIG_VAL_THEME
 	}
 	
 	openEditConfigWindow() {
