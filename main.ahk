@@ -9,6 +9,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 VERSION := "v1.13.0"
 
 #Include <Class_OD_Colors>
+#Include <Class_CtlColors>
 #Include <Class_LB_AdjustHeight>
 #Include <Gui_Functions>
 #Include src\MenuClip.ahk
