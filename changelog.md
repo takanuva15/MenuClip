@@ -1,5 +1,7 @@
 # Changelog
 
+### v1.13.1
+2020-03-08 Added tabs to separate theme options from general options
 ## v1.13.0
 2020-03-07 Added a fade-away animation to the gui window
 ### v1.12.1
