@@ -10,16 +10,24 @@ class ConfigManager {
 	static CONFIG_NAME_MAX_WIDTH := "MAX_WIDTH"
 	static CONFIG_NAME_MAX_HEIGHT := "MAX_HEIGHT"
 	static CONFIG_NAME_ALT_PASTE_APPS := "SHIFT_INS_PASTE_APPS"
-	static CONFIG_NAME_THEME := "THEME"
 	static CONFIG_NAME_CONV_SPEC_CHAR := "CONV_SPEC_CHAR"
+	
+	static CONFIG_NAME_THEME := "THEME"
+	static CONFIG_NAME_DARK_START_HR := "DARK_START_HR"
+	static CONFIG_NAME_DARK_START_MIN := "DARK_START_MIN"
+	static CONFIG_NAME_DARK_START_AM := "DARK_START_AM"
 	
 	static CONFIG_VAL_HOTKEY
 	static CONFIG_VAL_MAX_CLIPS_TO_STORE
 	static CONFIG_VAL_MAX_WIDTH
 	static CONFIG_VAL_MAX_HEIGHT
 	static CONFIG_VAL_ALT_PASTE_APPS
-	static CONFIG_VAL_THEME
 	static CONFIG_VAL_CONV_SPEC_CHAR
+	
+	static CONFIG_VAL_THEME
+	static CONFIG_VAL_DARK_START_HR
+	static CONFIG_VAL_DARK_START_MIN
+	static CONFIG_VAL_DARK_START_AM
 	
 	__New(versionNum) {
 		this.VERSION := versionNum
@@ -40,8 +48,15 @@ class ConfigManager {
 		this.CONFIG_VAL_MAX_WIDTH := this.readConfigFromFile(this.CONFIG_NAME_MAX_WIDTH, 350)
 		this.CONFIG_VAL_MAX_HEIGHT := this.readConfigFromFile(this.CONFIG_NAME_MAX_HEIGHT, 12)
 		this.CONFIG_VAL_ALT_PASTE_APPS := this.readConfigFromFile(this.CONFIG_NAME_ALT_PASTE_APPS, A_Space)
-		this.CONFIG_VAL_THEME := this.readConfigFromFile(this.CONFIG_NAME_THEME, "light")
 		this.CONFIG_VAL_CONV_SPEC_CHAR := this.readConfigFromFile(this.CONFIG_NAME_CONV_SPEC_CHAR, 1)
+		this.determineThemeFromConfig()
+	}
+	
+	determineTheme() {
+		this.CONFIG_VAL_THEME := this.readConfigFromFile(this.CONFIG_NAME_THEME, "light")
+		this.CONFIG_VAL_DARK_START_HR := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_HR, "05")
+		this.CONFIG_VAL_DARK_START_MIN := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_MIN, "00")
+		this.CONFIG_VAL_DARK_START_AM := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_AM, "PM")
 	}
 	
 	writeConfigToFile(configKeyName, configValue) {
@@ -54,8 +69,8 @@ class ConfigManager {
 		this.writeConfigToFile(this.CONFIG_NAME_MAX_WIDTH, this.CONFIG_VAL_MAX_WIDTH)
 		this.writeConfigToFile(this.CONFIG_NAME_MAX_HEIGHT, this.CONFIG_VAL_MAX_HEIGHT)
 		this.writeConfigToFile(this.CONFIG_NAME_ALT_PASTE_APPS, this.CONFIG_VAL_ALT_PASTE_APPS)
-		this.writeConfigToFile(this.CONFIG_NAME_THEME, this.CONFIG_VAL_THEME)
 		this.writeConfigToFile(this.CONFIG_NAME_CONV_SPEC_CHAR, this.CONFIG_VAL_CONV_SPEC_CHAR)
+		this.writeConfigToFile(this.CONFIG_NAME_THEME, this.CONFIG_VAL_THEME)
 	}
 	
 	getVersionNum() {
