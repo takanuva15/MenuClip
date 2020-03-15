@@ -9,7 +9,7 @@ class ConfigGuiThemeOptions {
 	static CONFIG_HANDLE_DARK_START_TEXT, CONFIG_HANDLE_DARK_START_HR, CONFIG_HANDLE_DARK_START_MIN, CONFIG_HANDLE_DARK_START_PM
 	__New(configManager) {
 		this.configManager := configManager
-		this.themeStyle := this.configManager.getTheme()
+		this.themeStyle := this.configManager.CONFIG_VAL_THEME
 		this.generateMinuteOptions()
 	}
 	

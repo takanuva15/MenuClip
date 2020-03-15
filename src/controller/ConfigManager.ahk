@@ -70,10 +70,10 @@ class ConfigManager {
 		this.writeConfigToFile(this.CONFIG_NAME_MAX_HEIGHT, this.CONFIG_VAL_MAX_HEIGHT)
 		this.writeConfigToFile(this.CONFIG_NAME_ALT_PASTE_APPS, this.CONFIG_VAL_ALT_PASTE_APPS)
 		this.writeConfigToFile(this.CONFIG_NAME_CONV_SPEC_CHAR, this.CONFIG_VAL_CONV_SPEC_CHAR)
-		this.writeThemeConfig()
+		this.writeThemeConfigs()
 	}
 	
-	writeThemeConfig() {
+	writeThemeConfigs() {
 		this.writeConfigToFile(this.CONFIG_NAME_THEME, this.CONFIG_VAL_THEME)
 		this.writeConfigToFile(this.CONFIG_NAME_DARK_START_HR, this.CONFIG_VAL_DARK_START_HR)
 		this.writeConfigToFile(this.CONFIG_NAME_DARK_START_MIN, this.CONFIG_VAL_DARK_START_MIN)
@@ -109,7 +109,17 @@ class ConfigManager {
 	}
 	
 	getTheme() {
-		return this.CONFIG_VAL_THEME
+		if(this.CONFIG_VAL_THEME = "auto") {
+			darkStartHr := this.CONFIG_VAL_DARK_START_HR + (this.CONFIG_VAL_DARK_START_PM ? 12 : 0)
+			if(A_Hour > darkStartHr) {
+				return "dark"
+			} else if(A_Hour = darkStartHr && A_Min >= this.CONFIG_VAL_DARK_START_MIN + 0) {
+				return "dark"
+			}
+			return "light"
+		} else {
+			return this.CONFIG_VAL_THEME
+		}
 	}
 	
 	openEditConfigWindow() {
