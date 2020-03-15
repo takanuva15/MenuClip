@@ -7,6 +7,7 @@ class ConfigGuiThemeOptions {
 	static HR_OPTIONS := "01|02|03|04|05|06|07|08|09|10|11|12"
 	static MINUTE_OPTIONS
 	static CONFIG_HANDLE_DARK_START_TEXT, CONFIG_HANDLE_DARK_START_HR, CONFIG_HANDLE_DARK_START_MIN, CONFIG_HANDLE_DARK_START_PM
+	static CONFIG_HANDLE_DARK_STOP_TEXT, CONFIG_HANDLE_DARK_STOP_HR, CONFIG_HANDLE_DARK_STOP_MIN, CONFIG_HANDLE_DARK_STOP_PM
 	__New(configManager) {
 		this.configManager := configManager
 		this.themeStyle := this.configManager.CONFIG_VAL_THEME
@@ -44,10 +45,17 @@ class ConfigGuiThemeOptions {
 		this.CONFIG_HANDLE_DARK_START_PM := DarkStartPM
 		
 		;GuiControl, EditConfig:Disable, %HrsOne%
-		;Gui EditConfig:Add, Text, xs+10 y+8 w140, Deactivate dark theme at:
-		;Gui EditConfig:Add, DDL, % "x+0 yp-2 w35", 1|2|3|4|5|6|7|8|9|10|11|12
-		;Gui EditConfig:Add, DDL, % "x+5 yp w35", 1|2|3|4|5|6|7|8|9|10|11|12
-		;Gui EditConfig:Add, DDL, % "x+5 yp w40", AM|PM
+		
+		Gui EditConfig:Add, Text, xs+10 y+8 w140, Deactivate dark theme at:
+		
+		Gui EditConfig:Add, DDL, % "x+0 yp-2 w35 hWndDarkStopHr Choose" this.configManager.CONFIG_VAL_DARK_STOP_HR + 0, % this.HR_OPTIONS
+		this.CONFIG_HANDLE_DARK_STOP_HR := DarkStopHr
+		
+		Gui EditConfig:Add, DDL, % "x+5 yp w35 hWndDarkStopMin Choose" this.configManager.CONFIG_VAL_DARK_STOP_MIN + 1, % this.MINUTE_OPTIONS
+		this.CONFIG_HANDLE_DARK_STOP_MIN := DarkStopMin
+		
+		Gui EditConfig:Add, DDL, % "x+5 yp w40 hWndDarkStopPM Choose" this.configManager.CONFIG_VAL_DARK_STOP_PM + 1, AM|PM
+		this.CONFIG_HANDLE_DARK_STOP_PM := DarkStopPM
 	}
 	
 	generateMinuteOptions() {
@@ -61,8 +69,10 @@ class ConfigGuiThemeOptions {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, GetControlValue(this.CONFIG_HANDLE_THEME))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_START_HR, GetControlValue(this.CONFIG_HANDLE_DARK_START_HR))
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_START_MIN, GetControlValue(this.CONFIG_HANDLE_DARK_START_MIN))
-		
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_START_PM, this.convertPMValToBinary(GetControlValue(this.CONFIG_HANDLE_DARK_START_PM)))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_STOP_HR, GetControlValue(this.CONFIG_HANDLE_DARK_STOP_HR))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_STOP_MIN, GetControlValue(this.CONFIG_HANDLE_DARK_STOP_MIN))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_STOP_PM, this.convertPMValToBinary(GetControlValue(this.CONFIG_HANDLE_DARK_STOP_PM)))
 	}
 	
 	convertPMValToBinary(pmVal) {
