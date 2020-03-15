@@ -15,7 +15,7 @@ class ConfigManager {
 	static CONFIG_NAME_THEME := "THEME"
 	static CONFIG_NAME_DARK_START_HR := "DARK_START_HR"
 	static CONFIG_NAME_DARK_START_MIN := "DARK_START_MIN"
-	static CONFIG_NAME_DARK_START_AM := "DARK_START_AM"
+	static CONFIG_NAME_DARK_START_PM := "DARK_START_PM"
 	
 	static CONFIG_VAL_HOTKEY
 	static CONFIG_VAL_MAX_CLIPS_TO_STORE
@@ -27,7 +27,7 @@ class ConfigManager {
 	static CONFIG_VAL_THEME
 	static CONFIG_VAL_DARK_START_HR
 	static CONFIG_VAL_DARK_START_MIN
-	static CONFIG_VAL_DARK_START_AM
+	static CONFIG_VAL_DARK_START_PM
 	
 	__New(versionNum) {
 		this.VERSION := versionNum
@@ -49,14 +49,14 @@ class ConfigManager {
 		this.CONFIG_VAL_MAX_HEIGHT := this.readConfigFromFile(this.CONFIG_NAME_MAX_HEIGHT, 12)
 		this.CONFIG_VAL_ALT_PASTE_APPS := this.readConfigFromFile(this.CONFIG_NAME_ALT_PASTE_APPS, A_Space)
 		this.CONFIG_VAL_CONV_SPEC_CHAR := this.readConfigFromFile(this.CONFIG_NAME_CONV_SPEC_CHAR, 1)
-		this.determineThemeFromConfig()
+		this.determineTheme()
 	}
 	
 	determineTheme() {
 		this.CONFIG_VAL_THEME := this.readConfigFromFile(this.CONFIG_NAME_THEME, "light")
 		this.CONFIG_VAL_DARK_START_HR := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_HR, "05")
 		this.CONFIG_VAL_DARK_START_MIN := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_MIN, "00")
-		this.CONFIG_VAL_DARK_START_AM := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_AM, "PM")
+		this.CONFIG_VAL_DARK_START_PM := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_PM, "1")
 	}
 	
 	writeConfigToFile(configKeyName, configValue) {
@@ -70,7 +70,14 @@ class ConfigManager {
 		this.writeConfigToFile(this.CONFIG_NAME_MAX_HEIGHT, this.CONFIG_VAL_MAX_HEIGHT)
 		this.writeConfigToFile(this.CONFIG_NAME_ALT_PASTE_APPS, this.CONFIG_VAL_ALT_PASTE_APPS)
 		this.writeConfigToFile(this.CONFIG_NAME_CONV_SPEC_CHAR, this.CONFIG_VAL_CONV_SPEC_CHAR)
+		this.writeThemeConfig()
+	}
+	
+	writeThemeConfig() {
 		this.writeConfigToFile(this.CONFIG_NAME_THEME, this.CONFIG_VAL_THEME)
+		this.writeConfigToFile(this.CONFIG_NAME_DARK_START_HR, this.CONFIG_VAL_DARK_START_HR)
+		this.writeConfigToFile(this.CONFIG_NAME_DARK_START_MIN, this.CONFIG_VAL_DARK_START_MIN)
+		this.writeConfigToFile(this.CONFIG_NAME_DARK_START_PM, this.CONFIG_VAL_DARK_START_PM)
 	}
 	
 	getVersionNum() {
