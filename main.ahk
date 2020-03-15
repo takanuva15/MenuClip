@@ -14,7 +14,6 @@ VERSION := "v1.13.1"
 #Include src\MenuClip.ahk
 
 configManager := new MenuClip.Controller.ConfigManager(VERSION)
-configManager.readAllConfigOptionsFromFile()
 
 clipManager := new MenuClip.Controller.ClipManager(configManager)
 
