@@ -65,14 +65,25 @@ class ConfigManager {
 		
 		if(this.CONFIG_VAL_THEME = "auto") {
 			darkStartHr := this.CONFIG_VAL_DARK_START_HR + (this.CONFIG_VAL_DARK_START_PM ? 12 : 0)
-			if(A_Hour > darkStartHr) {
+			darkStopHr := this.CONFIG_VAL_DARK_STOP_HR + (this.CONFIG_VAL_DARK_STOP_PM ? 12 : 0)
+			
+			darkStartTime := this.convertTimeToFullStr(darkStartHr, this.CONFIG_VAL_DARK_START_MIN)
+			darkStopTime := this.convertTimeToFullStr(darkStopHr, this.CONFIG_VAL_DARK_STOP_MIN)
+			
+			if(darkStopTime < darkStartTime) {
+				EnvAdd, darkStopTime, 1, Days
+			}
+			reloadFn := ObjBindMethod(this, "reloadFn")
+			if(A_Now >= darkStartTime && A_Now < darkStopTime) {
 				this.calculatedTheme := "dark"
-			} else if(A_Hour = darkStartHr && A_Min >= this.CONFIG_VAL_DARK_START_MIN + 0) {
-				this.calculatedTheme := "dark"
+				reloadTime := this.getNextOccurrenceOfTimeAsFullStr(darkStopHr, this.CONFIG_VAL_DARK_STOP_MIN)
+				EnvSub, reloadTime, %A_Now%, Seconds
 			} else {
 				this.calculatedTheme := "light"
+				reloadTime := this.getNextOccurrenceOfTimeAsFullStr(darkStartHr, this.CONFIG_VAL_DARK_START_MIN)
+				EnvSub, reloadTime, %A_Now%, Seconds
 			}
-			this.setAutoThemeTimer()
+			SetTimer, % reloadFn, % reloadTime * -1000
 		} else {
 			this.calculatedTheme := this.CONFIG_VAL_THEME
 		}
@@ -138,22 +149,26 @@ class ConfigManager {
 		this.configManagerGui.showGui()
 	}
 	
-	;obtained from https://autohotkey.com/board/topic/19960-got-problems-while-checking-the-system-time/://autohotkey.com/board/topic/19960-got-problems-while-checking-the-system-time/page-2?&
-	;not under MIT license
-	setAutoThemeTimer() {
-		darkStartHr := this.CONFIG_VAL_DARK_START_HR + (this.CONFIG_VAL_DARK_START_PM ? 12 : 0)
-		darkStartHr := (StrLen(darkStartHr) = 1 ? "0" : "") darkStartHr ;pads single digit hour
-		target_time := darkStartHr . this.CONFIG_VAL_DARK_START_MIN
-		target = % A_YYYY A_MM A_DD target_time "00"
-		if (target < A_Now) {
-			EnvAdd, target, 1, Days
-		}
-		EnvSub, target, %A_Now%, Seconds
-		reloadFn := ObjBindMethod(this, "reloadFn")
-		SetTimer, % reloadFn, % target * -1000
-	}
-	
 	reloadFn() {
 		Reload
+	}
+	
+	;parts were derived from https://autohotkey.com/board/topic/19960-got-problems-while-checking-the-system-time/://autohotkey.com/board/topic/19960-got-problems-while-checking-the-system-time/page-2?&
+	;not under MIT license
+	;takes in an hour (24-hour format) and a minute. Returns the next occurrence of that time today
+	getNextOccurrenceOfTimeAsFullStr(hour, min) {
+		next := this.convertTimeToFullStr(hour, min)
+		if (next < A_Now) {
+			EnvAdd, next, 1, Days
+		}
+		return next
+	}
+	
+	;converts an hour (24-hour format) and a minute into a full string with YYYYMMDDHH24MISS format
+	convertTimeToFullStr(hour, min) {
+		hourStr := (StrLen(hour) = 1 ? "0" : "") hour ;pads single digit hour
+		minStr := (StrLen(min) = 1 ? "0" : "") min
+		hhmm := hourStr . minStr
+		return % A_YYYY A_MM A_DD hhmm "00"
 	}
 }
