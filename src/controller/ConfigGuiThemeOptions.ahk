@@ -4,8 +4,9 @@ class ConfigGuiThemeOptions {
 	static themes, themeStyle
 	static CONFIG_HANDLE_THEME
 	static CONFIG_HANDLE_AUTO_THEME_GROUPBOX
+	static HR_OPTIONS := "01|02|03|04|05|06|07|08|09|10|11|12"
 	static MINUTE_OPTIONS
-	static CONFIG_HANDLE_DARK_START_TEXT, CONFIG_HANDLE_DARK_START_HR, CONFIG_HANDLE_DARK_START_MIN, CONFIG_HANDLE_DARK_START_AM
+	static CONFIG_HANDLE_DARK_START_TEXT, CONFIG_HANDLE_DARK_START_HR, CONFIG_HANDLE_DARK_START_MIN, CONFIG_HANDLE_DARK_START_PM
 	__New(configManager) {
 		this.configManager := configManager
 		this.themeStyle := this.configManager.getTheme()
@@ -32,12 +33,15 @@ class ConfigGuiThemeOptions {
 		this.CONFIG_HANDLE_AUTO_THEME_GROUPBOX := AutoThemeGroupBox
 		Gui EditConfig:Add, Text, xs+10 yp+20 w140 hWndDarkStartText, Activate dark theme at:
 		this.CONFIG_HANDLE_DARK_START_TEXT := DarkStartText
-		Gui EditConfig:Add, DDL, % "x+0 yp-2 w35 hWndDarkStartHr", 1|2|3|4|5|6|7|8|9|10|11|12
+		
+		Gui EditConfig:Add, DDL, % "x+0 yp-2 w35 hWndDarkStartHr Choose" this.configManager.CONFIG_VAL_DARK_START_HR + 0, % this.HR_OPTIONS
 		this.CONFIG_HANDLE_DARK_START_HR := DarkStartHr
-		Gui EditConfig:Add, DDL, % "x+5 yp w35 hWndDarkStartMin", % this.MINUTE_OPTIONS
+		
+		Gui EditConfig:Add, DDL, % "x+5 yp w35 hWndDarkStartMin Choose" this.configManager.CONFIG_VAL_DARK_START_MIN + 1, % this.MINUTE_OPTIONS
 		this.CONFIG_HANDLE_DARK_START_MIN := DarkStartMin
-		Gui EditConfig:Add, DDL, % "x+5 yp w40 hWndDarkStartAM", AM|PM
-		this.CONFIG_HANDLE_DARK_START_AM := DarkStartAM
+		
+		Gui EditConfig:Add, DDL, % "x+5 yp w40 hWndDarkStartPM Choose" this.configManager.CONFIG_VAL_DARK_START_PM + 1, AM|PM
+		this.CONFIG_HANDLE_DARK_START_PM := DarkStartPM
 		
 		;GuiControl, EditConfig:Disable, %HrsOne%
 		;Gui EditConfig:Add, Text, xs+10 y+8 w140, Deactivate dark theme at:
@@ -55,5 +59,13 @@ class ConfigGuiThemeOptions {
 	
 	saveConfigs() {
 		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_THEME, GetControlValue(this.CONFIG_HANDLE_THEME))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_START_HR, GetControlValue(this.CONFIG_HANDLE_DARK_START_HR))
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_START_MIN, GetControlValue(this.CONFIG_HANDLE_DARK_START_MIN))
+		
+		this.configManager.writeConfigToFile(this.configManager.CONFIG_NAME_DARK_START_PM, this.convertPMValToBinary(GetControlValue(this.CONFIG_HANDLE_DARK_START_PM)))
+	}
+	
+	convertPMValToBinary(pmVal) {
+		return pmVal = "PM"
 	}
 }
