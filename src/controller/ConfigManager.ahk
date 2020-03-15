@@ -67,6 +67,7 @@ class ConfigManager {
 			} else {
 				this.calculatedTheme := "light"
 			}
+			this.setAutoThemeTimer()
 		} else {
 			this.calculatedTheme := this.CONFIG_VAL_THEME
 		}
@@ -127,5 +128,22 @@ class ConfigManager {
 	
 	openEditConfigWindow() {
 		this.configManagerGui.showGui()
+	}
+	
+	setAutoThemeTimer() {
+		darkStartHr := this.CONFIG_VAL_DARK_START_HR + (this.CONFIG_VAL_DARK_START_PM ? 12 : 0)
+		darkStartHr := (StrLen(darkStartHr) = 1 ? "0" : "") darkStartHr ;pads single digit hour
+		target_time := darkStartHr . this.CONFIG_VAL_DARK_START_MIN
+		target = % A_YYYY A_MM A_DD target_time "00"
+		if (target < A_Now) {
+			EnvAdd, target, 1, Days
+		}
+		EnvSub, target, %A_Now%, Seconds
+		reloadFn := ObjBindMethod(this, "reloadFn")
+		SetTimer, % reloadFn, % target * -1000
+	}
+	
+	reloadFn() {
+		Reload
 	}
 }
