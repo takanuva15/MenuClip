@@ -24,7 +24,7 @@ class ConfigManager {
 	static CONFIG_VAL_ALT_PASTE_APPS
 	static CONFIG_VAL_CONV_SPEC_CHAR
 	
-	static CONFIG_VAL_THEME
+	static CONFIG_VAL_THEME, calculatedTheme
 	static CONFIG_VAL_DARK_START_HR
 	static CONFIG_VAL_DARK_START_MIN
 	static CONFIG_VAL_DARK_START_PM
@@ -57,6 +57,19 @@ class ConfigManager {
 		this.CONFIG_VAL_DARK_START_HR := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_HR, "05")
 		this.CONFIG_VAL_DARK_START_MIN := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_MIN, "00")
 		this.CONFIG_VAL_DARK_START_PM := this.readConfigFromFile(this.CONFIG_NAME_DARK_START_PM, "1")
+		
+		if(this.CONFIG_VAL_THEME = "auto") {
+			darkStartHr := this.CONFIG_VAL_DARK_START_HR + (this.CONFIG_VAL_DARK_START_PM ? 12 : 0)
+			if(A_Hour > darkStartHr) {
+				this.calculatedTheme := "dark"
+			} else if(A_Hour = darkStartHr && A_Min >= this.CONFIG_VAL_DARK_START_MIN + 0) {
+				this.calculatedTheme := "dark"
+			} else {
+				this.calculatedTheme := "light"
+			}
+		} else {
+			this.calculatedTheme := this.CONFIG_VAL_THEME
+		}
 	}
 	
 	writeConfigToFile(configKeyName, configValue) {
@@ -109,17 +122,7 @@ class ConfigManager {
 	}
 	
 	getTheme() {
-		if(this.CONFIG_VAL_THEME = "auto") {
-			darkStartHr := this.CONFIG_VAL_DARK_START_HR + (this.CONFIG_VAL_DARK_START_PM ? 12 : 0)
-			if(A_Hour > darkStartHr) {
-				return "dark"
-			} else if(A_Hour = darkStartHr && A_Min >= this.CONFIG_VAL_DARK_START_MIN + 0) {
-				return "dark"
-			}
-			return "light"
-		} else {
-			return this.CONFIG_VAL_THEME
-		}
+		return this.calculatedTheme
 	}
 	
 	openEditConfigWindow() {
