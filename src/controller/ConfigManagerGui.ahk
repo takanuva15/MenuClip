@@ -22,14 +22,13 @@ class ConfigManagerGui {
 			Gui EditConfig:Font, cCCCCCC
 		}
 		
-		Gui EditConfig:Add, Tab3, , General|Theme||
+		Gui EditConfig:Add, Tab3, , General|Theme
 		Gui EditConfig:Tab, General
 		this.configGuiGeneralOptions.addAllOptions()
 		Gui EditConfig:Tab, Theme
 		this.configGuiThemeOptions.addAllOptions()
 		Gui EditConfig:Tab
 		this.addSaveAndReloadButton()
-		this.showGui()
 	}
 	
 	addSaveAndReloadButton() {
