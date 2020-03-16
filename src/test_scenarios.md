@@ -49,6 +49,8 @@ Exit the script and then run it. The menu should show "two", "one", "three", in 
 
 1. Change the configuration keys in `config.ini`. The property that each variable defines should adjust accordingly when the script is restarted.
 
+1. Do the previous especially for the auto theme config. Test different times and different hours, and swap them around for weird situations
+
 ### Tray Menu Options
 1. Change the configurations through the GUI that appears when selecting "Edit Configuration" from the System Tray icon's menu. Saving changes on the GUI should change it in the config.ini.
 

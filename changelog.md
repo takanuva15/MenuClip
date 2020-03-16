@@ -1,5 +1,7 @@
 # Changelog
 
+## v1.14.0
+2020-03-16 Added option to swap the theme automatically at a specified time
 ### v1.13.1
 2020-03-08 Added tabs to separate theme options from general options
 ## v1.13.0
