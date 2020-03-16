@@ -17,6 +17,7 @@ class ConfigGuiThemeOptions {
 	addAllOptions() {
 		this.addThemeOpt()
 		this.addAutoThemeOpts()
+		this.disableAutoThemeConfigBySelectedTheme()
 	}
 	
 	addThemeOpt() {
@@ -27,6 +28,8 @@ class ConfigGuiThemeOptions {
 			CtlColors.Attach(MenuTheme, "43474A","CCCCCC")
 		}
 		this.CONFIG_HANDLE_THEME := MenuTheme
+		disableAutoThemeConfigBySelectedThemeFn := ObjBindMethod(this, "disableAutoThemeConfigBySelectedTheme")
+		GuiControl +g, %MenuTheme%, % disableAutoThemeConfigBySelectedThemeFn
 	}
 	
 	addAutoThemeOpts() {
@@ -44,9 +47,9 @@ class ConfigGuiThemeOptions {
 		Gui EditConfig:Add, DDL, % "x+5 yp w40 hWndDarkStartPM Choose" this.configManager.CONFIG_VAL_DARK_START_PM + 1, AM|PM
 		this.CONFIG_HANDLE_DARK_START_PM := DarkStartPM
 		
-		;GuiControl, EditConfig:Disable, %HrsOne%
 		
-		Gui EditConfig:Add, Text, xs+10 y+8 w140, Deactivate dark theme at:
+		Gui EditConfig:Add, Text, xs+10 y+8 w140 hWndDarkStopText, Deactivate dark theme at:
+		this.CONFIG_HANDLE_DARK_STOP_TEXT := DarkStopText
 		
 		Gui EditConfig:Add, DDL, % "x+0 yp-2 w35 hWndDarkStopHr Choose" this.configManager.CONFIG_VAL_DARK_STOP_HR + 0, % this.HR_OPTIONS
 		this.CONFIG_HANDLE_DARK_STOP_HR := DarkStopHr
@@ -56,6 +59,31 @@ class ConfigGuiThemeOptions {
 		
 		Gui EditConfig:Add, DDL, % "x+5 yp w40 hWndDarkStopPM Choose" this.configManager.CONFIG_VAL_DARK_STOP_PM + 1, AM|PM
 		this.CONFIG_HANDLE_DARK_STOP_PM := DarkStopPM
+	}
+	
+	disableAutoThemeConfigBySelectedTheme() {
+		selectedTheme := GetControlValue(this.CONFIG_HANDLE_THEME)
+		if(selectedTheme != "auto") {
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_AUTO_THEME_GROUPBOX
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_DARK_START_TEXT
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_DARK_START_HR
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_DARK_START_MIN
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_DARK_START_PM
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_DARK_STOP_TEXT
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_DARK_STOP_HR
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_DARK_STOP_MIN
+			GuiControl, EditConfig:Disable, % this.CONFIG_HANDLE_DARK_STOP_PM
+		} else {
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_AUTO_THEME_GROUPBOX
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_DARK_START_TEXT
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_DARK_START_HR
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_DARK_START_MIN
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_DARK_START_PM
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_DARK_STOP_TEXT
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_DARK_STOP_HR
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_DARK_STOP_MIN
+			GuiControl, EditConfig:Enable, % this.CONFIG_HANDLE_DARK_STOP_PM
+		}
 	}
 	
 	generateMinuteOptions() {
