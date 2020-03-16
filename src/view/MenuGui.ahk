@@ -56,8 +56,14 @@ class MenuGui {
 	addInvisibleOKButton() {
 		Gui ClipMenu:Add, Button, h0 w0 hWndPasteSelected +Default
 		this.HANDLE_BUTTON_PASTE := PasteSelected
-		hideMenuGuiAndPasteSelectedClipFn := ObjBindMethod(this.menuWindowHandler, "hideMenuGuiAndPasteSelectedClip")
-		GuiControl +g, %PasteSelected%, % hideMenuGuiAndPasteSelectedClipFn
+		pasteOnEnterFn := ObjBindMethod(this, "pasteOnEnter")
+		GuiControl +g, %PasteSelected%, % pasteOnEnterFn
+	}
+	
+	pasteOnEnter() {
+		this.menuWindowHandler.hideMenuGui()
+		this.menuClipsViewHandler.pasteSelectedClip()
+		this.menuWindowHandler.resetGuiState()
 	}
 	
 	showGui() {
