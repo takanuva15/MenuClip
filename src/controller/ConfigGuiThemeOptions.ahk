@@ -24,7 +24,7 @@ class ConfigGuiThemeOptions {
 		this.themes := {"light":1, "dark":2, "auto":3}
 		Gui EditConfig:Add, Text, xs y+10 w170, Theme:
 		Gui EditConfig:Add, DDL, % "x+5 yp-2 w50 hWndMenuTheme Choose" this.themes[this.themeStyle], light|dark|auto
-		if(this.themeStyle = "dark") {
+		if(this.configManager.getTheme() = "dark") {
 			CtlColors.Attach(MenuTheme, "43474A","CCCCCC")
 		}
 		this.CONFIG_HANDLE_THEME := MenuTheme
@@ -59,6 +59,15 @@ class ConfigGuiThemeOptions {
 		
 		Gui EditConfig:Add, DDL, % "x+5 yp w40 hWndDarkStopPM Choose" this.configManager.CONFIG_VAL_DARK_STOP_PM + 1, AM|PM
 		this.CONFIG_HANDLE_DARK_STOP_PM := DarkStopPM
+		
+		if(this.configManager.getTheme() = "dark") {
+			CtlColors.Attach(DarkStartHr, "43474A","CCCCCC")
+			CtlColors.Attach(DarkStartMin, "43474A","CCCCCC")
+			CtlColors.Attach(DarkStartPM, "43474A","CCCCCC")
+			CtlColors.Attach(DarkStopHr, "43474A","CCCCCC")
+			CtlColors.Attach(DarkStopMin, "43474A","CCCCCC")
+			CtlColors.Attach(DarkStopPM, "43474A","CCCCCC")
+		}
 	}
 	
 	disableAutoThemeConfigBySelectedTheme() {
