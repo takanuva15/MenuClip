@@ -44,6 +44,8 @@ Exit the script and then run it. The menu should show "two", "one", "three", in 
 ### Visual Tests
 1. Try to open up the paste window with your mouse at the bottom-right of the screen. The window should not render off-screen.
 
+1. Paste a clip. There should be no fade animation. Now click outside of the clips view window. The box should fade away.
+
 ### Config File
 1. Delete the config file. Restart the script and the config file should appear with default values.
 
