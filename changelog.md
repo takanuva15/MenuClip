@@ -1,5 +1,7 @@
 # Changelog
 
+### v1.14.1
+2020-03-16 Removed fade animation if pasting
 ## v1.14.0
 2020-03-16 Added option to swap the theme automatically at a specified time
 ### v1.13.1
