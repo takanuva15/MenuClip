@@ -10,6 +10,7 @@ VERSION := "v1.14.1"
 
 #Include <Class_CtlColors>
 #Include <Class_LB_AdjustHeight>
+#Include <Class_ImageButton>
 #Include <Gui_Functions>
 #Include src\MenuClip.ahk
 
