@@ -32,10 +32,16 @@ class ConfigManagerGui {
 	}
 	
 	addSaveAndReloadButton() {
-		Gui EditConfig:Add, Button, x107 y+10 w110 h26 hWndSaveAndReload +Default, &Save and Reload
+		Gui EditConfig:Add, Button, x107 y+10 w110 h26 hWndSaveAndReload +Default, Save and Reload
 		this.CONFIG_HANDLE_BUTTON_SAVE_AND_RELOAD := SaveAndReload
 		saveConfigsAndReloadFn := ObjBindMethod(this, "saveConfigsAndReload")
 		GuiControl +g, %SaveAndReload%, % saveConfigsAndReloadFn
+		
+		if(this.themeStyle = "dark") {
+			NORMAL_STATE := [0, 0x43474A, , 0xCCCCCC, , , "White"]
+			HOVER_STATE := [0, "Gray", , "White", , , "White"]
+			ImageButton.create(SaveAndReload, NORMAL_STATE, HOVER_STATE)
+		}
 	}
 	
 	saveConfigsAndReload() {
