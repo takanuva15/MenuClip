@@ -1,6 +1,7 @@
 # Changelog
 
 ### v1.14.2
+2020-03-19 Fixed issue with converting special characters in display view
 2020-03-18 Made the save button in editconfig dark theme
 ### v1.14.1
 2020-03-16 Removed fade animation if pasting
