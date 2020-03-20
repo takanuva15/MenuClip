@@ -19,8 +19,10 @@ class MenuClipsViewHandler {
 	}
 	
 	insertItemAtTop(item) {
-		newItem := this.prettifyClip(item)
-		LB_InsertItemAtIndex(this.menuGui.HANDLE_CLIPS_VIEW, newItem, 1)
+		if(this.menuGui.configManager.getConvSpecChar()) {
+			item := this.prettifyClip(item)
+		}
+		LB_InsertItemAtIndex(this.menuGui.HANDLE_CLIPS_VIEW, item, 1)
 	}
 	
 	deleteItemAtIndex(index) {
