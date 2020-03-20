@@ -22,7 +22,7 @@ class MenuWindowHandler {
 		MouseGetPos, , , windowClicked, controlClicked
 		if(controlClicked = "ListBox1") {
 			Sleep, 100 ;allows time for Gui to show what was selected
-			this.hideMenuGui(False)
+			this.hideMenuGui(playFadeAnimation := False)
 			this.menuGui.menuClipsViewHandler.pasteSelectedClip()
 			this.resetGuiState()
 		} else if(windowClicked = this.menuGui.HANDLE_GUI) {
@@ -71,7 +71,7 @@ class MenuWindowHandler {
 			Loop, % loopIndex := 10
 			{
 				WinSet, Transparent, % loopIndex-- * 25, % "ahk_id " this.menuGui.HANDLE_GUI
-				Sleep 20
+				Sleep 25
 			}
 		}
 		Gui ClipMenu:Hide
