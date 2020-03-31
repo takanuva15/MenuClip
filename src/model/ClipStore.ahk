@@ -3,9 +3,11 @@
 ;Manages the stored clips. (Basically an array manager)
 class ClipStore {
 	static clips := []
+	static configManager
 	static cacheDirManager
-	__New() {
-		this.cacheDirManager := new MenuClip.Model.CacheDirManager()
+	__New(configManager) {
+		this.configManager := configManager
+		this.cacheDirManager := new MenuClip.Model.CacheDirManager(configManager)
 		this.clips := this.cacheDirManager.restoreFromCache()
 	}
 	
