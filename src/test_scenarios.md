@@ -41,6 +41,8 @@ Copy "five" multiple times. There should only be one entry of it at the top of t
 1. Cache contents restored on script start
 Exit the script and then run it. The menu should show "two", "one", "three", in that order. Paste "one". Check that the cache shows "1.txt", "2.txt", "3.txt" with file contents matching "one", "two", "three", respectively.
 
+1. mess up the order and naming of the cache files. Reload the script. Everything should be in the proper order without exceeding the max limit of the number-of-clips-to-store config option.
+
 ### Visual Tests
 1. Try to open up the paste window with your mouse at the bottom-right of the screen. The window should not render off-screen.
 
