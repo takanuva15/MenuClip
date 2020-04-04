@@ -2,7 +2,6 @@
 
 ;Handles configuration file reading & writing
 class ConfigManager {
-	static VERSION
 	static CONFIG_FILE_NAME := "config.ini"
 	static CONFIG_SECTION := "Configuration Options"
 	static CONFIG_NAME_HOTKEY := "SHOW_MENU_HOTKEY"
@@ -19,8 +18,8 @@ class ConfigManager {
 	static CONFIG_VAL_ALT_PASTE_APPS
 	static CONFIG_VAL_CONV_SPEC_CHAR
 	
-	__New(versionNum) {
-		this.VERSION := versionNum
+	__New(clipManager) {
+		this.clipManager := clipManager
 		this.configThemeManager := new MenuClip.Config.ConfigThemeManager(this)
 		this.readAllConfigOptionsFromFile()
 		this.writeAllConfigOptionsToFile()
@@ -58,10 +57,6 @@ class ConfigManager {
 		this.configThemeManager.writeThemeConfigs()
 	}
 	
-	getVersionNum() {
-		return this.VERSION
-	}
-	
 	getShowMenuHotkey() {
 		return this.CONFIG_VAL_HOTKEY
 	}
@@ -92,9 +87,5 @@ class ConfigManager {
 	
 	openEditConfigWindow() {
 		this.configManagerGui.showGui()
-	}
-	
-	reloadFn() {
-		Reload
 	}
 }

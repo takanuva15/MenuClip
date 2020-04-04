@@ -3,10 +3,10 @@ class TrayManager {
 	static configManager
 	static clipManager
 	static VERSION
-	__New(configManager, clipManager) {
-		this.configManager := configManager
+	__New(version, clipManager) {
+		this.VERSION := version
 		this.clipManager := clipManager
-		this.VERSION := configManager.getVersionNum()
+		this.configManager := clipManager.configManager
 	}
 	
 	configureTrayTooltip() {
