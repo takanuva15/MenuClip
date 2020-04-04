@@ -1,6 +1,4 @@
-﻿#Include %A_ScriptDir%\src\controller\ConfigManagerGui.ahk
-
-;Handles configuration file reading & writing
+﻿;Handles configuration file reading & writing
 class ConfigManager {
 	static VERSION
 	static CONFIG_FILE_NAME := "config.ini"
@@ -36,7 +34,7 @@ class ConfigManager {
 		this.readAllConfigOptionsFromFile()
 		this.writeAllConfigOptionsToFile()
 		
-		this.configManagerGui := new MenuClip.Controller.ConfigManagerGui(this)
+		this.configManagerGui := new MenuClip.Config.ConfigManagerGui(this)
 	}
 	
 	readConfigFromFile(configKeyName, defaultValue) {
