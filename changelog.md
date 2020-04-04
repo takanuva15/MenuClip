@@ -1,5 +1,7 @@
 # Changelog
 
+### v1.15.1
+2020-04-04 Refactored config files into new config directory. Extracted theme calculation logic to its own class.
 ## v1.15.0
 2020-03-31 Added a method to clean up the cache each time the script is loaded (the cache randomly gets messed up during normal operation)
 ### v1.14.2
