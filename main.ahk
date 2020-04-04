@@ -14,7 +14,7 @@ VERSION := "v1.15.0"
 #Include <Gui_Functions>
 #Include src\MenuClip.ahk
 
-configManager := new MenuClip.Controller.ConfigManager(VERSION)
+configManager := new MenuClip.Config.ConfigManager(VERSION)
 
 clipManager := new MenuClip.Controller.ClipManager(configManager)
 

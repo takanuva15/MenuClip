@@ -1,5 +1,5 @@
-﻿#Include %A_ScriptDir%\src\controller\ConfigGuiGeneralOptions.ahk
-#Include %A_ScriptDir%\src\controller\ConfigGuiThemeOptions.ahk
+﻿#Include %A_ScriptDir%\src\config\ConfigGuiGeneralOptions.ahk
+#Include %A_ScriptDir%\src\config\ConfigGuiThemeOptions.ahk
 
 ;Handles configuration file reading & writing
 class ConfigManagerGui {
@@ -10,8 +10,8 @@ class ConfigManagerGui {
 	__New(configManager) {
 		this.configManager := configManager
 		this.themeStyle := this.configManager.getTheme()
-		this.configGuiGeneralOptions := new MenuClip.Controller.ConfigGuiGeneralOptions(configManager)
-		this.configGuiThemeOptions := new MenuClip.Controller.ConfigGuiThemeOptions(configManager)
+		this.configGuiGeneralOptions := new MenuClip.Config.ConfigGuiGeneralOptions(configManager)
+		this.configGuiThemeOptions := new MenuClip.Config.ConfigGuiThemeOptions(configManager)
 		
 		Gui +hWndEditConfig
 		Gui EditConfig:-MinimizeBox -MaximizeBox
@@ -26,7 +26,7 @@ class ConfigManagerGui {
 		Gui EditConfig:Tab, General
 		this.configGuiGeneralOptions.addAllOptions()
 		Gui EditConfig:Tab, Theme
-		this.configGuiThemeOptions.addAllOptions()
+		this.configGuiThemeOptions.addAllThemeOptions()
 		Gui EditConfig:Tab
 		this.addSaveAndReloadButton()
 	}

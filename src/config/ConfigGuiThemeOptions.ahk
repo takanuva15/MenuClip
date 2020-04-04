@@ -14,7 +14,7 @@ class ConfigGuiThemeOptions {
 		this.generateMinuteOptions()
 	}
 	
-	addAllOptions() {
+	addAllThemeOptions() {
 		this.addThemeOpt()
 		this.addAutoThemeOpts()
 		this.disableAutoThemeConfigBySelectedTheme()
