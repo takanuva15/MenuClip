@@ -35,7 +35,6 @@ class ConfigThemeManager {
 			if(darkStopTime < darkStartTime) {
 				EnvAdd, darkStopTime, 1, Days
 			}
-			reloadFn := ObjBindMethod(this.configManager, "reloadFn")
 			if(A_Now >= darkStartTime && A_Now < darkStopTime) {
 				this.calculatedTheme := "dark"
 				reloadTime := this.getNextOccurrenceOfTimeAsFullStr(darkStopHr, this.CONFIG_VAL_DARK_STOP_MIN)
@@ -45,7 +44,8 @@ class ConfigThemeManager {
 				reloadTime := this.getNextOccurrenceOfTimeAsFullStr(darkStartHr, this.CONFIG_VAL_DARK_START_MIN)
 				EnvSub, reloadTime, %A_Now%, Seconds
 			}
-			SetTimer, % reloadFn, % reloadTime * -1000
+			triggerGuiRecolorFn := ObjBindMethod(this, "triggerGuiRecolor")
+			SetTimer, % triggerGuiRecolorFn, % reloadTime * -1000
 		} else {
 			this.calculatedTheme := this.CONFIG_VAL_THEME
 		}
@@ -78,5 +78,11 @@ class ConfigThemeManager {
 		minStr := (StrLen(min) = 1 ? "0" : "") min
 		hhmm := hourStr . minStr
 		return % A_YYYY A_MM A_DD hhmm "00"
+	}
+	
+	triggerGuiRecolor() {
+		recolorOpts := {"light":"dark", "dark":"light"}
+		this.configManager.clipManager.menuGui.recolorGui(recolorOpts[this.calculatedTheme])
+		this.determineTheme()
 	}
 }

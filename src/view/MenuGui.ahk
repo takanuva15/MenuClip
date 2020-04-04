@@ -69,4 +69,16 @@ class MenuGui {
 	showGui() {
 		this.menuWindowHandler.showGui()
 	}
+	
+	recolorGui(themeStyle) {
+		if(themeStyle = "light") {
+			Gui ClipMenu:Color, Default, Default
+			GuiControl, +cBlack, % this.HANDLE_CLIPS_VIEW
+			GuiControl, +cBlack, % this.HANDLE_SEARCH_BOX
+		} else {
+			Gui ClipMenu:Color, 2B2B2B, 43474A
+			GuiControl, +cDDDDDD, % this.HANDLE_CLIPS_VIEW
+			GuiControl, +cDDDDDD, % this.HANDLE_SEARCH_BOX
+		}
+	}
 }

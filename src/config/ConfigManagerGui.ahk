@@ -19,7 +19,7 @@ class ConfigManagerGui {
 		
 		if(this.themeStyle = "dark") {
 			Gui EditConfig:Color, 2B2B2B, 43474A
-			Gui EditConfig:Font, cCCCCCC
+			Gui EditConfig:Font, cDDDDDD
 		}
 		
 		Gui EditConfig:Add, Tab3, , General|Theme
@@ -38,7 +38,7 @@ class ConfigManagerGui {
 		GuiControl +g, %SaveAndReload%, % saveConfigsAndReloadFn
 		
 		if(this.themeStyle = "dark") {
-			NORMAL_STATE := [0, 0x43474A, , 0xCCCCCC, , , "White"]
+			NORMAL_STATE := [0, 0x43474A, , 0xDDDDDD, , , "White"]
 			HOVER_STATE := [0, "Gray", , "White", , , "White"]
 			ImageButton.create(SaveAndReload, NORMAL_STATE, HOVER_STATE)
 		}

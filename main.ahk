@@ -14,17 +14,17 @@ VERSION := "v1.15.1"
 #Include <Gui_Functions>
 #Include src\MenuClip.ahk
 
-configManager := new MenuClip.Config.ConfigManager(VERSION)
+;configManager := new MenuClip.Config.ConfigManager(VERSION)
 
-clipManager := new MenuClip.Controller.ClipManager(configManager)
+clipManager := new MenuClip.Controller.ClipManager()
 
-trayManager := new MenuClip.Controller.TrayManager(configManager, clipManager)
+trayManager := new MenuClip.Controller.TrayManager(VERSION, clipManager)
 trayManager.configureTrayTooltip()
 trayManager.configureTrayOptions()
 
 clipManager.monitorClipboardChanges()
 
 showMenu := ObjBindMethod(clipManager, "showContextMenu")
-Hotkey, % configManager.getShowMenuHotkey(), % showMenu
+Hotkey, % clipManager.configManager.getShowMenuHotkey(), % showMenu
 
 return

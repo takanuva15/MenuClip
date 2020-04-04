@@ -5,14 +5,15 @@ class ClipManager {
 	static MAX_CLIPS_TO_STORE
 	static ALT_PASTE_APPS
 	static lastSavedClipType
-	__New(configManager) {
-		this.MAX_CLIPS_TO_STORE := configManager.getMaxClipsToStore()
-		this.ALT_PASTE_APPS := configManager.getAltPasteApps()
-		this.clipStore := new MenuClip.Model.ClipStore(configManager)
+	__New() {
+		this.configManager := new MenuClip.Config.ConfigManager(this)
+		this.MAX_CLIPS_TO_STORE := this.configManager.getMaxClipsToStore()
+		this.ALT_PASTE_APPS := this.configManager.getAltPasteApps()
+		this.clipStore := new MenuClip.Model.ClipStore(this.configManager)
 		this.postNewClipFn := ObjBindMethod(this, "postNewClip")
 		this.saveClipFn := ObjBindMethod(this, "saveClip")
 		
-		this.menuGui := new MenuClip.View.MenuGui(configManager, this.clipStore, ObjBindMethod(this, "pasteClip"))
+		this.menuGui := new MenuClip.View.MenuGui(this.configManager, this.clipStore, ObjBindMethod(this, "pasteClip"))
 	}
 	
 	monitorClipboardChanges() {
