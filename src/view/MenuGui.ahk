@@ -81,4 +81,15 @@ class MenuGui {
 			GuiControl, +cDDDDDD, % this.HANDLE_SEARCH_BOX
 		}
 	}
+	
+	;if gui is open when theme change occurs, theme will swap immediately
+	;once user closes gui, then we reload so that config gui reflects the
+	;theme change as well
+	initReloadOnMenuQuit() {
+		if(WinExist("ahk_id " this.HANDLE_GUI)) {
+			this.menuWindowHandler.reloadOnHide := True
+		} else {
+			Reload
+		}
+	}
 }

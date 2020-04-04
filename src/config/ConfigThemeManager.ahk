@@ -83,6 +83,6 @@ class ConfigThemeManager {
 	triggerGuiRecolor() {
 		recolorOpts := {"light":"dark", "dark":"light"}
 		this.configManager.clipManager.menuGui.recolorGui(recolorOpts[this.calculatedTheme])
-		this.determineTheme()
+		this.configManager.clipManager.menuGui.initReloadOnMenuQuit()
 	}
 }

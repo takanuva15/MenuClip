@@ -1,10 +1,9 @@
 ﻿;Handles changes to the menu
 class MenuWindowHandler {
 	static menuGui
-	static totalScreenWidth
-	static totalScreenHeight
-	static guiWidth
-	static guiHeight
+	static totalScreenWidth, totalScreenHeight
+	static guiWidth, guiHeight
+	static reloadOnHide := False
 	__New(menuGui) {
 		this.menuGui := menuGui
 		hideGuiOnOutsideClickFn := ObjBindMethod(this, "watchMouseClickAndHideGuiOnOutsideClick")
@@ -75,6 +74,9 @@ class MenuWindowHandler {
 			}
 		}
 		Gui ClipMenu:Hide
+		if(this.reloadOnHide) {
+			Reload
+		}
 	}
 	
 	resetGuiState() {
