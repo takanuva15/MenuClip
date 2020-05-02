@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.15.2
+2020-05-02 Fixed bug where new clips would not be pasted properly due to not being updated in the filtered list array. 
+2020-05-02 Fixed bug where fade animation would play when pasting by pressing Enter.
+2020-05-02 Added MenuClip functionality demo gif to repo.
 ### v1.15.1
 2020-04-04 Refactored config files into new config directory. Extracted theme calculation logic to its own class.
 2020-04-04 Added logic to swap theme without reloading if user currently has clips view open. (It reloads after you quit)
