@@ -3,6 +3,11 @@ MenuClip is a menu-based clipboard manager written by takanuva15 in AutoHotkey. 
 
 When you press a hotkey, a small context menu will show up that indicates the last x things that were copied to your clipboard. 
 
+#### _This project is in maintenance mode. No new features will be added; bugs may be fixed depending on bug severity and as time permits. (Please check the issue tracker to see if your bug was already raised)_
+
+### Demo:
+![MenuClip functionality demo gif](https://github.com/takanuva15/MenuClip/blob/master/resources/menuclip_demo_final.gif "MenuClip functionality demo")
+
 ### Features:
 - Stores all text and filepath (from Explorer) clips into memory
 - Displays stored clips in a context menu via `Ctrl+Shift+V`

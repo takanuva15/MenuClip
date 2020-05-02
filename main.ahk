@@ -6,7 +6,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance, Force
 
-VERSION := "v1.15.1"
+VERSION := "v1.15.2"
 
 #Include <Class_CtlColors>
 #Include <Class_LB_AdjustHeight>
