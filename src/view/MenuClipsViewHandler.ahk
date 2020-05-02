@@ -23,6 +23,8 @@ class MenuClipsViewHandler {
 			item := this.prettifyClip(item)
 		}
 		LB_InsertItemAtIndex(this.menuGui.HANDLE_CLIPS_VIEW, item, 1)
+		;MC-45 bugfix needed for new clips being added
+		this.menuGui.menuSearchHandler.filterClipsByStr("")
 	}
 	
 	deleteItemAtIndex(index) {
@@ -35,7 +37,9 @@ class MenuClipsViewHandler {
 	}
 	
 	pasteSelectedClip() {
-		this.menuGui.onItemClickFn.call(this.menuGui.menuSearchHandler.getOrigClipFromFilteredClipByIndex(GetControlValue(this.menuGui.HANDLE_CLIPS_VIEW)))
+		selectedClipIndex := GetControlValue(this.menuGui.HANDLE_CLIPS_VIEW)
+		origClipIndex := this.menuGui.menuSearchHandler.getOrigClipFromFilteredClipByIndex(selectedClipIndex)
+		this.menuGui.onItemClickFn.call(origClipIndex)
 	}
 	
 	prettifyClip(clip) {
