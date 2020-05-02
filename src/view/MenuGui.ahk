@@ -61,7 +61,7 @@ class MenuGui {
 	}
 	
 	pasteOnEnter() {
-		this.menuWindowHandler.hideMenuGui()
+		this.menuWindowHandler.hideMenuGui(False)
 		this.menuClipsViewHandler.pasteSelectedClip()
 		this.menuWindowHandler.resetGuiState()
 	}
